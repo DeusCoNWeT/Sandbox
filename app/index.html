@@ -59,6 +59,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style is="custom-style" include="shared-styles"></style>
   <!-- Imports del proyecto-->
   <link rel="import" href="../paper-header-panel/paper-header-panel.html">
+  <link rel="import" href="../paper-tabs-vertical/paper-tabs-vertical.html">
+
 </head>
 
 <body unresolved>
@@ -67,9 +69,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild -->
 
   <template is="dom-bind" id="app">
+    <style>
+    :host{
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      display: inline-block;
+      background-color:antiquewhite;
+    }
+    .header{
+      background-color: #001f3f;
+    }
+    .headertext{
+      margin: 6em;
+    }
+    #titulo{
+      margin-left: 3em;
+      margin-right: 65em;
+    }
+    
+    </style>
     
     <paper-header-panel class="flex">
-      <paper-toolbar>Hola</paper-toolbar>
+      <paper-toolbar class="header">
+        <div>
+            <span class="headertext" id="titulo">SANDBOX</span>
+            <!--METER UN ICONO AQUI-->
+            <span class="headertext">Instrucciones</span>
+            <span class="headertext">Contacto</span>
+        </div>
+      </paper-toolbar>
       <div>Aqui meteremos mas componentes creados por nosotros</div>
     </paper-header-panel>
     
