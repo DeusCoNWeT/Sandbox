@@ -13,25 +13,43 @@
                 .header{
                   background-color: #001f3f;
                 }
-                .headertext{
-                  margin: 6em;
-                }
                 #titulo{
-                  margin-left: 3em;
-                  margin-right: 65em;
+                  margin-top: 28px;
+                  display: inline-block;
+                  margin-right: 90px;
+
                 }
+                #text_img{
+                  margin-left: 40px;
+                  margin-top: 30px;
+                  font-size: 14px;
+                }
+                #img_polymer{
+                  width: 70px;
+                  height: 50px;
+                  margin-top: 2px;
+                  margin-right: 1000px;
                 
+                }
+                #inst{
+                  margin-right: 100px;
+                }
+                .opciones{
+                  font-size:18px;
+                }
+                .opciones:hover{
+                  color:#0074D9;
+                }              
           </style>
           <paper-header-panel class="flex">
-              <paper-toolbar class="header">
-                <div>
-                    <span class="headertext" id="titulo">SANDBOX</span>
+              <paper-toolbar class="header">           
+                    <h1 id="titulo">SANDBOX</h1>
+                    <span id="text_img">Hecho con: </span>
+                    <img  id="img_polymer" src="../../images/touch/p-logo.png" alt="Polymer_logo">
                     <!--METER UN ICONO AQUÍ-->
-                    <span class="headertext">Instrucciones</span>
-                    <span class="headertext">Contacto</span>
-                </div>
+                    <span class="opciones" id="inst">Instrucciones</span>
+                    <span class="opciones" id="contacto">Contacto</span>              
               </paper-toolbar>
-              <div>Aqui meteremos mas componentes creados por nosotros</div>
             </paper-header-panel>
       </template>
       <script>
