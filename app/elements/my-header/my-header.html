@@ -1,0 +1,43 @@
+  <!-- Imports del proyecto-->
+  <link rel="import" href="../paper-header-panel/paper-header-panel.html">
+  <link rel="import" href="../paper-tabs-vertical/paper-tabs-vertical.html">
+  
+  <dom-module id="my-header">
+      <template>
+          <style>
+              :host{
+                  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                  display: inline-block;
+                  background-color:antiquewhite;
+                }
+                .header{
+                  background-color: #001f3f;
+                }
+                .headertext{
+                  margin: 6em;
+                }
+                #titulo{
+                  margin-left: 3em;
+                  margin-right: 65em;
+                }
+                
+          </style>
+          <paper-header-panel class="flex">
+              <paper-toolbar class="header">
+                <div>
+                    <span class="headertext" id="titulo">SANDBOX</span>
+                    <!--METER UN ICONO AQUÍ-->
+                    <span class="headertext">Instrucciones</span>
+                    <span class="headertext">Contacto</span>
+                </div>
+              </paper-toolbar>
+              <div>Aqui meteremos mas componentes creados por nosotros</div>
+            </paper-header-panel>
+      </template>
+      <script>
+          Polymer({
+              is: 'my-header'
+          });
+      </script>
+  </dom-module>
+  
