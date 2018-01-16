@@ -1,7 +1,5 @@
   <!-- Imports del proyecto-->
-  <link rel="import" href="../paper-header-panel/paper-header-panel.html">
-  <link rel="import" href="../paper-tabs-vertical/paper-tabs-vertical.html">
-  
+  <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html"> 
   <dom-module id="my-header">
       <template>
           <style>
@@ -43,12 +41,13 @@
           </style>
           <paper-header-panel class="flex">
               <paper-toolbar class="header">           
-                    <h1 id="titulo">SANDBOX</h1>
+                    <h1 id="titulo"><a href="/">SANDBOX</a></h1>
                     <span id="text_img">Hecho con: </span>
                     <img  id="img_polymer" src="../../images/touch/p-logo.png" alt="Polymer_logo">
                     <!--METER UN ICONO AQUÍ-->
-                    <span class="opciones" id="inst">Instrucciones</span>
-                    <span class="opciones" id="contacto">Contacto</span>              
+                    
+                    <a href="/instructions" class="opciones" id="inst">Instrucciones</a>
+                    <a href="/contact" class="opciones" id="contacto">Contacto</a>              
               </paper-toolbar>
             </paper-header-panel>
       </template>

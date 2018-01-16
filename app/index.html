@@ -66,8 +66,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild -->
 
   <template is="dom-bind" id="app">
-    <my-header></my-header>
-    <my-catalogue></my-catalogue>
+    <my-header id="headerPanelMain"></my-header>
+    <iron-pages attr-for-selected="data-route" selected="{{route}}">
+      <section data-route="contact">
+        <p>Esto es la vista de contacto</p>
+      </section>
+      <section data-route="home">
+          <p>Esto es la vista de home</p>
+      </section>
+      <section data-route="instructions">
+        <p>Esto es la vista de instrucciones</p>
+      </section>
+    </iron-pages>
+    
+    <!-- <my-catalogue></my-catalogue> -->
   </template>
 
   <!-- build:js scripts/app.js -->
