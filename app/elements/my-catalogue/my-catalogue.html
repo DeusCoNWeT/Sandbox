@@ -14,11 +14,13 @@
                 height: 100%;
                 width: 20%;
                 background-color: white;
-                
+
             }
-            neon-animated-pages{
+
+            neon-animated-pages {
                 height: calc(100% - 49px);
             }
+
             neon-animatable:nth-child(1),
             neon-animatable:nth-child(6) {
                 background: var(--paper-red-500);
@@ -51,7 +53,28 @@
             </paper-tabs>
         </nav>
         <neon-animated-pages id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
-            <neon-animatable>1</neon-animatable>
+            <neon-animatable>
+                <div>
+                    <!-- token required-->
+                    <span class="label label-warning warning ng-binding" ng-hide="checkToken(item, $index)">Sin permisos</span>
+                    <button ng-hide="checkToken(item, $index)" ng-click="login(item.social_network, item.component_id,  item.component_id)" class="tokenDisabled ng-binding">
+                        Haz click para loguearte con esta red social antes de usarlo.
+                    </button>
+
+                    <!-- token not required -->
+                    <div ng-show="checkToken(item, $index)" class="description ng-binding ng-hide" title="Web component to obtain the timeline of Twitter using Polymer"
+                        data-test="">
+                        Web component to obtain the timeline of Twitter using Polymer
+                    </div>
+                    <div class="componentData horizontal layout">
+                        <img ng-src="images/components/twitter-logo.png" style="width:45px;height:45px" src="images/components/twitter-logo.png">
+                        <div class="flex vertical center-center layout componentInfo">
+                            <p class="ng-binding">twitter-timeline</p>
+                        </div>
+                    </div>
+                    <star-rate star="5" value="0" stars="5"></star-rate>
+                </div>
+            </neon-animatable>
             <neon-animatable>2</neon-animatable>
             <neon-animatable>3</neon-animatable>
         </neon-animated-pages>
