@@ -1,16 +1,101 @@
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animatable.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 
 <dom-module id="my-catalogue">
     <template>
         <style>
             :host {
-                display: block;
+                display: inline-block;
+                height: 100%;
+                width: 20%;
+                background-color: white;
+
+            }
+
+            neon-animated-pages {
+                height: calc(100% - 49px);
+            }
+
+            neon-animatable:nth-child(1),
+            neon-animatable:nth-child(6) {
+                background: var(--paper-red-500);
+            }
+
+            neon-animatable:nth-child(2) {
+                background: var(--paper-blue-500);
+            }
+
+            neon-animatable:nth-child(3) {
+                background: var(--paper-orange-500);
+            }
+
+            neon-animatable:nth-child(4) {
+                background: var(--paper-green-500);
+            }
+
+            neon-animatable:nth-child(5) {
+                background: var(--paper-purple-500);
             }
         </style>
-        <p>hola</p>
+        <nav id="left-nav">
+
+            <paper-tabs selected="{{selected}}">
+                <paper-tab>Catálogo </paper-tab>
+                <paper-tab>Analizar calidad</paper-tab>
+                <paper-tab>
+                    <iron-icon icon="icons:folder"></iron-icon>
+                </paper-tab>
+            </paper-tabs>
+        </nav>
+        <neon-animated-pages id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
+            <neon-animatable>
+                <div>
+                    <!-- token required-->
+                    <span class="label label-warning warning ng-binding" ng-hide="checkToken(item, $index)">Sin permisos</span>
+                    <button ng-hide="checkToken(item, $index)" ng-click="login(item.social_network, item.component_id,  item.component_id)" class="tokenDisabled ng-binding">
+                        Haz click para loguearte con esta red social antes de usarlo.
+                    </button>
+
+                    <!-- token not required -->
+                    <div ng-show="checkToken(item, $index)" class="description ng-binding ng-hide" title="Web component to obtain the timeline of Twitter using Polymer"
+                        data-test="">
+                        Web component to obtain the timeline of Twitter using Polymer
+                    </div>
+                    <div class="componentData horizontal layout">
+                        <img src="../../images/componentes/twitter-logo.png" style="width:45px;height:45px" src="images/components/twitter-logo.png">
+                        <div class="flex vertical center-center layout componentInfo">
+                            <p class="ng-binding">twitter-timeline</p>
+                        </div>
+                    </div>
+                </div>
+            </neon-animatable>
+            <neon-animatable>2</neon-animatable>
+            <neon-animatable>3</neon-animatable>
+        </neon-animated-pages>
+
     </template>
     <script>
         Polymer({
-            is: 'my-catalogue'
+            is: 'my-catalogue',
+            properties: {
+                selected: {
+                    type: Number,
+                    value: 0
+                },
+                entryAnimation: {
+                    type: String,
+                    value: 'slide-from-left-animation'
+                },
+                exitAnimation: {
+                    type: String,
+                    value: 'slide-right-animation'
+                },
+            }
         });
     </script>
 </dom-module>

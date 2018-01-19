@@ -60,19 +60,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 </head>
 
-<body unresolved>
+<body unresolved class='vertical layout'>
   <!-- build:remove -->
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
 
   <template is="dom-bind" id="app">
     <my-header id="headerPanelMain"></my-header>
-    <iron-pages attr-for-selected="data-route" selected="{{route}}">
+    <iron-pages class='flex' attr-for-selected="data-route" selected="{{route}}">
       <section data-route="contact">
         <p>Esto es la vista de contacto</p>
       </section>
       <section data-route="home">
-          <p>Esto es la vista de home</p>
+          <!-- <p>Esto es la vista de home</p> -->
+          <my-catalogue></my-catalogue>
+          <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
+          <div id="content"></div>
       </section>
       <section data-route="instructions">
         <p>Esto es la vista de instrucciones</p>
