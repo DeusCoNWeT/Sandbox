@@ -2,11 +2,13 @@
 <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../../dist/_include-media.scss">
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+
 <dom-module id="my-header">
   <template>
     <style is="custom-style" include="iron-flex-alignment iron-flex iron-flex-factors">
       :host {
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family: 'Libre Franklin', 'Arial Narrow', Arial, sans-serif;
         display: inline-block;
         background-color: antiquewhite;
       }
@@ -131,9 +133,8 @@
           width: 100%;
           font-size: 25px;
           box-sizing: border-box;
-          outline: none;
-          font-family: msyi, sans-serif;
-          font-family: msyi, sans-serif;
+          outline: none !important;
+
         }
         .open_menu:hover {
           color: #001f3f !important;
