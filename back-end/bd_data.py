@@ -49,3 +49,5 @@ for comp in componentes:
     atrList.append(comp.attributes)
     nameComp.append(comp.component_id)
     CompAtrDict= dict(zip(nameComp,atrList))
+    
+print CompAtrDict
