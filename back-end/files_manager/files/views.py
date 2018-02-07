@@ -1,6 +1,18 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
+from files.models import Component, ComponentAttributes
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    atrList = []
+    nameComp =[]
+    for comp in Component.objects:
+        atrList.append(comp.attributes)
+        nameComp.append(comp.component_id)
+        CompAtrDict= dict(zip(nameComp,atrList))
+    
+    # import ipdb; ipdb.sset_trace()
+
+# Aqui en la respuesta tendria que ejecutarse esto al pulsa un boton y que me devuelva la lista 
+# con los atributos
+    return HttpResponse(CompAtrDict)

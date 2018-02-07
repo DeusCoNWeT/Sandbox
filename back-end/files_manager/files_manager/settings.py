@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import yaml
+import mongoengine
+import django
+#import django_mongodb_engine.base
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,14 +34,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'files.apps.FilesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    #'django.mongo.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+#AUTH_USER_MODEL = 'mongo_auth.MongoUser' 
+#MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,13 +81,41 @@ WSGI_APPLICATION = 'files_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+#DATABASES = { 
+#    'default': { 
+#        'ENGINE': 'django.db.backends.dummy' 
+#        } 
+#}
+
+#SESSION_ENGINE = 'mongoengine.django.sessions'
+
+
+_MONGODB_USER = 'deus'
+_MONGODB_PASSWD = 'test'
+_MONGODB_HOST = '10.10.1.88'
+_MONGODB_NAME = 'picbitTest'
+_MONGO_PORT = 27017
+_MONGODB_DATABASE_HOST = \
+    'mongodb://%s:%s@%s/%s' \
+    % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.dummy'
     }
 }
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
 
+mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST, port=_MONGO_PORT, username=_MONGODB_USER, password=_MONGODB_PASSWD)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
