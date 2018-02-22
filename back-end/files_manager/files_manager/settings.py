@@ -57,7 +57,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# MM - The file that manage the routes
 ROOT_URLCONF = 'files_manager.urls'
+
 
 TEMPLATES = [
     {
@@ -153,4 +155,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+STATIC_URL = os.path.abspath(os.path.join(BASE_DIR, '../../app/')) + "/"
