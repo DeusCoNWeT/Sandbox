@@ -16,10 +16,10 @@ import mongoengine
 import django
 #import django_mongodb_engine.base
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 path = os.path.dirname(os.path.abspath(__file__))
-output_file2 = os.path.join(path, "config.yaml")
-configFile = open(output_file2, "r")
+config_file = os.path.abspath(os.path.join(path, "../../config.yaml"))
+configFile = open(config_file, "r")
 yaml_config = yaml.load(configFile)
 
 # Quick-start development settings - unsuitable for production
@@ -102,10 +102,10 @@ WSGI_APPLICATION = 'files_manager.wsgi.application'
 #SESSION_ENGINE = 'mongoengine.django.sessions'
 
 
-_MONGODB_USER = yaml_config['config']['user']
-_MONGODB_PASSWD = yaml_config['config']['password']
-_MONGODB_HOST = yaml_config['config']['host']
-_MONGODB_NAME = yaml_config['config']['name']
+_MONGODB_USER = yaml_config['config_db']['user']
+_MONGODB_PASSWD = yaml_config['config_db']['password']
+_MONGODB_HOST = yaml_config['config_db']['host']
+_MONGODB_NAME = yaml_config['config_db']['name']
 _MONGO_PORT = 27017
 _MONGODB_DATABASE_HOST = \
     'mongodb://%s:%s@%s/%s' \
