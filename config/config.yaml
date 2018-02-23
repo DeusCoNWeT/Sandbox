@@ -1,5 +1,7 @@
-_MONGODB_USER: deus
-_MONGODB_PASSWD: test
-_MONGODB_HOST: 10.10.1.88
-_MONGODB_NAME: picbitTest
-_MONGO_PORT: 27017
+config_db:
+  user: 'deus'
+  password: 'test'
+  host: '10.10.1.88'
+  name: 'picbitTest'
+
+  
