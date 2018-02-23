@@ -3,5 +3,4 @@ config_db:
   password: 'test'
   host: '10.10.1.88'
   name: 'picbitTest'
-
-  
+  port: 27017
