@@ -1,0 +1,6 @@
+config_db:
+  user: 'deus'
+  password: 'test'
+  host: '10.10.1.88'
+  name: 'picbitTest'
+  port: 27017
