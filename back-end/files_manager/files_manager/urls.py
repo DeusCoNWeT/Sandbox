@@ -23,6 +23,5 @@ from django.conf import settings
 # MM - This is the routing file, we have only two routes /files and /admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'', include('files.urls'), kwargs={'document_root': '/home/miguel/proyecto/sandbox/app'}),
-] + static('/app', document_root=settings.STATIC_URL)
+    url(r'^admin/', admin.site.urls)
+] + static(r'/', path='index.html', document_root=settings.STATIC_URL)

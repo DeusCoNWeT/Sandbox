@@ -73,12 +73,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </section>
       <section data-route="home">
           <!-- <p>Esto es la vista de home</p> -->
-          <my-catalogue></my-catalogue>
+          <my-catalogue on-my-catalogue-click="_event"></my-catalogue>
+          
           <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
-          <div id="content"></div>
+          <div id="content">
+            <my-tokensform id="form_component"></my-tokensform>
+          </div>
       </section>
       <section data-route="instructions">
-        <p>Esto es la vista de instrucciones</p>
+        <!-- <p>Esto es la vista de instrucciones</p> -->
+        <p>hola</p>
       </section>
     </iron-pages>
     

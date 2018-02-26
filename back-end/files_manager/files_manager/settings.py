@@ -16,7 +16,7 @@ import mongoengine
 import django
 #import django_mongodb_engine.base
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = os.path.dirname(os.path.abspath(__file__))
 config_file = os.path.abspath(os.path.join(path, "../../../config/config.yaml"))
 configFile = open(config_file, "r")

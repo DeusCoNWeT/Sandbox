@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/neon-animation/neon-animatable.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="my-catalogue">
     <template>
@@ -12,7 +13,7 @@
             :host {
                 display: inline-block;
                 height: 100%;
-                width: 20%;
+                width: 40%;
                 background-color: white;
 
             }
@@ -41,6 +42,17 @@
             neon-animatable:nth-child(5) {
                 background: var(--paper-purple-500);
             }
+            paper-button{
+                left: 25%;
+            }
+            paper-button.indigo {
+                background-color: var(--paper-indigo-400);
+                color: white;
+            }
+
+            paper-button.custom:hover {
+                background-color: var(--paper-indigo-200);
+            }
         </style>
         <nav id="left-nav">
 
@@ -55,23 +67,9 @@
         <neon-animated-pages id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
             <neon-animatable>
                 <div>
-                    <!-- token required-->
-                    <span class="label label-warning warning ng-binding" ng-hide="checkToken(item, $index)">Sin permisos</span>
-                    <button ng-hide="checkToken(item, $index)" ng-click="login(item.social_network, item.component_id,  item.component_id)" class="tokenDisabled ng-binding">
-                        Haz click para loguearte con esta red social antes de usarlo.
-                    </button>
-
-                    <!-- token not required -->
-                    <div ng-show="checkToken(item, $index)" class="description ng-binding ng-hide" title="Web component to obtain the timeline of Twitter using Polymer"
-                        data-test="">
-                        Web component to obtain the timeline of Twitter using Polymer
-                    </div>
-                    <div class="componentData horizontal layout">
-                        <img src="../../images/componentes/twitter-logo.png" style="width:45px;height:45px" src="images/components/twitter-logo.png">
-                        <div class="flex vertical center-center layout componentInfo">
-                            <p class="ng-binding">twitter-timeline</p>
-                        </div>
-                    </div>
+                    <paper-button raised class="custom indigo" on-click="_showform">
+                        Componente Spotify
+                    </paper-button>
                 </div>
             </neon-animatable>
             <neon-animatable>2</neon-animatable>
@@ -97,6 +95,9 @@
                     value: 'fade-out-animation'
                     // value: 'slide-right-animation'
                 },
+            },
+            _showform: function(){
+                this.fire("my-catalogue-click",{})
             }
         });
     </script>

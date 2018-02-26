@@ -1,0 +1,55 @@
+<dom-module id="my-tokensform">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+                height: 40%;
+                width: 100%;
+                background-color: #eee;
+                border-radius: 2%;
+            }
+            #form{
+                display: none;
+            }
+        </style>
+
+        <!-- <template is="dom-repeat" items="{{params_need}}">
+            <form action="">
+                {{params_need}}:
+                <br>
+                <input type="text" name="firstname" value="{{value_param}}">
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </template> -->
+        <button on-click="_click">hola</button>
+        <form id="form" action="">
+            First name:<br>
+            <input type="text" name="firstname" value="Mickey">
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" value="Mouse">
+            <br><br>
+            <input type="submit" value="Submit">
+          </form> 
+          
+    </template>
+    <script>
+        Polymer({
+            is: 'my-tokensform',
+            properties: {
+                params_need: {
+                    type: String,
+                    value: ""
+                },
+                value_param: {
+                    type: String,
+                    value: ""
+                }
+            },
+            _showproperties: function(){
+                this.$.form.style.display = 'block';
+            }
+        });
+    </script>
+</dom-module>
