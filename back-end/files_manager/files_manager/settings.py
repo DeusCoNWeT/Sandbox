@@ -160,3 +160,5 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 STATIC_URL = os.path.abspath(os.path.join(BASE_DIR, '../../app/')) + "/"
+STATIC_ROOT = "../../"
+print STATIC_URL

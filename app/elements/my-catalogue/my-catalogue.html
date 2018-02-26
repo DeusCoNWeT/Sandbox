@@ -6,6 +6,7 @@
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <dom-module id="my-catalogue">
     <template>
@@ -17,22 +18,25 @@
                 background-color: white;
 
             }
-
+            h1,h2{
+                text-align: center;
+            }
+          
             neon-animated-pages {
                 height: calc(100% - 49px);
             }
 
             neon-animatable:nth-child(1),
             neon-animatable:nth-child(6) {
-                background: var(--paper-red-500);
+                background: var(--paper-blue-100);
             }
 
             neon-animatable:nth-child(2) {
-                background: var(--paper-blue-500);
+                background: var(--paper-green-100);
             }
 
             neon-animatable:nth-child(3) {
-                background: var(--paper-orange-500);
+                background: var(--paper-blue-100);
             }
 
             neon-animatable:nth-child(4) {
@@ -53,6 +57,16 @@
             paper-button.custom:hover {
                 background-color: var(--paper-indigo-200);
             }
+            .checkboxList{
+                display: block;
+                margin: 20px 90px;
+            }
+            #button_ana{
+                margin: 20px 40px;
+            }
+            label{
+                margin-left: 20px;
+            }
         </style>
         <nav id="left-nav">
 
@@ -67,13 +81,38 @@
         <neon-animated-pages id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
             <neon-animatable>
                 <div>
+                    <h1>Elige entre nuestro catálogo</h1>
                     <paper-button raised class="custom indigo" on-click="_showform">
                         Componente Spotify
                     </paper-button>
                 </div>
             </neon-animatable>
-            <neon-animatable>2</neon-animatable>
-            <neon-animatable>3</neon-animatable>
+            <neon-animatable>
+                <h1>Elije un componente para analizar</h1>
+                <iron-selector attr-for-selected="name" selected="foo" selected-attribute="checked" class="checkboxList">
+                    <paper-checkbox class="checkboxList" name="spotify">Spotify</paper-checkbox>
+                    <paper-checkbox class="checkboxList" name="facebook">Facebook</paper-checkbox>
+                    <paper-checkbox class="checkboxList" name="twitter">Twitter</paper-checkbox>
+                    <paper-checkbox class="checkboxList" name="trafico">Trafico</paper-checkbox>
+                    <paper-checkbox class="checkboxList" name="google+">Google +</paper-checkbox>
+                    <paper-checkbox class="checkboxList" name="google+">Reddit</paper-checkbox>
+                </iron-selector>
+                <paper-button raised class="custom indigo" id="button_ana" on-click="_analize">
+                   Analizar
+                </paper-button>
+            </neon-animatable>
+            <neon-animatable>
+              
+                    <h2>Sube tu componente y analiza su calidad</h2>
+                    <div>
+                        <label for="file">Upload folder</label>
+                        <input type="file" id="ctrl" webkitdirectory directory multiple/>
+                    </div>
+                    <paper-button raised class="custom indigo" id="button_ana" on-click="_analize">
+                            Analizar
+                    </paper-button>
+                
+            </neon-animatable>
         </neon-animated-pages>
 
     </template>

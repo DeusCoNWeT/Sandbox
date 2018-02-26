@@ -10,7 +10,7 @@ def index(request):
     #     atrList.append(comp.attributes)
     #     nameComp.append(comp.component_id)
     #     CompAtrDict= dict(zip(nameComp,atrList))
-    f = codecs.open("/home/miguel/proyecto/sandbox/app/index.html",'r')
+    f = codecs.open("../../../app/index.html",'r')
     # import ipdb; ipdb.sset_trace()
 
 # Aqui en la respuesta tendria que ejecutarse esto al pulsa un boton y que me devuelva la lista 
