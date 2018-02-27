@@ -16,3 +16,16 @@ body {
 .page-title {
   outline: none;
 }
+.border_black{
+  border: black 1px solid;
+  
+}
+#content{
+  background-color: black;
+}
+#form_component{
+background-color: #eee;
+height: 45%;
+width: 100%;
+border-left: none;
+}

@@ -3,12 +3,9 @@
         <style>
             :host {
                 display: inline-block;
-                height: 40%;
-                width: 100%;
-                background-color: #eee;
-                border-radius: 2%;
             }
-            #form{
+
+            #form {
                 display: none;
             }
         </style>
@@ -24,15 +21,17 @@
         </template> -->
         <button on-click="_click">hola</button>
         <form id="form" action="">
-            First name:<br>
-            <input type="text" name="firstname" value="Mickey">
+            First name:
             <br>
-            Last name:<br>
+            <input type="text" name="firstname" value="Mickey">
+            <br> Last name:
+            <br>
             <input type="text" name="lastname" value="Mouse">
-            <br><br>
+            <br>
+            <br>
             <input type="submit" value="Submit">
-          </form> 
-          
+        </form>
+
     </template>
     <script>
         Polymer({
@@ -47,7 +46,7 @@
                     value: ""
                 }
             },
-            _showproperties: function(){
+            _showproperties: function () {
                 this.$.form.style.display = 'block';
             }
         });
