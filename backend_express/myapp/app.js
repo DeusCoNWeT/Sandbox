@@ -1,9 +1,12 @@
+
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var assert = require('assert')
 //Import the mongoose module
 var mongoose = require('mongoose');
 
@@ -54,10 +57,39 @@ const password = config.mongodb.password;
 const name = config.mongodb.name;
 const port = config.mongodb.port;
 
-
+app.use(function(req, res, next){
 //Set up default mongoose connection
 mongoDB = mongoose.connect('mongodb://' + user +":"+password+ "@"+ host+":"+port +"/" + name);
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, function(err, db){
+  assert.equal(null,err);
+  // db.collection('components').
+  var resultArray = [];
+  console.log(resultArray);
+  var cursor = db.collection('components').find();
+  cursor.forEach(function(doc,err){
+    assert.equal(null,err);
+    resultArray.push(doc);
+    console.log(resultArray);
+  },function(){
+    console.log(resultArray);
+    db.close();
+    // res.render('index.html')
+  });
+});
+});
+
+
+// atrList = []
+// nameComp =[]
+// for comp in Component.objects:
+//      atrList.append(comp.attributes)
+//      nameComp.append(comp.component_id)
+//     CompAtrDict= dict(zip(nameComp,atrList))
+// f = codecs.open("../../../app/index.html",'r')
+// import ipdb; ipdb.sset_trace()
+
+
+
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 //Get the default connection
