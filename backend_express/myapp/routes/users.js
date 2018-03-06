@@ -9,13 +9,16 @@ router.get('/', function (req, res, next) {
     if (err) {
       throw new Error(err);
     }
-    var cursor = db.collection('component').find()
+    var cursor = db.collection('component').find({}, {"attributes":1, "_id":0})
     cursor.toArray(function(err, docs){
       if (err){
         res.send(err).status(400);
         db.close();
       } else {
-        res.send(docs);
+        res.send(docs.map(function(doc){
+          var res = doc.attributes + doc.component_id;
+          return res;
+        }));
         db.close();    
       }
     });

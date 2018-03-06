@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../app')));
 
+app.use('/', index);
 app.use('/users', users);
 
 
@@ -40,47 +41,5 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
 });
-
-
-
-  //Set up default mongoose connection
-  // mongoose.connect(mongoDB, function (err, db) {
-  //   if (err){
-  //     throw new Error(err);
-  //   }
-  //   // db.collection('components').
-  //   var resultArray = [];
-  //   console.log(resultArray);
-  //   var cursor = db.collection('components').find();
-  //   cursor.forEach(function (doc, err) {
-  //     assert.equal(null, err);
-  //     resultArray.push(doc);
-  //     console.log(resultArray);
-  //   }, function () {
-  //     console.log(resultArray);
-  //     db.close();
-  //     // res.render('index.html')
-  //   });
-  // });
-
-
-// atrList = []
-// nameComp =[]
-// for comp in Component.objects:
-//      atrList.append(comp.attributes)
-//      nameComp.append(comp.component_id)
-//     CompAtrDict= dict(zip(nameComp,atrList))
-// f = codecs.open("../../../app/index.html",'r')
-// import ipdb; ipdb.sset_trace()
-
-
-
-// Get Mongoose to use the global promise library
-// mongoose.Promise = global.Promise;
-// //Get the default connection
-// var db = mongoose.connection;
-
-// //Bind connection to error event (to get notification of connection errors)
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 module.exports = app;
