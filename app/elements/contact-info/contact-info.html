@@ -2,25 +2,122 @@
     <template>
         <style>
             :host {
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
                 display: inline-block;
                 background-image: url("../../images/bloques-lego.jpg");
+                background-position: center center;
+                background-size: cover;
                 height: 100%;
                 width: 100%;
                 background-repeat: no-repeat;
             }
 
-            div {
+            .contenedor1 {
+                position: relative;
+                /*nos posicionamos en el centro del navegador*/
+                top: 50%;
+                left: 50%;
+                /*determinamos una anchura*/
                 width: 800px;
+                /*indicamos que el margen izquierdo, es la mitad de la anchura*/
+                margin-left: -400px;
+                /*determinamos una altura*/
                 height: 500px;
-                background-color: white;
+                /*indicamos que el margen superior, es la mitad de la altura*/
+                margin-top: -250px;
+                border: 1px solid #808080;
+                padding: 5px;
+                background-color: #eee;
                 position: absolute;
-                left: 36%;
-                top: 35%;
                 box-shadow: 2px 2px 2px 5px;
+
+            }
+
+            .logoFacultad {
+                float: right;
+                width: 150px;
+                height: 150px;
+            }
+
+            .logoUniversidad {
+                width: 180px;
+                height: 150px;
+                padding-right: 120px;
+
+            }
+
+            .contenedor2 {
+
+                position: absolute;
+                left: 50%;
+                width: 50%;
+                height: 50%;
+                transform: translateX(-40%);
+                font-size: 20px;
+                /* line-height: 130%; */
+                text-justify: auto;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 140%;
+               
+            }
+
+            .titulo {
+                font-style: oblique;
+                font-size: 50px;
+                color: #008ad0;
+                padding-right: 120px;
+            }
+
+            .contenedor3 {
+                display: flex;
+            }
+
+            #developers {
+                line-height: normal;
+                font-size: 15px;
+            }
+
+            #colaborators {
+                line-height: normal;
+                font-size: 15px;
+            }
+
+            p {
+                margin: -0.5%;
+            }
+
+            li,
+            ul {
+                /* text-decoration: none; */
+                list-style: none;
             }
         </style>
-        <!-- <p>adios</p> -->
-        <div></div>
+        <div class="contenedor1">
+
+            <div class="contenedor3">
+                <img class="logoUniversidad" src="/images/UPM.png" alt="Logotipo UPM">
+                <h1 class="titulo">Contacto</h1>
+                <img class="logoFacultad" src="/images/FI.png" alt="Logotipo Facultad">
+            </div>
+            <div class="contenedor2">
+                <p id="escuela">Escuela Técnica Superior de Ingenieros Informáticos.</p>
+                <p> DeusConwet Lab.</p>
+                <p>Desarrolladores:</p>
+                <ul id="developers">
+                    <li>Miguel Magaña Suanzes</li>
+                    <li>Sandra Gómez Yagüez</li>
+                </ul>
+                <p>Colaboradores:</p>
+                <ul id="colaborators">
+                    <li>Miguel Ortega Moreno</li>
+                    <li>Roberto García Álvarez</li>
+                </ul>
+                Correo: googleproject@gmail.com
+                <br>
+            </div>
+        </div>
+
     </template>
     <script>
         Polymer({
