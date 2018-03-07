@@ -24,8 +24,11 @@ app.use(express.static(path.join(__dirname, '../../app')));
 
 app.use('/',index);
 app.use('/users', users);
-app.use('/api/componentes', api)
-
+app.use('/api/componentes', api);
+//mas rutas
+app.use('*', function(req, res){
+  res.status(404).send({error: "Url doesnt exist"})
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

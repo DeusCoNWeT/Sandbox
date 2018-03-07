@@ -1,8 +1,10 @@
 var express = require('express');
 var api_controller = express();
-api_controller.get('/', function(req,res){
-    //Comprobar parametros
-    res.send('HOLA');
-});
+var handler = {
+    getComponents: function(req, res){
+        // hacer comprobaciones
+        res.send("hola");
+    }
+}
 
 module.exports = handler;
