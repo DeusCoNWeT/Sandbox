@@ -7,10 +7,11 @@
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="my-catalogue">
     <template>
-        <style>
+        <style is="custom-style" include="iron-flex">
             :host {
                 display: inline-block;
                 height: 100%;
@@ -18,10 +19,12 @@
                 background-color: white;
 
             }
-            h1,h2{
+
+            h1,
+            h2 {
                 text-align: center;
             }
-          
+
             neon-animated-pages {
                 height: calc(100% - 49px);
             }
@@ -46,9 +49,7 @@
             neon-animatable:nth-child(5) {
                 background: var(--paper-purple-500);
             }
-            paper-button{
-                left: 25%;
-            }
+
             paper-button.indigo {
                 background-color: var(--paper-indigo-400);
                 color: white;
@@ -57,15 +58,14 @@
             paper-button.custom:hover {
                 background-color: var(--paper-indigo-200);
             }
-            .checkboxList{
-                display: block;
-                margin: 20px 90px;
-            }
-            #button_ana{
-                margin: 20px 40px;
-            }
-            label{
+
+            label {
                 margin-left: 20px;
+            }
+
+            .container>paper-button {
+                width: 250px;
+                margin: 5px 0px;
             }
         </style>
         <nav id="left-nav">
@@ -82,57 +82,59 @@
             <neon-animatable>
                 <div>
                     <h1>Elige entre nuestro catálogo</h1>
-                    <paper-button data-component="spotify-component" raised class="custom indigo" on-click="_showform">
-                        Componente Spotify
-                    </paper-button>
-                    <paper-button raised data-component="twitter-timeline" class="custom indigo" on-click="_showform">
-                        Componente Twitter
-                    </paper-button>
-                    <paper-button raised data-component="facebook-wall" class="custom indigo" on-click="_showform">
-                        Componente Facebook
-                    </paper-button>
-                    <paper-button raised data-component="googleplus-timeline" class="custom indigo" on-click="_showform">
-                        Componente Google +
-                    </paper-button>
-                    <paper-button raised data-component="finance-search" class="custom indigo" on-click="_showform">
-                        Componente Finance Search
-                    </paper-button>
-                    <paper-button raised data-component="open-weather" class="custom indigo" on-click="_showform">
-                        Componente Open Weather
-                    </paper-button>
-                    <paper-button raised data-component="pinterest-timeline" class="custom indigo" on-click="_showform">
-                        Componente Pinterest
-                    </paper-button>
-                    <paper-button raised data-component="reddit-timeline" class="custom indigo" on-click="_showform">
-                        Componente Reddit
-                    </paper-button>
+                    <div class="container vertical layout center">
+                        <paper-button data-component="spotify-component" raised class="custom indigo" on-click="_showform">
+                            Componente Spotify
+                        </paper-button>
+                        <paper-button raised data-component="twitter-timeline" class="custom indigo" on-click="_showform">
+                            Componente Twitter
+                        </paper-button>
+                        <paper-button raised data-component="facebook-wall" class="custom indigo" on-click="_showform">
+                            Componente Facebook
+                        </paper-button>
+                        <paper-button raised data-component="googleplus-timeline" class="custom indigo" on-click="_showform">
+                            Componente Google +
+                        </paper-button>
+                        <paper-button raised data-component="finance-search" class="custom indigo" on-click="_showform">
+                            Componente Finance Search
+                        </paper-button>
+                        <paper-button raised data-component="open-weather" class="custom indigo" on-click="_showform">
+                            Componente Open Weather
+                        </paper-button>
+                        <paper-button raised data-component="pinterest-timeline" class="custom indigo" on-click="_showform">
+                            Componente Pinterest
+                        </paper-button>
+                        <paper-button raised data-component="reddit-timeline" class="custom indigo" on-click="_showform">
+                            Componente Reddit
+                        </paper-button>
+                    </div>
+
                 </div>
             </neon-animatable>
             <neon-animatable>
                 <h1>Elije un componente para analizar</h1>
-                <iron-selector attr-for-selected="name" selected="foo" selected-attribute="checked" class="checkboxList">
-                    <paper-checkbox class="checkboxList" name="spotify">Spotify</paper-checkbox>
-                    <paper-checkbox class="checkboxList" name="facebook">Facebook</paper-checkbox>
-                    <paper-checkbox class="checkboxList" name="twitter">Twitter</paper-checkbox>
-                    <paper-checkbox class="checkboxList" name="trafico">Trafico</paper-checkbox>
-                    <paper-checkbox class="checkboxList" name="google+">Google +</paper-checkbox>
-                    <paper-checkbox class="checkboxList" name="google+">Reddit</paper-checkbox>
-                </iron-selector>
+                <div class="checklist vertical center layout">
+                    <iron-selector attr-for-selected="name" selected="foo" selected-attribute="checked" class="checkboxList vertical layout">
+                        <template is="dom-repeat" items="{{social_network}}">
+                            <paper-checkbox class="checkboxList" name$="{{item}}">{{item}}</paper-checkbox>
+                        </template>
+                    </iron-selector>
+                </div>
                 <paper-button raised class="custom indigo" id="button_ana" on-click="_analize">
-                   Analizar
+                    Analizar
                 </paper-button>
             </neon-animatable>
             <neon-animatable>
-              
-                    <h2>Sube tu componente y analiza su calidad</h2>
-                    <div>
-                        <label for="file">Upload folder</label>
-                        <input type="file" id="ctrl" webkitdirectory directory multiple/>
-                    </div>
-                    <paper-button raised class="custom indigo" id="button_ana" on-click="_analize">
-                            Analizar
-                    </paper-button>
-                
+
+                <h2>Sube tu componente y analiza su calidad</h2>
+                <div>
+                    <label for="file">Upload folder</label>
+                    <input type="file" id="ctrl" webkitdirectory directory multiple/>
+                </div>
+                <paper-button raised class="custom indigo" id="button_ana" on-click="_analize">
+                    Analizar
+                </paper-button>
+
             </neon-animatable>
         </neon-animated-pages>
 
@@ -155,9 +157,13 @@
                     value: 'fade-out-animation'
                     // value: 'slide-right-animation'
                 },
+                social_network: {
+                    type:Array,
+                    value: function(){return ["Spotify","Facebook", "Twitter", "Trafico", "Reddit", "Google+"]}
+                }
             },
-            _showform: function(evt){
-                this.fire("my-catalogue-click",{name:evt.currentTarget.getAttribute('data-component')})
+            _showform: function (evt) {
+                this.fire("my-catalogue-click", { name: evt.currentTarget.getAttribute('data-component') })
             }
         });
     </script>
