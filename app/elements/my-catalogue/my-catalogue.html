@@ -67,12 +67,15 @@
                 width: 250px;
                 margin: 5px 0px;
             }
-            .checkboxList{
+
+            .checkboxList {
                 margin: 5px 0px;
             }
-            #button_analize{
+
+            #button_analize {
                 margin: 20px 0px;
             }
+
             .explicacion {
                 position: relative;
                 width: 50%;
@@ -82,6 +85,40 @@
                 background-color: #eee;
                 box-shadow: 2px 2px 2px 5px;
                 margin: 100px;
+            }
+
+            @media (min-width: 1500px) {
+                h1,
+                h2{
+                    font-size: 35px;  
+                }
+                paper-tab {
+                    font-size: 20px;
+                }
+                .checkboxList {
+                    font-size: 25px;
+                }
+                #button_analize {
+                    width: 400px;
+                    height: 80px;
+                    font-size: 30px;
+                }
+                .explicacion {
+                    font-size: 20px;
+                    position: relative;
+                    width: 70%;
+                    height: 70%;
+                    border: 1px solid #808080;
+                    padding: 5px;
+                    background-color: #eee;
+                    box-shadow: 2px 2px 2px 5px;
+                    margin: 100px;
+                }
+                .botones_comp > paper-button{
+                    width: 400px;
+                    height: 80px;
+                    font-size: 22px; 
+                }
             }
         </style>
         <nav id="left-nav">
@@ -98,7 +135,7 @@
             <neon-animatable>
                 <div>
                     <h1>Elige entre nuestro catálogo</h1>
-                    <div class="container vertical layout center">
+                    <div class=" botones_comp container vertical layout center">
                         <paper-button data-component="spotify-component" raised class="custom indigo" on-click="_showform">
                             Componente Spotify
                         </paper-button>
@@ -145,13 +182,13 @@
             <neon-animatable>
 
                 <h2>Sube tu componente y analiza su calidad</h2>
-                <div>
+                <div class="upload vertical center layout">
                     <label for="file">Upload folder</label>
                     <input type="file" id="ctrl" webkitdirectory directory multiple/>
+                    <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
+                        Analizar
+                    </paper-button>
                 </div>
-                <paper-button raised class="custom indigo" id="button_ana" on-click="_analize">
-                    Analizar
-                </paper-button>
 
             </neon-animatable>
         </neon-animated-pages>
@@ -176,8 +213,8 @@
                     // value: 'slide-right-animation'
                 },
                 social_network: {
-                    type:Array,
-                    value: function(){return ["Spotify","Facebook", "Twitter", "Trafico", "Reddit", "Google+"]}
+                    type: Array,
+                    value: function () { return ["Spotify", "Facebook", "Twitter", "Trafico", "Reddit", "Google+"] }
                 }
             },
             _showform: function (evt) {
