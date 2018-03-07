@@ -82,8 +82,11 @@
             <neon-animatable>
                 <div>
                     <h1>Elige entre nuestro catálogo</h1>
-                    <paper-button raised class="custom indigo" on-click="_showform">
+                    <paper-button data-component="spotify" raised class="custom indigo" on-click="_showform">
                         Componente Spotify
+                    </paper-button>
+                    <paper-button raised data-component="twitter" class="custom indigo" on-click="_showform">
+                        Componente Twitter
                     </paper-button>
                 </div>
             </neon-animatable>
@@ -135,8 +138,8 @@
                     // value: 'slide-right-animation'
                 },
             },
-            _showform: function(){
-                this.fire("my-catalogue-click",{})
+            _showform: function(evt){
+                this.fire("my-catalogue-click",{name:evt.currentTarget.getAttribute('data-component')})
             }
         });
     </script>
