@@ -67,6 +67,22 @@
                 width: 250px;
                 margin: 5px 0px;
             }
+            .checkboxList{
+                margin: 5px 0px;
+            }
+            #button_analize{
+                margin: 20px 0px;
+            }
+            .explicacion {
+                position: relative;
+                width: 50%;
+                height: 50%;
+                border: 1px solid #808080;
+                padding: 5px;
+                background-color: #eee;
+                box-shadow: 2px 2px 2px 5px;
+                margin: 100px;
+            }
         </style>
         <nav id="left-nav">
 
@@ -107,8 +123,10 @@
                         <paper-button raised data-component="reddit-timeline" class="custom indigo" on-click="_showform">
                             Componente Reddit
                         </paper-button>
+                        <div class="explicacion center">
+                            <p>Al pulsar en un componente se te pediran los atributos necesarios para hacerlo funcionar</p>
+                        </div>
                     </div>
-
                 </div>
             </neon-animatable>
             <neon-animatable>
@@ -119,10 +137,10 @@
                             <paper-checkbox class="checkboxList" name$="{{item}}">{{item}}</paper-checkbox>
                         </template>
                     </iron-selector>
+                    <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
+                        Analizar
+                    </paper-button>
                 </div>
-                <paper-button raised class="custom indigo" id="button_ana" on-click="_analize">
-                    Analizar
-                </paper-button>
             </neon-animatable>
             <neon-animatable>
 
