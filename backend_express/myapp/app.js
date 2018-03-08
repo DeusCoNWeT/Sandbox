@@ -9,7 +9,7 @@ var assert = require('assert')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var api = require('./routes/api')
+var api = require('./routes/component_router')
 
 
 var app = express();
