@@ -8,7 +8,7 @@ module.exports = {
                     reject(err);
                     return;
                 }
-                //FILTRO BIEN?
+                // Filter the attributes with the name component
                 var name_component = db.collection('component').find({ component_id: id }, { "attributes": 1, "_id": 0 });
 
                 name_component.toArray(function (err, docs) {

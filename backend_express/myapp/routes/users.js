@@ -2,11 +2,11 @@ var express = require('express');
 var db = require('../services/mydb').getInstance();
 var router = express.Router();
 var mongoose = require('mongoose');
-var bd_handler = require('../handlers/bd_handler')
+var bd_controller = require('../handlers/bd_controller')
 
 
 
 /* GET users listing. */
-router.get('/', bd_handler.properties_components);
+router.get('/', bd_controller.properties_components);
 
 module.exports = router;

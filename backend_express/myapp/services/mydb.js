@@ -9,12 +9,11 @@ const port = config.mongodb.port;
 
 module.exports = (function () {
     var db;
- 
+    // Connection to DB. MongoDB
     function createInstance() {
         var conn = 'mongodb://' + user + ":" + password + "@" + host + ":" + port + "/" + name;
         return conn;
     }
- 
     return {
         getInstance: function () {
             if (!db) {
