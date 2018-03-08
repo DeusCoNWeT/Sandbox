@@ -8,22 +8,17 @@ module.exports = {
                     reject(err);
                     return;
                 }
-                // Filter the attributes with the name component
+                //FILTRO BIEN?
                 var name_component = db.collection('component').find({ component_id: id }, { "attributes": 1, "_id": 0 });
-
+                
                 name_component.toArray(function (err, docs) {
                     if (err) {
                         reject(err);
                         db.close();
                     } else {
                         resolve(docs.map(function (doc) {
-                            if (!doc.isArray(doc) || doc.length == 0) {
-                                reject(err);
-                            } else {
-
-                                return {
-                                    attributes: JSON.parse(doc.attributes),
-                                }
+                            return {
+                                attributes: JSON.parse(doc.attributes),
                             }
                         }));
                         db.close();
