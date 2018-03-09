@@ -17,7 +17,8 @@ module.exports = {
                         db.close();
                     } else {
                         resolve(docs.map(function (doc) {
-                            console.log(typeof(doc))
+                            // Deberia comprobar que si el objeto doc que me devuelve (ya he visto que es un objeto)
+                            // es igual a [] y de esa manera mandar un reject(err); ya que no coincide con nada
                             return {
                                 attributes: JSON.parse(doc.attributes),
                             }
