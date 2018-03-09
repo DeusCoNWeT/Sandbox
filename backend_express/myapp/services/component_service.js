@@ -17,6 +17,7 @@ module.exports = {
                         db.close();
                     } else {
                         resolve(docs.map(function (doc) {
+                            console.log(typeof(doc))
                             return {
                                 attributes: JSON.parse(doc.attributes),
                             }

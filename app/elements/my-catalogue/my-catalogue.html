@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="my-catalogue">
     <template>
@@ -89,8 +90,8 @@
 
             @media (min-width: 1500px) {
                 h1,
-                h2{
-                    font-size: 35px;  
+                h2 {
+                    font-size: 35px;
                 }
                 paper-tab {
                     font-size: 20px;
@@ -114,10 +115,10 @@
                     box-shadow: 2px 2px 2px 5px;
                     margin: 100px;
                 }
-                .botones_comp > paper-button{
+                .botones_comp>paper-button {
                     width: 400px;
                     height: 80px;
-                    font-size: 22px; 
+                    font-size: 22px;
                 }
             }
         </style>
@@ -136,42 +137,26 @@
                 <div>
                     <h1>Elige entre nuestro catálogo</h1>
                     <div class=" botones_comp container vertical layout center">
-                        <paper-button data-component="spotify-component" raised class="custom indigo" on-click="_showform">
-                            Componente Spotify
-                        </paper-button>
-                        <paper-button raised data-component="twitter-timeline" class="custom indigo" on-click="_showform">
-                            Componente Twitter
-                        </paper-button>
-                        <paper-button raised data-component="facebook-wall" class="custom indigo" on-click="_showform">
-                            Componente Facebook
-                        </paper-button>
-                        <paper-button raised data-component="googleplus-timeline" class="custom indigo" on-click="_showform">
-                            Componente Google +
-                        </paper-button>
-                        <paper-button raised data-component="finance-search" class="custom indigo" on-click="_showform">
-                            Componente Finance Search
-                        </paper-button>
-                        <paper-button raised data-component="open-weather" class="custom indigo" on-click="_showform">
-                            Componente Open Weather
-                        </paper-button>
-                        <paper-button raised data-component="pinterest-timeline" class="custom indigo" on-click="_showform">
-                            Componente Pinterest
-                        </paper-button>
-                        <paper-button raised data-component="reddit-timeline" class="custom indigo" on-click="_showform">
-                            Componente Reddit
-                        </paper-button>
+                        <template is="dom-repeat" items="{{social_network}}">
+                            <paper-button raised class="custom indigo" on-click="send_ajax" data-component$="{{item.id_comp}}">Componente {{item.name}}</paper-checkbox>
+                        </template>
+
                         <div class="explicacion center">
                             <p>Al pulsar en un componente se te pediran los atributos necesarios para hacerlo funcionar</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Donde hago la iron-ajax -->
+                <iron-ajax url="/api/componentes/{{component_selected}}" handle-as="json" on-response="_showform"></iron-ajax>
+
             </neon-animatable>
             <neon-animatable>
                 <h1>Elije un componente para analizar</h1>
                 <div class="checklist vertical center layout">
                     <iron-selector attr-for-selected="name" selected="foo" selected-attribute="checked" class="checkboxList vertical layout">
                         <template is="dom-repeat" items="{{social_network}}">
-                            <paper-checkbox class="checkboxList" name$="{{item}}">{{item}}</paper-checkbox>
+                            <paper-checkbox class="checkboxList" name$="{{item.name}}">{{item.name}}</paper-checkbox>
                         </template>
                     </iron-selector>
                     <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
@@ -214,11 +199,54 @@
                 },
                 social_network: {
                     type: Array,
-                    value: function () { return ["Spotify", "Facebook", "Twitter", "Trafico", "Reddit", "Google+"] }
+                    value: function () { 
+                        return [
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            },
+                            // Continuar
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            },
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            },
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            },
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            },
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            },
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            },
+                            {
+                                name: "Spotify",
+                                id_comp: "spotify-component"
+                            }
+
+                        ] }
+                },
+                component_selected: {
+                    type: String,
+                    value: ""
                 }
             },
             _showform: function (evt) {
                 this.fire("my-catalogue-click", { name: evt.currentTarget.getAttribute('data-component') })
+            },
+            send_ajax: function (evt) {
+                console.log("hola");
             }
         });
     </script>
