@@ -11,13 +11,17 @@
         </style>
 
         <form id="form" action="">
-            <p id="nombre" name$="{{data.name}}">Componente {{getName}}</p>
+            <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
+            <br>
+            <template is="dom-repeat" items="{{getAttr}}">
+                <p id="attr" name$="{{item.name}}">Atributo1 {{item.name}}</p>
+            </template>
 
-
-            <input type="text" name="firstname" value="">
+            <br>
+            <input type="text" name="" value="">
             <br> Last name:
             <br>
-            <input type="text" name="lastname" value="">
+            <input type="text" name="" value="">
             <br>
             <br>
             <input type="submit" value="Submit">
@@ -40,15 +44,18 @@
                 prop_comp: {
                     type: String,
                     value: ""
-                },
-                getName: {
-                    type: String,
-                    value: "",
                 }
             },
             _showproperties: function (name, data) {
                 this.$.form.style.display = 'block';
                 this.getName = data.name;
+                var attributes = data.data[0].attributes;
+                this.getAttr = Object.keys(attributes).map(function(key){
+                    return {
+                        name: key,
+                        value: attributes[key]
+                    }
+                });               
             }
         });
     </script>
