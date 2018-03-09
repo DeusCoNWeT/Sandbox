@@ -1,8 +1,9 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <dom-module id="contact-info">
     <template>
-        <style is="custom-style" include="iron-flex">
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
             :host {
                 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
                 display: inline-block;
@@ -29,7 +30,7 @@
                 margin-top: -250px;
                 border: 1px solid #808080;
                 padding: 5px;
-                background-color: #eee;
+                background-color: #e2e2e2;
                 position: absolute;
                 box-shadow: 2px 2px 2px 5px;
 
@@ -38,31 +39,16 @@
             .logoFacultad {
                 float: right;
                 width: 150px;
-                height: 150px;
+                height: 100%;
             }
 
             .logoUniversidad {
                 width: 180px;
-                height: 150px;
+                height: 100%;
                 padding-right: 120px;
 
             }
 
-            .contenedor2 {
-
-                position: absolute;
-                left: 50%;
-                width: 50%;
-                height: 50%;
-                transform: translateX(-40%);
-                font-size: 20px;
-                /* line-height: 130%; */
-                text-justify: auto;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 140%;
-               
-            }
 
             .titulo {
                 font-style: oblique;
@@ -77,46 +63,69 @@
 
             #developers {
                 line-height: normal;
-                font-size: 15px;
+                font-size: 14px;    
+            }
+            .box {
+                padding: 29px 18px 17px;
+                background: lightgray;
+                text-align: center;
+                width: 200px;
+                background-color:#eee;
+                border: 1px solid #a9a9a9;
+                border-radius: 4px;
+                justify-content: space-around;
+                
+            }
+            .box:hover{
+                background-color: rgb(63, 61, 61);
+                color: white;
             }
 
-            #colaborators {
-                line-height: normal;
-                font-size: 15px;
+            .listaDevelop {
+                text-align: left;
             }
-
-            p {
-                margin: -0.5%;
+            .contenedorInfo{
+                padding:18px;
             }
-
-            li,
-            ul {
-                /* text-decoration: none; */
-                list-style: none;
+            paper-icon-button::shadow #icon {
+                width: 40px;
+                height:40px;
             }
+            
         </style>
-        <div class="contenedor1">
+        <div class="contenedor1 vertical layout">
 
-            <div class="contenedor3">
+            <div class="contenedor3 horizontal layout center-center">
                 <img class="logoUniversidad" src="/images/UPM.png" alt="Logotipo UPM">
                 <h1 class="titulo">Contacto</h1>
                 <img class="logoFacultad" src="/images/FI.png" alt="Logotipo Facultad">
             </div>
-            <div class="contenedor2">
-                <p id="escuela">Escuela Técnica Superior de Ingenieros Informáticos.</p>
-                <p> DeusConwet Lab.</p>
-                <p>Desarrolladores:</p>
-                <ul id="developers">
-                    <li>Miguel Magaña Suanzes</li>
-                    <li>Sandra Gómez Yagüez</li>
-                </ul>
-                <p>Colaboradores:</p>
-                <ul id="colaborators">
-                    <li>Miguel Ortega Moreno</li>
-                    <li>Roberto García Álvarez</li>
-                </ul>
-                Correo: googleproject@gmail.com
-                <br>
+
+            <div class="contenedorInfo  horizontal layout around-justified">
+                <div class="box layout center ">
+                    <paper-icon-button class="icon-home" icon="home" ></paper-icon-button>
+                    <h4>Escuela Técnica Superior de Ingenieros Informáticos</h4>
+                    <h4>DeusConwet Lab</h4>
+                </div>
+                <div class="box vertical layout center d">
+                    <paper-icon-button class="icon-user" icon="account-circle"></paper-icon-button>
+                    <div class="listaDevelop">
+                        <h4>Desarrolladores:</h4>
+                        <ul id="developers">
+                            <li>Miguel Magaña Suanzes</li>
+                            <li>Sandra Gómez Yagüez</li>
+                        </ul>
+                        <h4>Colaboradores:</h4>
+                        <ul id="developers">
+                            <li>Miguel Ortega Moreno</li>
+                            <li>Roberto García Álvarez</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box layout center ">
+                    <paper-icon-button class="icon-mail" icon="mail"></paper-icon-button>
+                    <h4>googleproject@gmail.com</h4>
+                </div>
             </div>
         </div>
 
