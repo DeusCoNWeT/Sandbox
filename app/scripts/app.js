@@ -15,9 +15,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
   
-  app._nameComp = function(evt){
+  app._nameComp = function(name, data){
     // console.log(evt);
-    this.$.form_component._showproperties();
+    this.$.form_component._showproperties(name, data);
   }
   // Sets app default base URL
   app.baseUrl = '/';

@@ -10,26 +10,18 @@
             }
         </style>
 
-        <!-- <template is="dom-repeat" items="{{params_need}}">
-            <form action="">
-                {{params_need}}:
-                <br>
-                <input type="text" name="firstname" value="{{value_param}}">
-                <br>
-                <input type="submit" value="Submit">
-            </form>
-        </template> -->
-        <button on-click="_click">hola</button>
         <form id="form" action="">
-            First name:
-            <br>
-            <input type="text" name="firstname" value="Mickey">
+            <p id="nombre" name$="{{data.name}}">Componente {{getName}}</p>
+
+
+            <input type="text" name="firstname" value="">
             <br> Last name:
             <br>
-            <input type="text" name="lastname" value="Mouse">
+            <input type="text" name="lastname" value="">
             <br>
             <br>
             <input type="submit" value="Submit">
+
         </form>
 
     </template>
@@ -44,10 +36,19 @@
                 value_param: {
                     type: String,
                     value: ""
+                },
+                prop_comp: {
+                    type: String,
+                    value: ""
+                },
+                getName: {
+                    type: String,
+                    value: "",
                 }
             },
-            _showproperties: function () {
+            _showproperties: function (name, data) {
                 this.$.form.style.display = 'block';
+                this.getName = data.name;
             }
         });
     </script>

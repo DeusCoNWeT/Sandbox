@@ -88,7 +88,7 @@
                 margin: 100px;
             }
 
-            @media (min-width: 1500px) {
+            @media (min-width: 2000px) {
                 h1,
                 h2 {
                     font-size: 35px;
@@ -148,7 +148,7 @@
                 </div>
 
                 <!-- Donde hago la iron-ajax -->
-                <iron-ajax url="/api/componentes/{{component_selected}}" handle-as="json" on-response="_showform"></iron-ajax>
+                <iron-ajax id="request_attr" url="/api/componentes/{{component_selected}}" handle-as="json" on-response="_showform"></iron-ajax>
 
             </neon-animatable>
             <neon-animatable>
@@ -199,7 +199,7 @@
                 },
                 social_network: {
                     type: Array,
-                    value: function () { 
+                    value: function () {
                         return [
                             {
                                 name: "Spotify",
@@ -238,7 +238,8 @@
                                 id_comp: "finance-search"
                             }
 
-                        ] }
+                        ]
+                    }
                 },
                 component_selected: {
                     type: String,
@@ -246,10 +247,12 @@
                 }
             },
             _showform: function (evt) {
-                this.fire("my-catalogue-click", { name: evt.currentTarget.getAttribute('data-component') })
+                console.log(evt.detail.response)
+                this.fire("my-catalogue-click", { name: this.component_selected, data: evt.detail.response });
             },
             send_ajax: function (evt) {
-                console.log("hola");
+                this.set('component_selected', evt.currentTarget.getAttribute('data-component'));
+                this.$.request_attr.generateRequest();
             }
         });
     </script>
