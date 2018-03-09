@@ -8,9 +8,10 @@ module.exports = {
                     reject(err);
                     return;
                 }
-                //FILTRO BIEN?
                 var name_component = db.collection('component').find({ component_id: id }, { "attributes": 1, "_id": 0 });
-                
+
+                // Tengo que devolver un objeto y no un array
+
                 name_component.toArray(function (err, docs) {
                     if (err) {
                         reject(err);
