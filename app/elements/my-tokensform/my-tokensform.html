@@ -24,8 +24,9 @@
             <input type="text" name="" value="">
             <br>
             <br>
-            <input type="submit" value="Submit">
-
+            <!-- Voy a crear la logica para el boton o el submit -->
+            <input id="submit" type="submit" value="Submit" on-click="_sendForm">
+            
         </form>
 
     </template>
@@ -56,6 +57,12 @@
                         value: attributes[key]
                     }
                 });               
+            },
+            _sendForm: function(evt){
+                //Habra que comprobar si haciendo una peticion sale bien
+
+                //Habra que hacer que se muestre la calidad ( entre los {} habra que meter los datos necesarios)
+                this.fire("my-form-click", { });
             }
         });
     </script>
