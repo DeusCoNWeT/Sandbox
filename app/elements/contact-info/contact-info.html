@@ -7,12 +7,12 @@
             :host {
                 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
                 display: inline-block;
-                background-image: url("../../images/bloques-lego.jpg");
+                background-image: url("../../images/puzzleGris.jpg");
                 background-position: center center;
                 background-size: cover;
                 height: 100%;
                 width: 100%;
-                background-repeat: no-repeat;
+                /* background-repeat: no-repeat; */
             }
 
             .contenedor1 {
@@ -21,40 +21,31 @@
                 top: 50%;
                 left: 50%;
                 /*determinamos una anchura*/
-                width: 800px;
+                width: 1000px;
                 /*indicamos que el margen izquierdo, es la mitad de la anchura*/
-                margin-left: -400px;
+                margin-left: -500px;
                 /*determinamos una altura*/
-                height: 500px;
+                height: 650px;
                 /*indicamos que el margen superior, es la mitad de la altura*/
-                margin-top: -250px;
+                margin-top: -325px;
                 border: 1px solid #808080;
                 padding: 5px;
                 background-color: #e2e2e2;
                 position: absolute;
-                box-shadow: 2px 2px 2px 5px;
+                box-shadow: 0px 0px 10px #808080;
 
-            }
-
-            .logoFacultad {
-                float: right;
-                width: 150px;
-                height: 100%;
-            }
-
-            .logoUniversidad {
-                width: 180px;
-                height: 100%;
-                padding-right: 120px;
-
-            }
+           }
+           .logo{
+               width: auto;
+               height: 144px;
+           }
 
 
             .titulo {
-                font-style: oblique;
-                font-size: 50px;
-                color: #008ad0;
-                padding-right: 120px;
+                /* font-style: oblique; */
+                font-size: 60px;
+                color: rgb(66, 66, 66);
+                text-decoration: bold;
             }
 
             .contenedor3 {
@@ -62,69 +53,92 @@
             }
 
             #developers {
-                line-height: normal;
-                font-size: 14px;    
+                line-height: 2.0;
+                font-size: 15px;
             }
+
             .box {
                 padding: 29px 18px 17px;
-                background: lightgray;
+                background: darkgray;
                 text-align: center;
-                width: 200px;
-                background-color:#eee;
+                width: 250px;
+                background-color: #eee;
                 border: 1px solid #a9a9a9;
                 border-radius: 4px;
                 justify-content: space-around;
-                
+                margin-top:50px;
+
             }
-            .box:hover{
-                background-color: rgb(63, 61, 61);
+
+            .box:hover {
+                background-color: rgb(66, 66, 66);
+                
                 color: white;
             }
 
             .listaDevelop {
                 text-align: left;
             }
-            .contenedorInfo{
-                padding:18px;
-            }
-            paper-icon-button::shadow #icon {
-                width: 40px;
-                height:40px;
-            }
-            
-        </style>
-        <div class="contenedor1 vertical layout">
 
-            <div class="contenedor3 horizontal layout center-center">
+            .contenedorInfo {
+                padding: 18px;
+
+            }
+            .icon{
+                text-align: center;
+            }
+
+            paper-icon-button {
+                width: 60px;
+                height: 60px;
+
+                
+            }
+        </style>
+        <div class="contenedor1 vertical layout around-justified">
+
+            <!-- <div class="contenedor3 horizontal layout center-center">
                 <img class="logoUniversidad" src="/images/UPM.png" alt="Logotipo UPM">
-                <h1 class="titulo">Contacto</h1>
+                <p class="titulo">Contacto</p>
                 <img class="logoFacultad" src="/images/FI.png" alt="Logotipo Facultad">
-            </div>
+            </div> -->
 
             <div class="contenedorInfo  horizontal layout around-justified">
-                <div class="box layout center ">
-                    <paper-icon-button class="icon-home" icon="home" ></paper-icon-button>
-                    <h4>Escuela Técnica Superior de Ingenieros Informáticos</h4>
-                    <h4>DeusConwet Lab</h4>
-                </div>
-                <div class="box vertical layout center d">
-                    <paper-icon-button class="icon-user" icon="account-circle"></paper-icon-button>
-                    <div class="listaDevelop">
-                        <h4>Desarrolladores:</h4>
-                        <ul id="developers">
-                            <li>Miguel Magaña Suanzes</li>
-                            <li>Sandra Gómez Yagüez</li>
-                        </ul>
-                        <h4>Colaboradores:</h4>
-                        <ul id="developers">
-                            <li>Miguel Ortega Moreno</li>
-                            <li>Roberto García Álvarez</li>
-                        </ul>
+                <div class="vertical layout center">
+                    <img class="logo" src="/images/UPM.png" alt="Logotipo UPM">
+                    <div class="box flex layout center ">
+                        <paper-icon-button class="icon" icon="home"></paper-icon-button>
+                        <h4>Escuela Técnica Superior de Ingenieros Informáticos</h4>
+                        <h4>DeusConwet Lab</h4>
+                        <h4>Pozuelo de Alarcón, Madrid</h4>
+                        <h4>Campues de Montegancedo</h4>
+                        <h4>28223</h4>
                     </div>
                 </div>
-                <div class="box layout center ">
-                    <paper-icon-button class="icon-mail" icon="mail"></paper-icon-button>
-                    <h4>googleproject@gmail.com</h4>
+                <div class="vertical layout center">
+                    <p class="titulo">Contacto</p>
+                    <div class="flex box vertical layout center">
+                        <paper-icon-button class="icon" icon="account-circle"></paper-icon-button>
+                        <div class="listaDevelop">
+                            <h4>Desarrolladores:</h4>
+                            <ul id="developers">
+                                <li>Miguel Magaña Suanzes</li>
+                                <li>Sandra Gómez Yagüez</li>
+                            </ul>
+                            <h4>Colaboradores:</h4>
+                            <ul id="developers">
+                                <li>Miguel Ortega Moreno</li>
+                                <li>Roberto García Álvarez</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="vertical layout center">
+                    <img class="logo" src="/images/FI.png" alt="Logotipo Facultad">
+                    <div class="box flex layout center ">
+                        <paper-icon-button class="icon" icon="mail"></paper-icon-button>
+                        <h4>googleproject@gmail.com</h4>
+                    </div>
                 </div>
             </div>
         </div>
