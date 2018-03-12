@@ -9,22 +9,22 @@
                 display: none;
             }
         </style>
-
         <form id="form" action="">
             <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
             <template is="dom-repeat" items="{{getAttr}}">
                 <label for="text">Atributo {{item.name}}</label>
                 <span>
-                    <input id="text" type="text" />
+                    <input id="text" type="text" on-change="_miFunction" />
                 </span>
                 <br>
             </template>
             <br>
-            <input id="submit" type="submit" value="Submit" on-click="_sendForm">
+            <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
+                    Enviar y analizar
+                </paper-button>
         </form>
-
-        <iron-ajax method="post" url="/api/components" handle-as="json" on-response="handleResponse"></iron-ajax>
-
+        <iron-ajax id= "send_attr" method="post" url="/api/componentes" handle-as="json" on-response="handleResponse" body={{prop_object}} content-type="application/json"></iron-ajax>
+        
     </template>
     <script>
         Polymer({
@@ -41,6 +41,14 @@
                 prop_comp: {
                     type: String,
                     value: ""
+                },
+                prop_object: {
+                    type: Object,
+                    value: function () { return {} }
+                },
+                getName: {
+                    type: Array,
+                    value: function () { return []; }
                 }
             },
             _showproperties: function (name, data) {
@@ -54,12 +62,22 @@
                     }
                 });
             },
-        _sendForm: function (evt) {
-            //Habra que comprobar si haciendo una peticion sale bien
+            _sendForm: function (evt) {
+                //Habra que comprobar si haciendo una peticion sale bien
+                //Habra que hacer que se muestre la calidad ( entre los {} habra que meter los datos necesarios)
+                this.fire("my-form-click", {});
+            },
+            _miFunction: function (evt) {
+                var item = evt.model.item;
+                this.set('prop_object.' + item.name, evt.currentTarget.value);
+                console.log(this.prop_object);
+            },
+            _analize: function (evt) {
+                this.set('prop_object.' + item.name, evt.currentTarget.value);
+                this.$.send_attr.generateRequest();
+            }
 
-            //Habra que hacer que se muestre la calidad ( entre los {} habra que meter los datos necesarios)
-            this.fire("my-form-click", {});
-        }
+            // Aqui deberia ajustare 
         });
     </script>
 </dom-module>
