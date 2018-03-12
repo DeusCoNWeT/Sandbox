@@ -5,5 +5,5 @@ var api_handler = require('../controllers/component_controller')
 
 router.get('/',api_handler.getComponents);
 router.get('/:name', api_handler.getComponent);
-router.post('/',api_handler.createComponents);
+router.post('/',api_handler.postProperties);
 module.exports = router;
