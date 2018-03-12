@@ -12,21 +12,13 @@
 
         <form id="form" action="">
             <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
-            <br>
             <template is="dom-repeat" items="{{getAttr}}">
-                <p id="attr" name$="{{item.name}}">Atributo {{item.name}}</p>
-            </template>
-
-            <br>
-            <input type="text" name="" value="">
-            <br> Last name:
-            <br>
-            <input type="text" name="" value="">
-            <br>
-            <br>
-            <!-- Voy a crear la logica para el boton o el submit -->
+                <label for="text">Atributo {{item.name}}</label>
+                <span><input id="text" type="text" /></span>
+                <br>
+            </template> 
+            <br>            
             <input id="submit" type="submit" value="Submit" on-click="_sendForm">
-
         </form>
 
         <iron-ajax method="post" url="/api/components" handle-as="json" on-response="handleResponse"></iron-ajax>
