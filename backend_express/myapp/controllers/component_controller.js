@@ -23,6 +23,13 @@ var handler = {
             console.log('Object missing')
         }
         var object_tokens = req.body;
+        var obj = {};
+        // console.log(typeof(object_tokens));
+        // console.log(object_tokens.keys(obj).length);
+        // if(object_tokens.keys(obj).length === 0){
+        //     console.log('Vacio');
+        //     alert('hola')
+        // }
         console.log(object_tokens);
         get_comp_serv.analize_metrics(object_tokens).then(function (properties) {
             res.status(200).send(properties);
