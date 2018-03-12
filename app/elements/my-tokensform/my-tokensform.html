@@ -14,10 +14,12 @@
             <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
             <template is="dom-repeat" items="{{getAttr}}">
                 <label for="text">Atributo {{item.name}}</label>
-                <span><input id="text" type="text" /></span>
+                <span>
+                    <input id="text" type="text" />
+                </span>
                 <br>
-            </template> 
-            <br>            
+            </template>
+            <br>
             <input id="submit" type="submit" value="Submit" on-click="_sendForm">
         </form>
 
@@ -52,12 +54,12 @@
                     }
                 });
             },
-            _sendForm: function (evt) {
-                //Habra que comprobar si haciendo una peticion sale bien
+        _sendForm: function (evt) {
+            //Habra que comprobar si haciendo una peticion sale bien
 
-                //Habra que hacer que se muestre la calidad ( entre los {} habra que meter los datos necesarios)
-                this.fire("my-form-click", {});
-            }
+            //Habra que hacer que se muestre la calidad ( entre los {} habra que meter los datos necesarios)
+            this.fire("my-form-click", {});
+        }
         });
     </script>
 </dom-module>
