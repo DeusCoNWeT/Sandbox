@@ -9,29 +9,22 @@
                 display: none;
             }
         </style>
-
-        <!-- <template is="dom-repeat" items="{{params_need}}">
-            <form action="">
-                {{params_need}}:
-                <br>
-                <input type="text" name="firstname" value="{{value_param}}">
-                <br>
-                <input type="submit" value="Submit">
-            </form>
-        </template> -->
-        <button on-click="_click">hola</button>
         <form id="form" action="">
-            First name:
+            <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
+            <template is="dom-repeat" items="{{getAttr}}">
+                <label for="text">Atributo {{item.name}}</label>
+                <span>
+                    <input id="text" type="text" on-change="_miFunction" />
+                </span>
+                <br>
+            </template>
             <br>
-            <input type="text" name="firstname" value="Mickey">
-            <br> Last name:
-            <br>
-            <input type="text" name="lastname" value="Mouse">
-            <br>
-            <br>
-            <input type="submit" value="Submit">
+            <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
+                    Enviar y analizar
+                </paper-button>
         </form>
-
+        <iron-ajax id= "send_attr" method="post" url="/api/componentes" handle-as="json" on-response="handleResponse" body={{prop_object}} content-type="application/json"></iron-ajax>
+        
     </template>
     <script>
         Polymer({
@@ -44,11 +37,47 @@
                 value_param: {
                     type: String,
                     value: ""
+                },
+                prop_comp: {
+                    type: String,
+                    value: ""
+                },
+                prop_object: {
+                    type: Object,
+                    value: function () { return {} }
+                },
+                getName: {
+                    type: Array,
+                    value: function () { return []; }
                 }
             },
-            _showproperties: function () {
+            _showproperties: function (name, data) {
                 this.$.form.style.display = 'block';
+                this.getName = data.name;
+                var attributes = data.data[0].attributes;
+                this.getAttr = Object.keys(attributes).map(function (key) {
+                    return {
+                        name: key,
+                        value: attributes[key]
+                    }
+                });
+            },
+            _sendForm: function (evt) {
+                //Habra que comprobar si haciendo una peticion sale bien
+                //Habra que hacer que se muestre la calidad ( entre los {} habra que meter los datos necesarios)
+                this.fire("my-form-click", {});
+            },
+            _miFunction: function (evt) {
+                var item = evt.model.item;
+                this.set('prop_object.' + item.name, evt.currentTarget.value);
+                console.log(this.prop_object);
+            },
+            _analize: function (evt) {
+                this.set('prop_object.' + item.name, evt.currentTarget.value);
+                this.$.send_attr.generateRequest();
             }
+
+            // Aqui deberia ajustare 
         });
     </script>
 </dom-module>

@@ -18,7 +18,10 @@ var handler = {
             res.send(err).status(400);
         });
     },
-    createComponents: function (req, res) {
+    postProperties: function (req, res) {
+        if(!req.body){
+            console.log('Object missing')
+        }
         res.send({
             verb: "post"
         });
