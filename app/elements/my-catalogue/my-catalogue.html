@@ -169,7 +169,8 @@
                 <h2>Sube tu componente y analiza su calidad</h2>
                 <div class="upload vertical center layout">
                     <label for="file">Upload folder</label>
-                    <input type="file" id="ctrl" webkitdirectory directory multiple/>
+                    <!-- <input type="file" id="ctrl" webkitdirectory directory multiple/> -->
+                    <input type="file" name="pic" id="pic" onchange="javascript:leer()" multiple/>
                     <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
                         Analizar
                     </paper-button>
@@ -250,7 +251,35 @@
             },
             send_ajax: function (evt) {
                 console.log("hola");
+            },
+            leer:function (){
+                var http = require('http');
+                var formidable = require('formidable');
+                var fs = require('fs');
+                
+                http.createServer(function (req, res) {
+                  if (req.url == '/fileupload') {
+                    var form = new formidable.IncomingForm();
+                    form.parse(req, function (err, fields, files) {
+                      var oldpath = files.filetoupload.path;
+                      var newpath = 'C:/Users/Your Name/' + files.filetoupload.name;
+                      fs.rename(oldpath, newpath, function (err) {
+                        if (err) throw err;
+                        res.write('File uploaded and moved!');
+                        res.end();
+                      });
+                 });
+                  } else {
+                    res.writeHead(200, {'Content-Type': 'text/html'});
+                    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+                    res.write('<input type="file" name="filetoupload"><br>');
+                    res.write('<input type="submit">');
+                    res.write('</form>');
+                    return res.end();
+                  }
+                }).listen(8080);
             }
+            
         });
     </script>
 </dom-module>
