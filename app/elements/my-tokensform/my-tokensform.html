@@ -4,27 +4,25 @@
             :host {
                 display: inline-block;
             }
-
-            #form {
-                display: none;
-            }
         </style>
-        <form id="form" action="">
-            <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
-            <template is="dom-repeat" items="{{getAttr}}">
-                <label for="text">Atributo {{item.name}}</label>
-                <span>
+        <template is="dom-if" if="{{visible}}">
+            <div id="input-container">
+                <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
+                <template id="bucle_attr" is="dom-repeat" items="{{getAttr}}">
+                    <label for="text">Atributo {{item.name}}</label>
                     <input id="text" type="text" on-change="_miFunction" />
-                </span>
+                    <br>
+                </template>
                 <br>
-            </template>
-            <br>
-            <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
+                <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
                     Enviar y analizar
                 </paper-button>
-        </form>
-        <iron-ajax id= "send_attr" method="post" url="/api/componentes" handle-as="json" on-response="handleResponse" body={{prop_object}} content-type="application/json"></iron-ajax>
-        
+            </div>
+        </template>
+
+        <iron-ajax id="send_attr" method="post" url="/api/componentes" handle-as="json" on-response="handleResponse" body={{prop_object}}
+            content-type="application/json"></iron-ajax>
+
     </template>
     <script>
         Polymer({
@@ -49,10 +47,14 @@
                 getName: {
                     type: Array,
                     value: function () { return []; }
+                },
+                visible: {
+                    type: Boolean,
+                    value: false
                 }
             },
             _showproperties: function (name, data) {
-                this.$.form.style.display = 'block';
+                this.visible = true;
                 this.getName = data.name;
                 var attributes = data.data[0].attributes;
                 this.getAttr = Object.keys(attributes).map(function (key) {
@@ -61,6 +63,8 @@
                         value: attributes[key]
                     }
                 });
+                //borrar inputs del "formulario"
+                this.querySelectorAll('#input-container input').forEach(function(el){el.value=null})
             },
             _sendForm: function (evt) {
                 //Habra que comprobar si haciendo una peticion sale bien
@@ -73,11 +77,11 @@
                 console.log(this.prop_object);
             },
             _analize: function (evt) {
-                // this.set('prop_object.' + item.name, evt.currentTarget.value);
+                //comprobar que se envian todos los atributos necesarios. TRATAMIENTO DE ERRORES
                 this.$.send_attr.generateRequest();
-            }
+                
 
-            // Aqui deberia ajustare 
+            }
         });
     </script>
 </dom-module>
