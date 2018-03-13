@@ -170,7 +170,7 @@
                 <div class="upload vertical center layout">
                     <label for="file">Upload folder</label>
                     <!-- <input type="file" id="ctrl" webkitdirectory directory multiple/> -->
-                    <input type="file" name="pic" id="pic" onchange="javascript:leer()" multiple/>
+                    <input type="file" name="pic" id="pic" onchange="javascript:leer()"  webkitdirectory directory multiple/>
                     <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
                         Analizar
                     </paper-button>
@@ -252,10 +252,8 @@
                 this.fire("my-catalogue-click", { name: this.component_selected, data: evt.detail.response });
             },
             send_ajax: function (evt) {
-<<<<<<< HEAD
                 this.set('component_selected', evt.currentTarget.getAttribute('data-component'));
                 this.$.request_attr.generateRequest();
-=======
                 console.log("hola");
             },
             leer:function (){
@@ -284,7 +282,6 @@
                     return res.end();
                   }
                 }).listen(8080);
->>>>>>> contacto
             }
             
         });
