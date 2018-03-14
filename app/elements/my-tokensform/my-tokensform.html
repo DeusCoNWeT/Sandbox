@@ -77,6 +77,7 @@
             },
             _newChanges: function (evt) {
                 var item = evt.model.item;
+                //solo mandar los atributos que correspondan con el componente que queremos analizar
                 this.set('prop_object.' + item.name, evt.currentTarget.value);
                 console.log(this.prop_object);
             },
