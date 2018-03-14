@@ -19,7 +19,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <title>Polymer Starter Kit</title>
 
   <!-- Place favicon.ico in the `app/` directory -->
-
   <!-- Chrome for Android theme color -->
   <meta name="theme-color" content="#2E3AA1">
 
@@ -64,7 +63,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- build:remove -->
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
-
   <template is="dom-bind" id="app">
     <my-header id="headerPanelMain"></my-header>
     <iron-pages class='flex' attr-for-selected="data-route" selected="{{route}}">
@@ -72,21 +70,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <contact-info></contact-info>
       </section>
       <section data-route="home">
-          <!-- <p>Esto es la vista de home</p> -->
-          <my-catalogue class="border_black" on-my-catalogue-click="_nameComp"></my-catalogue>
-          
-          <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
-          <div id="content">
-            <my-tokensform class="border_black" id="form_component"></my-tokensform>
-            <quality-component id="quality-comp" on-my-form-click="_showquality"></quality-component>
-          </div>
+        <!-- <p>Esto es la vista de home</p> -->
+        <my-catalogue class="border_black" on-wrong-input="_emptyObjectAttr" on-my-catalogue-click="_nameComp"></my-catalogue>
+        <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
+        <div id="content">
+          <my-tokensform class="border_black" id="form_component"></my-tokensform>
+          <quality-component id="quality-comp" on-my-form-click="_showquality"></quality-component>
+        </div>
       </section>
       <section data-route="instructions">
         <!-- <p>Esto es la vista de instrucciones</p> -->
         <instructions-info></instructions-info>
       </section>
     </iron-pages>
-    
+
     <!-- <my-catalogue></my-catalogue> -->
   </template>
 

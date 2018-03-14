@@ -10,7 +10,7 @@
                 <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
                 <template id="bucle_attr" is="dom-repeat" items="{{getAttr}}">
                     <label for="text">Atributo {{item.name}}</label>
-                    <input id="text" type="text" on-change="_newChanges"/>
+                    <input id="text" type="text" on-change="_newChanges" />
                     <br>
                 </template>
                 <br>
@@ -68,21 +68,22 @@
                     }
                 });
                 //borrar inputs del "formulario"
-                this.querySelectorAll('#input-container input').forEach(function(el){el.value=null})
+                this.querySelectorAll('#input-container input').forEach(function (el) { el.value = null })
+            },
+            _cleanObjectAttr: function () {
+                this.set('prop_object', {});
             },
             _sendForm: function (evt) {
-                //Habra que comprobar si haciendo una peticion sale bien
-                //Habra que hacer que se muestre la calidad ( entre los {} habra que meter los datos necesarios)
+                //Habra que hacer que se muestre la calidad (entre los {} habra que meter los datos necesarios)
                 this.fire("my-form-click", {});
             },
             _newChanges: function (evt) {
                 var item = evt.model.item;
-                //solo mandar los atributos que correspondan con el componente que queremos analizar
+                //asi solo se mandan los atributos que correspondan con el componente que queremos analizar
                 this.set('prop_object.' + item.name, evt.currentTarget.value);
-                console.log(this.prop_object);
+
             },
             _analize: function (evt) {
-                //comprobar que se envian todos los atributos necesarios. TRATAMIENTO DE ERRORES
                 this.$.send_attr.generateRequest();
                 var item = evt.model.item;
                 this.set('prop_object.' + item.name, evt.currentTarget.value);
