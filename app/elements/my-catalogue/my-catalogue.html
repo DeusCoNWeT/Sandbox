@@ -19,6 +19,7 @@
                 width: 40%;
                 background-color: white;
             }
+
             h1,
             h2 {
                 text-align: center;
@@ -121,7 +122,6 @@
             }
         </style>
         <nav id="left-nav">
-
             <paper-tabs selected="{{selected}}">
                 <paper-tab>Catálogo </paper-tab>
                 <paper-tab>Analizar calidad</paper-tab>
@@ -144,10 +144,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Donde hago la iron-ajax -->
                 <iron-ajax id="request_attr" url="/api/componentes/{{component_selected}}" handle-as="json" on-response="_showform"></iron-ajax>
-
             </neon-animatable>
             <neon-animatable>
                 <h1>Elije un componente para analizar</h1>
@@ -163,20 +160,17 @@
                 </div>
             </neon-animatable>
             <neon-animatable>
-
                 <h2>Sube tu componente y analiza su calidad</h2>
                 <div class="upload vertical center layout">
                     <label for="file">Upload folder</label>
                     <!-- <input type="file" id="ctrl" webkitdirectory directory multiple/> -->
-                    <input type="file" name="pic" id="pic" onchange="javascript:leer()"  webkitdirectory directory multiple/>
+                    <input type="file" name="pic" id="pic" onchange="javascript:leer()" webkitdirectory directory multiple/>
                     <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
                         Analizar
                     </paper-button>
                 </div>
-
             </neon-animatable>
         </neon-animated-pages>
-
     </template>
     <script>
         Polymer({
@@ -255,34 +249,34 @@
                 this.set('component_selected', evt.currentTarget.getAttribute('data-component'));
                 this.$.request_attr.generateRequest();
             },
-            leer:function (){
+            leer: function () {
                 var http = require('http');
                 var formidable = require('formidable');
                 var fs = require('fs');
-                
+
                 http.createServer(function (req, res) {
-                  if (req.url == '/fileupload') {
-                    var form = new formidable.IncomingForm();
-                    form.parse(req, function (err, fields, files) {
-                      var oldpath = files.filetoupload.path;
-                      var newpath = 'C:/Users/Your Name/' + files.filetoupload.name;
-                      fs.rename(oldpath, newpath, function (err) {
-                        if (err) throw err;
-                        res.write('File uploaded and moved!');
-                        res.end();
-                      });
-                 });
-                  } else {
-                    res.writeHead(200, {'Content-Type': 'text/html'});
-                    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-                    res.write('<input type="file" name="filetoupload"><br>');
-                    res.write('<input type="submit">');
-                    res.write('</form>');
-                    return res.end();
-                  }
+                    if (req.url == '/fileupload') {
+                        var form = new formidable.IncomingForm();
+                        form.parse(req, function (err, fields, files) {
+                            var oldpath = files.filetoupload.path;
+                            var newpath = 'C:/Users/Your Name/' + files.filetoupload.name;
+                            fs.rename(oldpath, newpath, function (err) {
+                                if (err) throw err;
+                                res.write('File uploaded and moved!');
+                                res.end();
+                            });
+                        });
+                    } else {
+                        res.writeHead(200, { 'Content-Type': 'text/html' });
+                        res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+                        res.write('<input type="file" name="filetoupload"><br>');
+                        res.write('<input type="submit">');
+                        res.write('</form>');
+                        return res.end();
+                    }
                 }).listen(8080);
             }
-            
+
         });
     </script>
 </dom-module>
