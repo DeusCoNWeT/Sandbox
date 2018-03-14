@@ -25,9 +25,9 @@
                 /*indicamos que el margen izquierdo, es la mitad de la anchura*/
                 margin-left: -500px;
                 /*determinamos una altura*/
-                height: 600px;
+                height: 650px;
                 /*indicamos que el margen superior, es la mitad de la altura*/
-                margin-top: -300px;
+                margin-top: -325px;
                 border: 1px solid #808080;
                 padding: 5px;
                 /* background-color: #e2e2e2; */
@@ -40,11 +40,15 @@
                width: auto;
                height: 137px;
            }
+           .logoPicbit{
+               width: auto;
+               height: 100px;
+           }
 
 
             .titulo {
                 /* font-style: oblique; */
-                font-size: 60px;
+                font-size: 57px;
                 color:white;
                 /* color: rgb(66, 66, 66); */
                 text-decoration: bold;
@@ -93,29 +97,30 @@
             paper-icon-button {
                 width: 60px;
                 height: 60px;
-
-                
             }
+            a{
+                color:inherit;
+                text-decoration: none;
+            }
+            
         </style>
         <div class="contenedor1 vertical layout around-justified">
 
-            <!-- <div class="contenedor3 horizontal layout center-center">
-                <img class="logoUniversidad" src="/images/UPM.png" alt="Logotipo UPM">
-                <p class="titulo">Contacto</p>
-                <img class="logoFacultad" src="/images/FI.png" alt="Logotipo Facultad">
-            </div> -->
 
             <div class="contenedorInfo  horizontal layout around-justified">
                 <div class="vertical layout center">
                     <img class="logo" src="/images/UPM.png" alt="Logotipo UPM">
-                    <div class="box flex layout center ">
-                        <paper-icon-button class="icon" icon="home"></paper-icon-button>
-                        <h4>Escuela Técnica Superior de Ingenieros Informáticos</h4>
-                        <h4>DeusConwet Lab</h4>
-                        <h4>Pozuelo de Alarcón, Madrid</h4>
-                        <h4>Campues de Montegancedo</h4>
-                        <h4>28223</h4>
-                    </div>
+                    <a target="_blank" href="https://www.fi.upm.es/?id=comollegar" titulo="RedirecciónFacultad">
+                        <div class="box flex layout center ">
+                            <paper-icon-button class="icon" icon="home"></paper-icon-button>
+                            <h4>Escuela Técnica Superior de Ingenieros Informáticos</h4>
+                            <h4>DeusConwet Lab</h4>
+                            <h4>Boadilla del Monte, Madrid</h4>
+                            <h4>Campus de Montegancedo</h4>
+                            <h4>28660</h4>
+                        </div>
+                    </a>
+                    
                 </div>
                 <div class="vertical layout center">
                     <p class="titulo">Contacto</p>
@@ -140,6 +145,13 @@
                     <div class="box flex layout center ">
                         <paper-icon-button class="icon" icon="mail"></paper-icon-button>
                         <h4>googleproject@gmail.com</h4>
+                        <h5>Pincha en el icono para acceder a nuestra otra plataforma</h5>
+                        <a target="_blank" href="https://centauro.ls.etsiinf.upm.es/">
+                            <div class="picbit ">
+                                <img class="logoPicbit" src="/images/logoPicbit.png" alt="Logotipo Picbit"> </br>
+                                PICBIT
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -148,7 +160,9 @@
     </template>
     <script>
         Polymer({
-            is: 'contact-info'
+            is: 'contact-info',
+            properties: {
+           },       
         });
     </script>
 </dom-module>
