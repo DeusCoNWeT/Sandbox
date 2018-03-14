@@ -22,6 +22,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app._showquality = function(parametros){
     this.$.qualitycomp._showquality(parametros);
   }
+  app._emptyObjectAttr = function(){
+    this.$.form_component._cleanObjectAttr();
+    }
   // Sets app default base URL
   app.baseUrl = '/';
   if (window.location.port === '') {  // if production
