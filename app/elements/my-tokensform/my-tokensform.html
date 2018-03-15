@@ -52,12 +52,17 @@
                     type: Boolean,
                     value: false
                 },
+                visible_text: {
+                    type: Boolean,
+                    value: true
+                },
                 change: {
                     type: Boolean,
                     value: false
                 }
             },
             _showproperties: function (name, data) {
+                this.visible_text = false;
                 this.visible = true;
                 this.getName = data.name;
                 var attributes = data.data[0].attributes;
