@@ -1,10 +1,15 @@
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <dom-module id="my-tokensform">
     <template>
-        <style>
+        <style is="custom-style" include="iron-flex">
             :host {
                 display: inline-block;
             }
         </style>
+        <h1 class="horizontal layout center">Introduce los atributos necesarios del componente</h1>
+        <template is="dom-if" if="{{!visible}}">
+               <p>No se ha elegido aún ningun componente</p>
+        </template>
         <template is="dom-if" if="{{visible}}">
             <div id="input-container">
                 <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
