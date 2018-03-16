@@ -89,8 +89,17 @@
             },
             _newChanges: function (evt) {
                 var item = evt.model.item;
+                var text = evt.currentTarget.value;
                 //asi solo se mandan los atributos que correspondan con el componente que queremos analizar
-                this.set('prop_object.' + item.name, evt.currentTarget.value);
+                if(text === ""){
+                    var name_prop = item.name;
+                    // this.delete('prop_object.'+ item.name)
+                    delete this.prop_object[name_prop];
+                    
+                }else{
+
+                    this.set('prop_object.' + item.name, text);
+                }
 
             },
             _analize: function (evt) {

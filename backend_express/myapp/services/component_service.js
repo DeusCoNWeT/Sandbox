@@ -29,6 +29,12 @@ module.exports = {
             });
 
         })
+    },
+    analize_metrics: function(tokens){
+        return new Promise/function(resolve, reject){
+            console.log(tokens);
+            return "hola";
+        }
     }
 };
 
