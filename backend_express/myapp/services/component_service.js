@@ -29,6 +29,9 @@ module.exports = {
             });
 
         })
+    },
+    analize_metric: function (object_tokens){
+        //llamar al script de las metricas
     }
 };
 

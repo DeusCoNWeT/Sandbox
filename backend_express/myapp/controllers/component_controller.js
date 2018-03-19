@@ -31,11 +31,7 @@ var handler = {
         //     alert('hola')
         // }
         console.log(object_tokens);
-        get_comp_serv.analize_metrics(object_tokens).then(function (properties) {
-            res.status(200).send(properties);
-        }, function (err) { 
-            res.send(err).status(400);
-        });
+        get_comp_serv.analize_metrics(object_tokens);
     }
 }
 
