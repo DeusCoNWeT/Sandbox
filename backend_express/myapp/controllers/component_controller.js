@@ -31,11 +31,8 @@ var handler = {
         //     console.log('Vacio');
         //     alert('hola')
         // }
-        get_comp_serv.analize_metrics(object_tokens).then(function (res) {
-            res.status(200).send(res);
-        }, function (err) { 
-            res.send(err).status(400);
-        });
+        console.log(object_tokens);
+        get_comp_serv.analize_metrics(object_tokens);
     }
 }
 

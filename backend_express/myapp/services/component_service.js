@@ -30,11 +30,16 @@ module.exports = {
 
         })
     },
+<<<<<<< HEAD
     analize_metrics: function(tokens){
         return new Promise/function(resolve, reject){
             console.log(tokens);
             return "hola";
         }
+=======
+    analize_metric: function (object_tokens){
+        //llamar al script de las metricas
+>>>>>>> f3c8c3b0b7bd1770e9fd77376716ccdc22610356
     }
 };
 
