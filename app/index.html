@@ -74,8 +74,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <my-catalogue class="border_black" on-wrong-input="_emptyObjectAttr" on-my-catalogue-click="_nameComp"></my-catalogue>
         <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
         <div id="content">
-          <my-tokensform class="border_black" id="form_component"></my-tokensform>
-          <quality-component id="quality-comp" on-my-form-click="_showquality"></quality-component>
+          <my-tokensform class="border_black" on-response-metrics="_showquality" id="form_component"></my-tokensform>
+          <quality-component id="quality_comp"></quality-component>
         </div>
       </section>
       <section data-route="instructions">

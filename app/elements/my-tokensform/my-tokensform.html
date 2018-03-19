@@ -108,6 +108,10 @@
                 //this.set('prop_object.' + item.name, evt.currentTarget.value);
                 this.set('prop_object', {});
             },
+            handleResponse: function(evt){
+                console.log(evt.detail.response);
+                this.fire("response-metrics", { data: evt.detail.response });
+            }
         });
     </script>
 </dom-module>

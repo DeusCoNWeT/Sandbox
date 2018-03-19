@@ -18,8 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app._nameComp = function (name, data) {
     this.$.form_component._showproperties(name, data);
   }
-  app._showquality = function (parametros) {
-    this.$.qualitycomp._showquality(parametros);
+  app._showquality = function (data) {
+    this.$.quality_comp._showquality(data);
   }
   app._emptyObjectAttr = function () {
     this.$.form_component._cleanObjectAttr();

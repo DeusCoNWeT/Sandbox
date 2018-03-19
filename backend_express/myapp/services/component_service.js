@@ -30,16 +30,52 @@ module.exports = {
 
         })
     },
-<<<<<<< HEAD
-    analize_metrics: function(tokens){
-        return new Promise/function(resolve, reject){
-            console.log(tokens);
-            return "hola";
-        }
-=======
     analize_metric: function (object_tokens){
         //llamar al script de las metricas
->>>>>>> f3c8c3b0b7bd1770e9fd77376716ccdc22610356
+        var value_met = {
+            component: [
+                {
+                    name:"latency",
+                    value:"45.2"
+                },
+                {
+                    name:"structural",
+                    value:"45.2"
+                },
+                {
+                    name:"complexity",
+                    value:"45.2"
+                },
+                {
+                    name:"maintencance",
+                    value:"45.2"
+                },
+                {
+                    name:"accuracy",
+                    value:"45.2"
+                },
+                {
+                    name:"usability",
+                    value:"45.2"
+                },
+                {
+                    name:"security",
+                    value:"45.2"
+                },
+                {
+                    name:"refresh",
+                    value:"45.2"
+                }
+
+            ]
+        }
+        return new Promise(function (resolve, reject){
+            if(object_tokens instanceof Object){
+                resolve(value_met);
+            }else{
+                reject(Error('It fails'));
+            }
+        });
     }
 };
 
