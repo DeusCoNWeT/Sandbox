@@ -20,7 +20,7 @@
                 border: 1px solid #dddddd;
                 text-align: center;
                 padding: 8px;
-                
+
             }
 
             tr:nth-child(even) {
@@ -29,33 +29,24 @@
         </style>
         <h1>Your component quality</h1>
         <span>You are checking the quality of: SPOTIFY (hardcodeado)</span>
-        <table>  
-            <tr>
-                <th>Latencia</th>
-                <th>Complejidad Estructural</th>
-                <th>Complejidad ciclotomática</th>
-
-            </tr>
-            <tr>
-                <th>0.53</th>
-                <th>0.53</th>
-                <th>0.53</th>
-            </tr>
-        </table>
         <table>
-            <tr>
-                <th>Mantenibilidad</th>
-                <th>Completitud</th>
-                <th>Usabilidad</th>
-                <th>Seguridad</th>
-            </tr>
-            <tr>
-                <th>0.53</th>
-                <th>0.53</th>
-                <th>0.53</th>
-                <th>0.53</th>
-            </tr>
+            <thead>
+                <tr>
+                    <template is="dom-repeat" items="{{prueba}}">
+                        <th>{{item.name}}</th>
+                    </template>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <template is="dom-repeat" items="{{prueba}}">
+                        <td>{{item.value}}</th>
+                    </template>
+                </tr>
+            </tbody>
         </table>
+
+
         <div>
             <p>AQUÍ IRÁ LA NOTA TOTAL DEL COMPONENTES CON ESTRELLAS ETC.</p>
         </div>
@@ -73,10 +64,12 @@
                     value: function () { return []; }
                 }
             },
-            _showquality: function(data){
-                
+            _showquality: function (data) {
+
                 var dato = data.detail.data;
-                var info = dato.component[0].value;
+
+
+                var info = dato.component
                 console.log(info);
                 this.prueba = info;
             }
