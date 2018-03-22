@@ -93,7 +93,9 @@
                 if(text === ""){
                     var name_prop = item.name;
                     delete this.prop_object[name_prop];
-                } else{
+                    
+                }else{
+                    // SANDRA METE EL NOMBRE DEL COMPONENTE EN LA PETICION POST (En el backend lo he hecho como si tuvieramos esa propiedad ya)
                     this.set('prop_object.' + item.name, text);
                 }
             },
