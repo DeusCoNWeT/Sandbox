@@ -50,8 +50,7 @@
                     value: function () { return {} }
                 },
                 getName: {
-                    type: Array,
-                    value: function () { return []; }
+                    type: String
                 },
                 visible: {
                     type: Boolean,
@@ -69,7 +68,7 @@
             _showproperties: function (name, data) {
                 this.visible_text = false;
                 this.visible = true;
-                this.getName = data.name;
+                this.set('getName', data.name);
                 var attributes = data.data[0].attributes;
                 this.getAttr = Object.keys(attributes).map(function (key) {
                     return {
@@ -93,19 +92,13 @@
                 //asi solo se mandan los atributos que correspondan con el componente que queremos analizar
                 if(text === ""){
                     var name_prop = item.name;
-                    // this.delete('prop_object.'+ item.name)
                     delete this.prop_object[name_prop];
-                    
-                }else{
-
+                } else{
                     this.set('prop_object.' + item.name, text);
                 }
-
             },
             _analize: function (evt) {
                 this.$.send_attr.generateRequest();
-                //var item = evt.model.item;
-                //this.set('prop_object.' + item.name, evt.currentTarget.value);
                 this.set('prop_object', {});
             },
             handleResponse: function(evt){

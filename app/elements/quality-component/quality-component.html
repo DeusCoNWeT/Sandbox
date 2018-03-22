@@ -28,7 +28,7 @@
             }
         </style>
         <h1>Your component quality</h1>
-        <span>You are checking the quality of: SPOTIFY (hardcodeado)</span>
+        <p id="name" name$="{{data.name}}">You are checking the quality of {{getName}}</p>
         <table>
             <thead>
                 <tr>
@@ -56,18 +56,15 @@
             is: 'quality-component',
             properties: {
                 getName: {
-                    type: String,
-                    value: function () { return []; }
+                    type: String
                 },
                 prueba: {
-                    type: String,
-                    value: function () { return []; }
+                    type: String
                 }
             },
             _showquality: function (data) {
 
                 var dato = data.detail.data;
-
 
                 var info = dato.component
                 console.log(info);
