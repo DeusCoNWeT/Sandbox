@@ -77,15 +77,15 @@ module.exports = {
 
         var base_folder = path.join(__dirname, '../components/bower_components/');
         //Tenemos que tener en la respuesta el nombre del componente para saber donde entrar en bower components
-        // var component = 'spotify-component-stable/spotify-component.html';
-        var component = 'twitter-timeline-stable/static/twitter-timeline.html';
-
+        //  var component = 'spotify-component-stable/spotify-component.html';
+        // var component = 'twitter-timeline-stable/static/twitter-timeline.html';
         var list_folder = ['spotify-component-stable/spotify-component.html', 'twitter-timeline-stable/static/twitter-timeline.html', 'traffic-incidents-stable/traffic-incidents.html',
         'pinterest-timeline-stable/pinterest-timeline.html','open-weather-stable/open-weather.html','googleplus-timeline-stable/googleplus-timeline.html','finance-search-stable/finance-search.html',
         'facebook-wall-stable/facebook-wall.html'];
         // FALTA REDDIT
         // Hay que hacer que el objeto que traemos tenga el nombre del componente, y aqui lo comprobamos si ese nombre contiene una lapabra de spoty, twitter etc..
-
+        
+        var component = list_folder[3];
 
         ////////////////////////////// FOLDER OF COMPONENTS////////////////////////////////////////
         // var name_comp = object_tokens.name;
