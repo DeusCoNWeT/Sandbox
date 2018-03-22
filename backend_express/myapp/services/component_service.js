@@ -1,5 +1,9 @@
+var report = require('../metrics/polymer-complexity/src/Report');
+var path = require('path');
 var db = require('./mydb').getInstance();
 var mongoose = require('mongoose');
+var LATENCY = 1, COMPLEXITY = 2, MAINTENACE = 3, ACCURACY = 4, USABILITY = 5, SECURITY = 6, REFRESH = 7;
+
 module.exports = {
     get_component: function (id) {
         return new Promise(function (resolve, reject) {
@@ -31,51 +35,62 @@ module.exports = {
         })
     },
     analize_metric: function (object_tokens){
-        //llamar al script de las metricas
         var value_met = {
             component: [
                 {
                     name:"latency",
-                    value:"45.2"
+                    value:45.2
                 },
                 {
                     name:"structural",
-                    value:"45.2"
+                    value:45.2
                 },
                 {
                     name:"complexity",
-                    value:"45.2"
+                    value:""
                 },
                 {
                     name:"maintencance",
-                    value:"45.2"
+                    value:""
                 },
                 {
                     name:"accuracy",
-                    value:"45.2"
+                    value:45.2
                 },
                 {
                     name:"usability",
-                    value:"45.2"
+                    value:45.2
                 },
                 {
                     name:"security",
-                    value:"45.2"
+                    value:45.2
                 },
                 {
                     name:"refresh",
-                    value:"45.2"
+                    value:45.2
                 }
 
             ]
         }
-        return new Promise(function (resolve, reject){
-            if(object_tokens instanceof Object){
-                resolve(value_met);
-            }else{
-                reject(Error('It fails'));
-            }
-        });
+        //llamar al script de las metricas
+        
+        var base_folder = path.join(__dirname, '../components/bower_components/');
+        //Tenemos que tener en la respuesta el nombre del componente para saber donde entrar en bower components
+        // var component = 'spotify-component-stable/spotify-component.html';
+        var component = 'twitter-timeline-stable/static/twitter-timeline.html';
+        
+        
+        return  new Promise(function(resolve, reject){
+            var folder = base_folder + component;     
+            // METRIC 1: COMPLEXITY y MANTENIBILIDAD
+                report.analyze(folder).then(function(result){
+                    var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
+                    var val_maintenance = result.js[0].complexity.maintainability;
+                    value_met.component[COMPLEXITY].value = val_complexity;
+                    value_met.component[MAINTENACE].value = val_maintenance;
+                   resolve(value_met);    
+                },reject);
+          });
     }
 };
 
