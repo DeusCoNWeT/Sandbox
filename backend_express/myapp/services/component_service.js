@@ -1,9 +1,12 @@
 var report = require('../metrics/polymer-complexity/src/Report');
+// USING CHILD_PROCESS (for execute bash)
+var child_process = require('child_process');
 var path = require('path');
 var db = require('./mydb').getInstance();
 var mongoose = require('mongoose');
-var LATENCY = 1, COMPLEXITY = 2, MAINTENACE = 3, ACCURACY = 4, USABILITY = 5, SECURITY = 6, REFRESH = 7;
+var LATENCY = 0, STRUCTURAL = 1, COMPLEXITY = 2, MAINTENACE = 3, ACCURACY = 4, USABILITY = 5, SECURITY = 6, REFRESH = 7;
 var SPOTIFY = 0, TWITTER = 1, TRAFFIC = 2, PINTEREST = 3, WEATHER = 4, GOOGLE_PLUS = 5, FINANCE_SEARCH = 6, FACEBOOK = 7;
+var MAX_CONT = 2;
 
 module.exports = {
     get_component: function (id) {
@@ -44,7 +47,7 @@ module.exports = {
                 },
                 {
                     name: "structural",
-                    value: 45.2
+                    value: ""
                 },
                 {
                     name: "complexity",
@@ -85,38 +88,58 @@ module.exports = {
         // FALTA REDDIT
         // Hay que hacer que el objeto que traemos tenga el nombre del componente, y aqui lo comprobamos si ese nombre contiene una lapabra de spoty, twitter etc..
         
-        var component = list_folder[3];
+        // var component = list_folder[3];
 
         ////////////////////////////// FOLDER OF COMPONENTS////////////////////////////////////////
-        // var name_comp = object_tokens.name;
-        // if(name_comp.includes('spotify')){
-        //     component = list_folder[SPOTIFY];
-        // }else if(name_comp.includes('twitter')){
-        //     component = list_folder[TWITTER];
-        // }else if(name_comp.includes('facebook')){
-        //     component = list_folder[FACEBOOK];
-        // }else if(name_comp.includes('google')){
-        //     component = list_folder[GOOGLE_PLUS];
-        // }else if(name_comp.includes('finance')){
-        //     component = list_folder[FINANCE];
-        // }else if(name_comp.includes('weather')){
-        //     component = list_folder[WEATHER];
-        // }else if(name_comp.includes('pinterest')){
-        //     component = list_folder[PINTEREST];
-        // }else{
-        //     component = list_folder[TRAFFIC];
-        // }
+        var name_comp = object_tokens.nameComp;
+        if(name_comp.includes('spotify')){
+            component = list_folder[SPOTIFY];
+        }else if(name_comp.includes('twitter')){
+            component = list_folder[TWITTER];
+        }else if(name_comp.includes('facebook')){
+            component = list_folder[FACEBOOK];
+        }else if(name_comp.includes('google')){
+            component = list_folder[GOOGLE_PLUS];
+        }else if(name_comp.includes('finance')){
+            component = list_folder[FINANCE];
+        }else if(name_comp.includes('weather')){
+            component = list_folder[WEATHER];
+        }else if(name_comp.includes('pinterest')){
+            component = list_folder[PINTEREST];
+        }else{
+            component = list_folder[TRAFFIC];
+        }
 
         return new Promise(function (resolve, reject) {
             var folder = base_folder + component;
+            
+            function contador(max){
+                var cont = 0;
+                return function(){
+                    cont++;
+                    if (cont === max){
+                        resolve(value_met);
+                    }
+                }
+            }
+            var cb = contador(MAX_CONT);
+            
             // METRIC 1: COMPLEXITY y MANTENIBILIDAD
             report.analyze(folder).then(function (result) {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
                 var val_maintenance = result.js[0].complexity.maintainability;
                 value_met.component[COMPLEXITY].value = val_complexity;
                 value_met.component[MAINTENACE].value = val_maintenance;
-                resolve(value_met);
+                cb();
+                
             }, reject);
+             // METRIC 2: STRUCTURAL
+            child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function(error, stdout, stderr){
+                // var number_imports = stdout.replace( /(^.+\D)(\d+)(\D.+$)/i,'$2');
+                value_met.component[STRUCTURAL].value = stdout;
+                cb();
+            });
+           
          });
     }
 };
