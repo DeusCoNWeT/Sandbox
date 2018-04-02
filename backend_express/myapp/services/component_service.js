@@ -135,8 +135,11 @@ module.exports = {
             }, reject);
              // METRIC 2: STRUCTURAL
             child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function(error, stdout, stderr){
-                // var number_imports = stdout.replace( /(^.+\D)(\d+)(\D.+$)/i,'$2');
-                value_met.component[STRUCTURAL].value = stdout;
+                var expression = /\d* imports \(totales \d*\)/;
+                var number_imports = stdout.match(expression);
+                console.log(number_imports);
+                console.log(stdout);
+                value_met.component[STRUCTURAL].value = number_imports;
                 cb();
             });
            
