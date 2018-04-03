@@ -1,13 +1,11 @@
-<<<<<<< HEAD
-node_modules
+
 dist
-bower_components
+
 .tmp
 .publish/
 .vscode
 *.yaml
-<<<<<<< HEAD
-=======
+
 # Logs
 logs
 *.log
@@ -67,7 +65,4 @@ typings/
 # dotenv environment variables file
 .env
 
->>>>>>> c2804bc869031aca5682a6f53650dab664428da4
-=======
 config.json
->>>>>>> dd92430cdaafbf74877db857f0e329c177debb1d
