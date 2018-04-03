@@ -1,11 +1,8 @@
-
 dist
-
 .tmp
 .publish/
 .vscode
 *.yaml
-
 # Logs
 logs
 *.log
