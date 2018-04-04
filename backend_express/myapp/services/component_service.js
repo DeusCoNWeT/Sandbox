@@ -59,7 +59,7 @@ module.exports = {
                 },
                 {
                     name: "accuracy",
-                    value: 45.2
+                    value: ""
                 },
                 {
                     name: "usability",
@@ -153,8 +153,8 @@ module.exports = {
             child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function(error, stdout, stderr){
                 var expression = /\d* imports \(totales \d*\)/;
                 var number_imports = stdout.match(expression);
-                console.log(number_imports);
-                console.log(stdout);
+                //console.log(number_imports);
+                //console.log(stdout);
                 value_met.component[STRUCTURAL].value = number_imports;
                 cb();
             });
@@ -164,11 +164,16 @@ module.exports = {
                 // var expression = /\d* imports \(totales \d*\)/;
                 // var number_imports = stdout.match(expression);
                 // console.log(number_imports);
-                console.log(index_component);
-                console.log(salida);
+                //console.log(index_component);
+                //console.log(salida);
                 // value_met.component[STRUCTURAL].value = number_imports;
                 // cb();
             });
+            // METRIC 4: ACCURACY
+            child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['-u', folder], function(error, stdout, stderr){
+                console.log(stdout);
+             });
+
          });
     }
 };
