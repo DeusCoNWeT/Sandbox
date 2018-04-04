@@ -63,7 +63,7 @@ module.exports = {
                 },
                 {
                     name: "usability",
-                    value: 45.2
+                    value: ""
                 },
                 {
                     name: "security",
@@ -159,12 +159,13 @@ module.exports = {
                 cb();
             });
             console.log('/////////');
-            console.log(index_component);
-            child_process.execFile('../metrics/polymer-accessibility/acc', [index_component], function(error, stdout, stderr){
+            // console.log(index_component);
+            var salida = child_process.execFile('../metrics/polymer-accessibility/acc', [index_component], function(error, stdout, stderr){
                 // var expression = /\d* imports \(totales \d*\)/;
                 // var number_imports = stdout.match(expression);
                 // console.log(number_imports);
-                 console.log(stdout);
+                console.log(index_component);
+                console.log(salida);
                 // value_met.component[STRUCTURAL].value = number_imports;
                 // cb();
             });
