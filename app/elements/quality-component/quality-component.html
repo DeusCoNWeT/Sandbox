@@ -32,14 +32,14 @@
         <table>
             <thead>
                 <tr>
-                    <template is="dom-repeat" items="{{prueba}}">
+                    <template is="dom-repeat" items="{{value_metrics}}">
                         <th>{{item.name}}</th>
                     </template>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <template is="dom-repeat" items="{{prueba}}">
+                    <template is="dom-repeat" items="{{value_metrics}}">
                         <td>{{item.value}}</th>
                     </template>
                 </tr>
@@ -58,17 +58,18 @@
                 getName: {
                     type: String
                 },
-                prueba: {
+                value_metrics: {
                     type: String
                 }
             },
             _showquality: function (data) {
 
                 var dato = data.detail.data;
-
-                var info = dato.component
-                console.log(info);
-                this.prueba = info;
+                var name_cmp = dato.name_component;
+                var info = dato.component;
+                console.log(name_cmp);
+                this.value_metrics = info;
+                this.getName = name_cmp;
             }
         });
     </script>
