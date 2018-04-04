@@ -1,0 +1,119 @@
+#! /usr/bin/env node
+var WebDriver = require('./scripts/webdriver.js');
+var DeployServer = require('./scripts/deployServer.js');
+var fs = require('fs');
+var program = require('commander');
+var exec = require('child_process').exec;
+var request = require('request');
+
+// Avoid SSL errors
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+// CONSTANTS
+var TEST_FILE;
+var CHORME_CONFIG_FILE = './extension/scripts/config.json';
+var EXPERIMENT_ID = new Date().getTime();
+var EXPERIMENT_POST = "https://centauro.ls.fi.upm.es:4444/security/experiment";
+
+// PROGRAM SETUP
+program
+  .version('0.0.1')
+  .description("Security analyzer based on scopes required by any component")
+  .arguments("<test_component>")
+  .option("-c --config <files_list>", "Configuration file in JSON format")
+  .action(function (file) { TEST_FILE = file; })
+  .parse(process.argv);
+
+// READ CONFIG FILE IF EXIST
+var CONFIG = {};
+if (program.config) {
+  CONFIG = JSON.parse(fs.readFileSync(program.config, 'utf-8'));
+}
+// DEFAULT CONFIGURATION
+CONFIG.timeout = CONFIG.timeout || 5000;
+CONFIG.host = CONFIG.host || '0.0.0.0';
+CONFIG.base = CONFIG.base || __dirname;
+
+// IF NOT CONFIG or FILE, RETURN HELp
+if (!TEST_FILE && !CONFIG.files) {
+  program.help();
+  process.exit(1);
+}
+
+// PUBLISH EXPERIMENT ID IN THE SERVER. IT PERMIT IDENTIFY THE COMPONENT NAME
+function publishExperiment(component_name, experiment_id) {
+  return new Promise(function (resolve, reject) {
+    request.post(EXPERIMENT_POST, { form: { experiment_id: EXPERIMENT_ID, component: component_name } }, function (err, res, body) {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(res);
+    });
+  });
+}
+
+// OPEN A CHROME WINDOW WITH THE URL OF THE FILE. A EXTENSION WILL SEND RESULTS TO MIXPANEL 
+function runTest(file, server) {
+  return new Promise(function (resolve, reject) {
+    publishExperiment(file, EXPERIMENT_ID).then(function () {
+      var driver = new WebDriver();
+      var url = 'http://' + CONFIG.host +':' + server.port + '/' + file;
+      var opened = driver.open(url).then(function () {
+        setTimeout(function () {
+    //      driver.close().then(resolve);
+        }, CONFIG.timeout);
+      });
+    }, reject);
+  });
+}
+
+// MAIN
+function main() {
+  var server = new DeployServer(CONFIG);
+  server.init().then(function () {
+    // Check if a simply file 
+    if (TEST_FILE || typeof CONFIG.files == 'string') {
+      runTest(TEST_FILE || CONFIG.files, server).then(function () {
+        process.exit(0);
+      });
+    } else { // Iterate over all files
+      var index = 0;
+      var max = CONFIG.files.length;
+
+      var callback = function () {
+        return new Promise(function (resolve, reject) {
+          index++;
+          if (index < max) {
+            runTest(CONFIG.files[index], server).then(callback, reject).then(resolve, reject);
+          } else {
+            resolve();
+          }
+        });
+      };
+      runTest(CONFIG.files[index], server).then(callback).then(function () {
+        process.exit(0);
+      }, function (err) {
+        console.error("Hubo algun problema en la recursividad", err);
+        process.exit(1);
+      });
+    }
+  });
+}
+
+// PACKAGING THE EXTENSION
+var chrome_config = JSON.parse(fs.readFileSync(CHORME_CONFIG_FILE, 'utf-8'));
+chrome_config.experiment_id = EXPERIMENT_ID;
+// SAVE EXPERIMENT_ID IN THE EXTENSION CONFIG 
+fs.writeFile(CHORME_CONFIG_FILE, JSON.stringify(chrome_config, null, '\t'), { flag: 'w' }, function (err) {
+
+  if (err) throw err;
+  exec('./crxmake.sh ./extension ./extension.pem', function (err, stdout, stderr) {
+    if (err) {
+      console.error(stderr);
+      process.exit(2);
+    }
+    console.log(stdout);
+    main();
+  });
+});

@@ -1,0 +1,21 @@
+{
+  "name": "polymer-security",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1"
+  },
+  "resolutions": {
+    "google-login": "^2.0.1",
+    "iron-ajax": "1.2.1",
+    "webcomponentsjs": "1.0.17",
+    "paper-button": "1.0.15",
+    "paper-ripple": "^1.0.0",
+    "font-roboto": "^1.0.1",
+    "polymer": "^1.2.1",
+    "paper-fab": "1.1.2",
+    "paper-icon-button": "1.1.6"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "read_public": "read",
+  "write_public": "write",
+  "read_relationships": "read",
+  "write_relationships": "write"
+}

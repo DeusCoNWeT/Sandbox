@@ -1,0 +1,154 @@
+{
+  "facebook-wall/demo/index.html": {
+    "ERROR": [
+      {
+        "type": "ERROR",
+        "principle": "[WCAG2AAA.Principle1.Guideline1_4.1_4_6.G17.Fail]",
+        "norm": "WCAG2AAA.Principle1.Guideline1_4.1_4_6",
+        "category": "4",
+        "tag": "span",
+        "tag_id": "",
+        "error": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 7:1, but text in this element has a contrast ratio of 2.3:1. Recommendation: change background to #fdfeff.",
+        "full_tag": "<span class=\"style-scope facebook-wall\">...</span>",
+        "full_text": "[HTMLCS] ERROR|WCAG2AAA.Principle1.Guideline1_4.1_4_6.G17.Fail|span||This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 7:1, but text in this element has a contrast ratio of 2.3:1. Recommendation: change background to #fdfeff.|<span class=\"style-scope facebook-wall\">...</span>"
+      },
+      {
+        "type": "ERROR",
+        "principle": "[WCAG2AAA.Principle4.Guideline4_1.4_1_2.H91.Img.Name]",
+        "norm": "WCAG2AAA.Principle4.Guideline4_1.4_1_2",
+        "category": "11",
+        "tag": "img",
+        "tag_id": "",
+        "error": "This element has a role of \"button\" but does not have a name available to an accessibility API. Valid names are: element content.",
+        "full_tag": "<img alt=\"loading\" role=\"button\" class=\"loading style-scope facebook-wall\" src=\"https://cbschicago.files.wordpress.com/2014/09/loading.gif?w=620&amp;h=349&amp;crop=1\">",
+        "full_text": "[HTMLCS] ERROR|WCAG2AAA.Principle4.Guideline4_1.4_1_2.H91.Img.Name|img||This element has a role of \"button\" but does not have a name available to an accessibility API. Valid names are: element content.|<img alt=\"loading\" role=\"button\" class=\"loading style-scope facebook-wall\" src=\"https://cbschicago.files.wordpress.com/2014/09/loading.gif?w=620&amp;h=349&amp;crop=1\">"
+      }
+    ],
+    "NOTICE": [
+      {
+        "type": "NOTICE",
+        "principle": "[WCAG2AAA.Principle1.Guideline1_1.1_1_1.G94.Image]",
+        "norm": "WCAG2AAA.Principle1.Guideline1_1.1_1_1",
+        "category": "0",
+        "tag": "img",
+        "tag_id": "",
+        "error": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+        "full_tag": "<img class=\"icon style-scope facebook-wall\" alt=\"facebook icon\" src=\"http://localhost:8081/facebook-wall/images/facebook.svg\">",
+        "full_text": "[HTMLCS] NOTICE|WCAG2AAA.Principle1.Guideline1_1.1_1_1.G94.Image|img||Ensure that the img element's alt text serves the same purpose and presents the same information as the image.|<img class=\"icon style-scope facebook-wall\" alt=\"facebook icon\" src=\"http://localhost:8081/facebook-wall/images/facebook.svg\">"
+      },
+      {
+        "type": "NOTICE",
+        "principle": "[WCAG2AAA.Principle2.Guideline2_4.2_4_9.H30]",
+        "norm": "WCAG2AAA.Principle2.Guideline2_4.2_4_9",
+        "category": "9",
+        "tag": "a",
+        "tag_id": "",
+        "error": "Check that text of the link describes the purpose of the link.",
+        "full_tag": "<a class=\"facebook-wall scope-style link bold\" href=\"https://www.facebook.com/1511309522527136\" target=\"_blank\">...</a>",
+        "full_text": "[HTMLCS] NOTICE|WCAG2AAA.Principle2.Guideline2_4.2_4_9.H30|a||Check that text of the link describes the purpose of the link.|<a class=\"facebook-wall scope-style link bold\" href=\"https://www.facebook.com/1511309522527136\" target=\"_blank\">...</a>"
+      }
+    ],
+    "WARNING": [
+      {
+        "type": "WARNING",
+        "principle": "[WCAG2AAA.Principle1.Guideline1_3.1_3_1.H48]",
+        "norm": "WCAG2AAA.Principle1.Guideline1_3.1_3_1",
+        "category": "0",
+        "tag": "div",
+        "tag_id": "",
+        "error": "If this element contains a navigation section, it is recommended that it be marked up as a list.",
+        "full_tag": "<div class=\"reactedTo style-scope facebook-wall\">...</div>",
+        "full_text": "[HTMLCS] WARNING|WCAG2AAA.Principle1.Guideline1_3.1_3_1.H48|div||If this element contains a navigation section, it is recommended that it be marked up as a list.|<div class=\"reactedTo style-scope facebook-wall\">...</div>"
+      },
+      {
+        "type": "WARNING",
+        "principle": "[WCAG2AAA.Principle3.Guideline3_2.3_2_5.H83.3]",
+        "norm": "WCAG2AAA.Principle3.Guideline3_2.3_2_5",
+        "category": "",
+        "tag": "a",
+        "tag_id": "",
+        "error": "Check that this link's link text contains information indicating that the link will open in a new window.",
+        "full_tag": "<a class=\"facebook-wall scope-style link bold\" href=\"https://www.facebook.com/1511309522527136\" target=\"_blank\">...</a>",
+        "full_text": "[HTMLCS] WARNING|WCAG2AAA.Principle3.Guideline3_2.3_2_5.H83.3|a||Check that this link's link text contains information indicating that the link will open in a new window.|<a class=\"facebook-wall scope-style link bold\" href=\"https://www.facebook.com/1511309522527136\" target=\"_blank\">...</a>"
+      },
+      {
+        "type": "WARNING",
+        "norm": "AX_FOCUS_01",
+        "weight": "1",
+        "category": "13",
+        "principle": "AX_FOCUS_01.focusableElementNotVisibleAndNotAriaHidden",
+        "tag": "<DIV>",
+        "tag_id": "",
+        "error": "These elements are focusable but either invisible or obscured by another element",
+        "full_tag": "<div tabindex=\"0\" role=\"button\" class=\"refreshbutton horizontal layout center-center style-scope facebook-wall\">\n          <img alt=\"refresh\" class=\"refreshicon style-scope facebook-wall\" src=\"http://localhost:8081/facebook-wall/images/refresh.png\">\n          <paper-ripple class=\"style-scope facebook-wall\">\n          </paper-ripple class=\"style-scope facebook-wall\">\n          </img alt=\"refresh\" class=\"refreshicon style-scope facebook-wall\" src=\"http://localhost:8081/facebook-wall/images/refresh.png\"></div tabindex=\"0\" role=\"button\" class=\"refreshbutton horizontal layout center-center style-scope facebook-wall\">"
+      },
+      {
+        "type": "WARNING",
+        "norm": "AX_COLOR_01",
+        "weight": "1",
+        "category": "13",
+        "principle": "AX_COLOR_01.lowContrastElements",
+        "tag": "<SPAN>",
+        "tag_id": "",
+        "error": "Text elements should have a reasonable contrast ratio",
+        "full_tag": "<span class=\"style-scope facebook-wall\">Facebook wall</span>"
+      }
+    ],
+    "PASS": [
+      {
+        "type": "PASS",
+        "principle": "AX_ARIA_12.ariaOnReservedElement",
+        "norm": "AX_ARIA_12",
+        "error": "This element does not support ARIA roles, states and properties"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_ARIA_09.ariaRoleNotScoped",
+        "norm": "AX_ARIA_09",
+        "error": "Elements with ARIA roles must be in the correct scope"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_ARIA_01.badAriaRole",
+        "norm": "AX_ARIA_01",
+        "error": "Elements with ARIA roles must use a valid, non-abstract ARIA role"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_TEXT_02.imagesWithoutAltText",
+        "norm": "AX_TEXT_02",
+        "error": "Images should have a text alternative or presentational role"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_TEXT_04.linkWithUnclearPurpose",
+        "norm": "AX_TEXT_04",
+        "error": "The purpose of each link should be clear from the link text"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_IMAGE_01.elementsWithMeaningfulBackgroundImage",
+        "norm": "AX_IMAGE_01",
+        "error": "Meaningful images should not be used in element backgrounds"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_TITLE_01.pageWithoutTitle",
+        "norm": "AX_TITLE_01",
+        "error": "The web page should have a title that describes topic or purpose"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_ARIA_03.requiredAriaAttributeMissing",
+        "norm": "AX_ARIA_03",
+        "error": "Elements with ARIA roles must have all required attributes for that role"
+      },
+      {
+        "type": "PASS",
+        "principle": "AX_FOCUS_03.tabIndexGreaterThanZero",
+        "norm": "AX_FOCUS_03",
+        "error": "Avoid positive integer values for tabIndex"
+      }
+    ]
+  }
+}
