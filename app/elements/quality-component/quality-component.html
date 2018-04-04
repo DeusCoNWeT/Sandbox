@@ -65,10 +65,11 @@
             _showquality: function (data) {
 
                 var dato = data.detail.data;
-
-                var info = dato.component
-                console.log(info);
+                var name_cmp = dato.name_component;
+                var info = dato.component;
+                console.log(name_cmp);
                 this.prueba = info;
+                this.getName = name_cmp;
             }
         });
     </script>

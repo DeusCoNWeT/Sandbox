@@ -74,7 +74,8 @@ module.exports = {
                     value: 45.2
                 }
 
-            ]
+            ],
+            name_component: ""
         }
         //llamar al script de las metricas
 
@@ -95,34 +96,43 @@ module.exports = {
         var new_index = 'demo/index.html';
         var component;
         var component_demo;
+        var name_cmp;
         ////////////////////////////// FOLDER OF COMPONENTS////////////////////////////////////////
         var name_comp = object_tokens.nameComp;
         if(name_comp.includes('spotify')){
             component = list_folder[SPOTIFY];
             component_demo = list_folder_demo[SPOTIFY];
-            new_index = 'index.html';   
+            new_index = 'index.html';
+            name_cmp = 'Spotify';
         }else if(name_comp.includes('twitter')){
             component = list_folder[TWITTER];
             component_demo = list_folder_demo[TWITTER];
+            name_cmp = 'Twitter';
         }else if(name_comp.includes('facebook')){
             component = list_folder[FACEBOOK];
             component_demo = list_folder_demo[FACEBOOK];
             new_index = 'demo.html';
+            name_cmp = 'Facebook';
         }else if(name_comp.includes('google')){
             component = list_folder[GOOGLE_PLUS];
             component_demo = list_folder_demo[GOOGLE_PLUS];
+            name_cmp = 'Google +';
         }else if(name_comp.includes('finance')){
             component = list_folder[FINANCE];
             component_demo = list_folder_demo[FINANCE];
+            name_cmp = 'Finance Search';
         }else if(name_comp.includes('weather')){
             component = list_folder[WEATHER];
             component_demo = list_folder_demo[WEATHER];
+            name_cmp = 'Open Weather';
         }else if(name_comp.includes('pinterest')){
             component = list_folder[PINTEREST];
             component_demo = list_folder_demo[PINTEREST];
+            name_cmp = 'Pinterest';
         }else{
             component = list_folder[TRAFFIC];
             component_demo = list_folder_demo[TRAFFIC];
+            name_cmp = 'Traffic incidents';
         }
         
         var folder = base_folder + component;
@@ -134,6 +144,7 @@ module.exports = {
                 return function(){
                     cont++;
                     if (cont === max){
+                        value_met.name_component = name_cmp;
                         resolve(value_met);
                     }
                 }
