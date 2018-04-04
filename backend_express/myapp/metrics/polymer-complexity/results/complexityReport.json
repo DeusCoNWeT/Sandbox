@@ -1,0 +1,2263 @@
+[
+  {
+    "spotify-component-complexity/spotify-component.html": {
+      "js": [
+        {
+          "info": {
+            "file": ".tmp_plato/0481928274809573/bower_components_spotify-component-complexity_spotify-component.js",
+            "fileShort": ".tmp_plato/0481928274809573/bower_components_spotify-component-complexity_spotify-component.js",
+            "fileSafe": "_tmp_plato_0481928274809573_bower_components_spotify_component_complexity_spotify_component_js",
+            "link": "files/_tmp_plato_0481928274809573_bower_components_spotify_component_complexity_spotify_component_js/index.html"
+          },
+          "complexity": {
+            "methodAggregate": {
+              "cyclomatic": 204,
+              "cyclomaticDensity": 126.708,
+              "halstead": {
+                "bugs": 2.432,
+                "difficulty": 87.368,
+                "effort": 637452.096,
+                "length": 1108,
+                "time": 35414.005,
+                "vocabulary": 96,
+                "volume": 7296.138,
+                "operands": {
+                  "distinct": 76,
+                  "total": 664,
+                  "identifiers": [
+                    "Polymer",
+                    "is",
+                    "\"spotify-component\"",
+                    "properties",
+                    "token",
+                    "String",
+                    "nombre",
+                    "dueño",
+                    "res",
+                    "value",
+                    "<anonymous>",
+                    "type",
+                    "Array",
+                    "notify",
+                    "true",
+                    "headers",
+                    "Object",
+                    "computed",
+                    "\"_getHeaders(token)\"",
+                    "refresh_time",
+                    "Number",
+                    "120000",
+                    "reflectToAttribute",
+                    "step",
+                    "0",
+                    "discardStepNumber",
+                    "7",
+                    "_getHeaders",
+                    "Authorization",
+                    "\"Bearer \"",
+                    "this",
+                    "respuestaSPFY",
+                    "evt",
+                    "loading",
+                    "false",
+                    "_interval",
+                    "window",
+                    "setInterval",
+                    "_refresh",
+                    "bind",
+                    "console",
+                    "log",
+                    "detail",
+                    "response",
+                    "set",
+                    "\"res\"",
+                    "setTimeout",
+                    "items",
+                    "i",
+                    "length",
+                    "100",
+                    "respuestaPistas",
+                    "\"res.\"",
+                    "model",
+                    "index",
+                    "\".infoPista\"",
+                    "$",
+                    "cons",
+                    "generateRequest",
+                    "detached",
+                    "clearInterval",
+                    "attached",
+                    "decrease_maintenance",
+                    "a",
+                    "1",
+                    "b",
+                    "2",
+                    "c",
+                    "3",
+                    "scrollBad",
+                    "el",
+                    "currentTarget",
+                    "$$",
+                    "\"#mainContainer\"",
+                    "lastValidScroll",
+                    "scrollTop"
+                  ]
+                },
+                "operators": {
+                  "distinct": 20,
+                  "total": 444,
+                  "identifiers": [
+                    "()",
+                    "{}",
+                    ":",
+                    "function",
+                    "return",
+                    "[]",
+                    "+",
+                    ".",
+                    "=",
+                    "||",
+                    "var",
+                    "for",
+                    "<",
+                    "++ (postfix)",
+                    "if",
+                    ":?",
+                    "&&",
+                    "+=",
+                    "else",
+                    "! (prefix)"
+                  ]
+                }
+              },
+              "params": 4,
+              "sloc": {
+                "logical": 161,
+                "physical": 113
+              }
+            },
+            "settings": {
+              "commonjs": true,
+              "forin": false,
+              "logicalor": true,
+              "switchcase": true,
+              "trycatch": false,
+              "newmi": true
+            },
+            "classes": [],
+            "dependencies": [],
+            "errors": [],
+            "lineEnd": 113,
+            "lineStart": 1,
+            "maintainability": 53.854,
+            "methods": [
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.001,
+                  "difficulty": 1,
+                  "effort": 2,
+                  "length": 2,
+                  "time": 0.111,
+                  "vocabulary": 2,
+                  "volume": 2,
+                  "operands": {
+                    "distinct": 0,
+                    "total": 0,
+                    "identifiers": []
+                  },
+                  "operators": {
+                    "distinct": 2,
+                    "total": 2,
+                    "identifiers": [
+                      "return",
+                      "[]"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 1,
+                  "physical": 1
+                },
+                "errors": [],
+                "lineEnd": 8,
+                "lineStart": 8,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.011,
+                  "difficulty": 3.125,
+                  "effort": 99.06,
+                  "length": 10,
+                  "time": 5.503,
+                  "vocabulary": 9,
+                  "volume": 31.699,
+                  "operands": {
+                    "distinct": 4,
+                    "total": 5,
+                    "identifiers": [
+                      "token",
+                      "Authorization",
+                      "\"Bearer \"",
+                      "this"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 5,
+                    "total": 5,
+                    "identifiers": [
+                      "return",
+                      "{}",
+                      ":",
+                      "+",
+                      "."
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 3
+                },
+                "errors": [],
+                "lineEnd": 32,
+                "lineStart": 30,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 28.571,
+                "halstead": {
+                  "bugs": 0.097,
+                  "difficulty": 6.263,
+                  "effort": 1825.255,
+                  "length": 62,
+                  "time": 101.403,
+                  "vocabulary": 26,
+                  "volume": 291.427,
+                  "operands": {
+                    "distinct": 19,
+                    "total": 34,
+                    "identifiers": [
+                      "evt",
+                      "this",
+                      "loading",
+                      "false",
+                      "_interval",
+                      "window",
+                      "setInterval",
+                      "_refresh",
+                      "bind",
+                      "refresh_time",
+                      "console",
+                      "log",
+                      "detail",
+                      "response",
+                      "set",
+                      "\"res\"",
+                      "setTimeout",
+                      "<anonymous>",
+                      "100"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 7,
+                    "total": 28,
+                    "identifiers": [
+                      "=",
+                      ".",
+                      "||",
+                      "()",
+                      "var",
+                      "[]",
+                      "function"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 7,
+                  "physical": 15
+                },
+                "errors": [],
+                "lineEnd": 47,
+                "lineStart": 33,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.034,
+                  "difficulty": 6.125,
+                  "effort": 622.172,
+                  "length": 26,
+                  "time": 34.565,
+                  "vocabulary": 15,
+                  "volume": 101.579,
+                  "operands": {
+                    "distinct": 8,
+                    "total": 14,
+                    "identifiers": [
+                      "items",
+                      "response",
+                      "i",
+                      "0",
+                      "length",
+                      "this",
+                      "set",
+                      "\"res\""
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 7,
+                    "total": 12,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ".",
+                      "for",
+                      "<",
+                      "++ (postfix)",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 4,
+                  "physical": 7
+                },
+                "errors": [],
+                "lineEnd": 46,
+                "lineStart": 40,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.033,
+                  "difficulty": 3.5,
+                  "effort": 341.853,
+                  "length": 25,
+                  "time": 18.992,
+                  "vocabulary": 15,
+                  "volume": 97.672,
+                  "operands": {
+                    "distinct": 10,
+                    "total": 14,
+                    "identifiers": [
+                      "evt",
+                      "response",
+                      "detail",
+                      "this",
+                      "set",
+                      "\"res.\"",
+                      "model",
+                      "index",
+                      "\".infoPista\"",
+                      "items"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 5,
+                    "total": 11,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ".",
+                      "()",
+                      "+"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 5
+                },
+                "errors": [],
+                "lineEnd": 52,
+                "lineStart": 48,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.014,
+                  "difficulty": 1.75,
+                  "effort": 72.116,
+                  "length": 13,
+                  "time": 4.006,
+                  "vocabulary": 9,
+                  "volume": 41.209,
+                  "operands": {
+                    "distinct": 6,
+                    "total": 7,
+                    "identifiers": [
+                      "this",
+                      "loading",
+                      "true",
+                      "$",
+                      "cons",
+                      "generateRequest"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 3,
+                    "total": 6,
+                    "identifiers": [
+                      "=",
+                      ".",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 4
+                },
+                "errors": [],
+                "lineEnd": 56,
+                "lineStart": 53,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.01,
+                  "difficulty": 2.25,
+                  "effort": 69.482,
+                  "length": 11,
+                  "time": 3.86,
+                  "vocabulary": 7,
+                  "volume": 30.881,
+                  "operands": {
+                    "distinct": 4,
+                    "total": 6,
+                    "identifiers": [
+                      "this",
+                      "_interval",
+                      "window",
+                      "clearInterval"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 3,
+                    "total": 5,
+                    "identifiers": [
+                      "if",
+                      ".",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 5
+                },
+                "errors": [],
+                "lineEnd": 61,
+                "lineStart": 57,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.003,
+                  "difficulty": 1,
+                  "effort": 8,
+                  "length": 4,
+                  "time": 0.444,
+                  "vocabulary": 4,
+                  "volume": 8,
+                  "operands": {
+                    "distinct": 2,
+                    "total": 2,
+                    "identifiers": [
+                      "this",
+                      "decrease_maintenance"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 2,
+                    "total": 2,
+                    "identifiers": [
+                      "()",
+                      "."
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 1,
+                  "physical": 3
+                },
+                "errors": [],
+                "lineEnd": 64,
+                "lineStart": 62,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 199,
+                "cyclomaticDensity": 195.098,
+                "halstead": {
+                  "bugs": 0.89,
+                  "difficulty": 167,
+                  "effort": 446028.641,
+                  "length": 804,
+                  "time": 24779.369,
+                  "vocabulary": 10,
+                  "volume": 2670.83,
+                  "operands": {
+                    "distinct": 6,
+                    "total": 501,
+                    "identifiers": [
+                      "a",
+                      "1",
+                      "b",
+                      "2",
+                      "c",
+                      "3"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 4,
+                    "total": 303,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ":?",
+                      "&&"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 102,
+                  "physical": 38
+                },
+                "errors": [],
+                "lineEnd": 102,
+                "lineStart": 65,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 3,
+                "cyclomaticDensity": 42.857,
+                "halstead": {
+                  "bugs": 0.073,
+                  "difficulty": 10.833,
+                  "effort": 2367.215,
+                  "length": 49,
+                  "time": 131.512,
+                  "vocabulary": 22,
+                  "volume": 218.512,
+                  "operands": {
+                    "distinct": 12,
+                    "total": 26,
+                    "identifiers": [
+                      "evt",
+                      "this",
+                      "step",
+                      "1",
+                      "el",
+                      "currentTarget",
+                      "$$",
+                      "\"#mainContainer\"",
+                      "discardStepNumber",
+                      "lastValidScroll",
+                      "scrollTop",
+                      "0"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 10,
+                    "total": 23,
+                    "identifiers": [
+                      "+=",
+                      ".",
+                      "var",
+                      "=",
+                      "()",
+                      "if",
+                      "else",
+                      "||",
+                      "! (prefix)",
+                      "<"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 7,
+                  "physical": 10
+                },
+                "errors": [],
+                "lineEnd": 112,
+                "lineStart": 103,
+                "name": "<anonymous>"
+              }
+            ],
+            "methodAverage": {
+              "cyclomatic": 21.3,
+              "cyclomaticDensity": 76.653,
+              "halstead": {
+                "bugs": 0.116,
+                "difficulty": 20.285,
+                "effort": 45143.579,
+                "length": 100.6,
+                "time": 2507.977,
+                "vocabulary": 11.9,
+                "volume": 349.381,
+                "operands": {
+                  "distinct": 7.1,
+                  "total": 60.9
+                },
+                "operators": {
+                  "distinct": 4.8,
+                  "total": 39.7
+                }
+              },
+              "params": 0.4,
+              "sloc": {
+                "logical": 13,
+                "physical": 9.1
+              }
+            },
+            "module": ".tmp_plato/0481928274809573/bower_components_spotify-component-complexity_spotify-component.js"
+          },
+          "jshint": {
+            "messages": [
+              {
+                "severity": "error",
+                "line": 70,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 72,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 74,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 76,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 78,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 80,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 82,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 84,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 86,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 88,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 90,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 92,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 94,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 96,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 98,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              }
+            ]
+          }
+        }
+      ],
+      "css": {
+        "generator": "analyze-css v0.12.5",
+        "metrics": {
+          "base64Length": 0,
+          "redundantBodySelectors": 0,
+          "redundantChildNodesSelectors": 0,
+          "colors": 6,
+          "comments": 5,
+          "commentsLength": 65,
+          "complexSelectors": 0,
+          "duplicatedSelectors": 0,
+          "duplicatedProperties": 0,
+          "emptyRules": 0,
+          "expressions": 0,
+          "oldIEFixes": 0,
+          "imports": 0,
+          "importants": 2,
+          "mediaQueries": 0,
+          "notMinified": 1,
+          "multiClassesSelectors": 0,
+          "parsingErrors": 0,
+          "oldPropertyPrefixes": 0,
+          "propertyResets": 0,
+          "qualifiedSelectors": 0,
+          "specificityIdAvg": 0.56,
+          "specificityIdTotal": 14,
+          "specificityClassAvg": 0.28,
+          "specificityClassTotal": 7,
+          "specificityTagAvg": 0.4,
+          "specificityTagTotal": 10,
+          "selectors": 25,
+          "selectorLengthAvg": 1.16,
+          "selectorsByAttribute": 0,
+          "selectorsByClass": 4,
+          "selectorsById": 14,
+          "selectorsByPseudo": 3,
+          "selectorsByTag": 10,
+          "length": 3077,
+          "rules": 21,
+          "declarations": 80
+        },
+        "offenders": {
+          "importants": [
+            {
+              "message": ":host {font-family: \"Lato\", \"Lucida Grande\", \"Lucida Sans Unicode\", Tahoma, Sans-Serif !important}",
+              "position": {
+                "start": {
+                  "line": 12,
+                  "column": 9
+                },
+                "end": {
+                  "line": 12,
+                  "column": 99
+                }
+              }
+            },
+            {
+              "message": "paper-header-panel {height: 100% !important}",
+              "position": {
+                "start": {
+                  "line": 156,
+                  "column": 9
+                },
+                "end": {
+                  "line": 156,
+                  "column": 32
+                }
+              }
+            }
+          ],
+          "colors": [
+            {
+              "message": "#eeeeee (5 times)"
+            },
+            {
+              "message": "#2ebd59 (2 times)"
+            },
+            {
+              "message": "#222321 (2 times)"
+            },
+            {
+              "message": "#333333 (1 times)"
+            },
+            {
+              "message": "#aaaaaa (1 times)"
+            },
+            {
+              "message": "rgba(51,51,51,0.65) (1 times)"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "spotify-component-stable/spotify-component.html": {
+      "js": [
+        {
+          "info": {
+            "file": ".tmp_plato/06081694431590592/bower_components_spotify-component-stable_spotify-component.js",
+            "fileShort": ".tmp_plato/06081694431590592/bower_components_spotify-component-stable_spotify-component.js",
+            "fileSafe": "_tmp_plato_06081694431590592_bower_components_spotify_component_stable_spotify_component_js",
+            "link": "files/_tmp_plato_06081694431590592_bower_components_spotify_component_stable_spotify_component_js/index.html"
+          },
+          "complexity": {
+            "methodAggregate": {
+              "cyclomatic": 4,
+              "cyclomaticDensity": 9.524,
+              "halstead": {
+                "bugs": 0.456,
+                "difficulty": 15.388,
+                "effort": 21049.939,
+                "length": 221,
+                "time": 1169.441,
+                "vocabulary": 73,
+                "volume": 1367.951,
+                "operands": {
+                  "distinct": 58,
+                  "total": 119,
+                  "identifiers": [
+                    "Polymer",
+                    "is",
+                    "\"spotify-component\"",
+                    "properties",
+                    "token",
+                    "String",
+                    "nombre",
+                    "dueño",
+                    "res",
+                    "value",
+                    "<anonymous>",
+                    "type",
+                    "Array",
+                    "notify",
+                    "true",
+                    "headers",
+                    "Object",
+                    "computed",
+                    "\"_getHeaders(token)\"",
+                    "refresh_time",
+                    "Number",
+                    "120000",
+                    "reflectToAttribute",
+                    "_getHeaders",
+                    "Authorization",
+                    "\"Bearer \"",
+                    "this",
+                    "respuestaSPFY",
+                    "evt",
+                    "loading",
+                    "false",
+                    "_interval",
+                    "window",
+                    "setInterval",
+                    "_refresh",
+                    "bind",
+                    "console",
+                    "log",
+                    "detail",
+                    "response",
+                    "set",
+                    "\"res\"",
+                    "setTimeout",
+                    "items",
+                    "i",
+                    "0",
+                    "length",
+                    "100",
+                    "respuestaPistas",
+                    "\"res.\"",
+                    "model",
+                    "index",
+                    "\".infoPista\"",
+                    "$",
+                    "cons",
+                    "generateRequest",
+                    "detached",
+                    "clearInterval"
+                  ]
+                },
+                "operators": {
+                  "distinct": 15,
+                  "total": 102,
+                  "identifiers": [
+                    "()",
+                    "{}",
+                    ":",
+                    "function",
+                    "return",
+                    "[]",
+                    "+",
+                    ".",
+                    "=",
+                    "||",
+                    "var",
+                    "for",
+                    "<",
+                    "++ (postfix)",
+                    "if"
+                  ]
+                }
+              },
+              "params": 3,
+              "sloc": {
+                "logical": 42,
+                "physical": 54
+              }
+            },
+            "settings": {
+              "commonjs": true,
+              "forin": false,
+              "logicalor": true,
+              "switchcase": true,
+              "trycatch": false,
+              "newmi": true
+            },
+            "classes": [],
+            "dependencies": [],
+            "errors": [],
+            "lineEnd": 54,
+            "lineStart": 1,
+            "maintainability": 77.864,
+            "methods": [
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.001,
+                  "difficulty": 1,
+                  "effort": 2,
+                  "length": 2,
+                  "time": 0.111,
+                  "vocabulary": 2,
+                  "volume": 2,
+                  "operands": {
+                    "distinct": 0,
+                    "total": 0,
+                    "identifiers": []
+                  },
+                  "operators": {
+                    "distinct": 2,
+                    "total": 2,
+                    "identifiers": [
+                      "return",
+                      "[]"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 1,
+                  "physical": 1
+                },
+                "errors": [],
+                "lineEnd": 8,
+                "lineStart": 8,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.011,
+                  "difficulty": 3.125,
+                  "effort": 99.06,
+                  "length": 10,
+                  "time": 5.503,
+                  "vocabulary": 9,
+                  "volume": 31.699,
+                  "operands": {
+                    "distinct": 4,
+                    "total": 5,
+                    "identifiers": [
+                      "token",
+                      "Authorization",
+                      "\"Bearer \"",
+                      "this"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 5,
+                    "total": 5,
+                    "identifiers": [
+                      "return",
+                      "{}",
+                      ":",
+                      "+",
+                      "."
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 3
+                },
+                "errors": [],
+                "lineEnd": 24,
+                "lineStart": 22,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 28.571,
+                "halstead": {
+                  "bugs": 0.097,
+                  "difficulty": 6.263,
+                  "effort": 1825.255,
+                  "length": 62,
+                  "time": 101.403,
+                  "vocabulary": 26,
+                  "volume": 291.427,
+                  "operands": {
+                    "distinct": 19,
+                    "total": 34,
+                    "identifiers": [
+                      "evt",
+                      "this",
+                      "loading",
+                      "false",
+                      "_interval",
+                      "window",
+                      "setInterval",
+                      "_refresh",
+                      "bind",
+                      "refresh_time",
+                      "console",
+                      "log",
+                      "detail",
+                      "response",
+                      "set",
+                      "\"res\"",
+                      "setTimeout",
+                      "<anonymous>",
+                      "100"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 7,
+                    "total": 28,
+                    "identifiers": [
+                      "=",
+                      ".",
+                      "||",
+                      "()",
+                      "var",
+                      "[]",
+                      "function"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 7,
+                  "physical": 15
+                },
+                "errors": [],
+                "lineEnd": 39,
+                "lineStart": 25,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.034,
+                  "difficulty": 6.125,
+                  "effort": 622.172,
+                  "length": 26,
+                  "time": 34.565,
+                  "vocabulary": 15,
+                  "volume": 101.579,
+                  "operands": {
+                    "distinct": 8,
+                    "total": 14,
+                    "identifiers": [
+                      "items",
+                      "response",
+                      "i",
+                      "0",
+                      "length",
+                      "this",
+                      "set",
+                      "\"res\""
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 7,
+                    "total": 12,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ".",
+                      "for",
+                      "<",
+                      "++ (postfix)",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 4,
+                  "physical": 7
+                },
+                "errors": [],
+                "lineEnd": 38,
+                "lineStart": 32,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.033,
+                  "difficulty": 3.5,
+                  "effort": 341.853,
+                  "length": 25,
+                  "time": 18.992,
+                  "vocabulary": 15,
+                  "volume": 97.672,
+                  "operands": {
+                    "distinct": 10,
+                    "total": 14,
+                    "identifiers": [
+                      "evt",
+                      "response",
+                      "detail",
+                      "this",
+                      "set",
+                      "\"res.\"",
+                      "model",
+                      "index",
+                      "\".infoPista\"",
+                      "items"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 5,
+                    "total": 11,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ".",
+                      "()",
+                      "+"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 5
+                },
+                "errors": [],
+                "lineEnd": 44,
+                "lineStart": 40,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.014,
+                  "difficulty": 1.75,
+                  "effort": 72.116,
+                  "length": 13,
+                  "time": 4.006,
+                  "vocabulary": 9,
+                  "volume": 41.209,
+                  "operands": {
+                    "distinct": 6,
+                    "total": 7,
+                    "identifiers": [
+                      "this",
+                      "loading",
+                      "true",
+                      "$",
+                      "cons",
+                      "generateRequest"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 3,
+                    "total": 6,
+                    "identifiers": [
+                      "=",
+                      ".",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 4
+                },
+                "errors": [],
+                "lineEnd": 48,
+                "lineStart": 45,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.01,
+                  "difficulty": 2.25,
+                  "effort": 69.482,
+                  "length": 11,
+                  "time": 3.86,
+                  "vocabulary": 7,
+                  "volume": 30.881,
+                  "operands": {
+                    "distinct": 4,
+                    "total": 6,
+                    "identifiers": [
+                      "this",
+                      "_interval",
+                      "window",
+                      "clearInterval"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 3,
+                    "total": 5,
+                    "identifiers": [
+                      "if",
+                      ".",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 5
+                },
+                "errors": [],
+                "lineEnd": 53,
+                "lineStart": 49,
+                "name": "<anonymous>"
+              }
+            ],
+            "methodAverage": {
+              "cyclomatic": 1.429,
+              "cyclomaticDensity": 61.224,
+              "halstead": {
+                "bugs": 0.028,
+                "difficulty": 3.43,
+                "effort": 433.134,
+                "length": 21.286,
+                "time": 24.063,
+                "vocabulary": 11.857,
+                "volume": 85.21,
+                "operands": {
+                  "distinct": 7.286,
+                  "total": 11.429
+                },
+                "operators": {
+                  "distinct": 4.571,
+                  "total": 9.857
+                }
+              },
+              "params": 0.429,
+              "sloc": {
+                "logical": 2.857,
+                "physical": 5.714
+              }
+            },
+            "module": ".tmp_plato/06081694431590592/bower_components_spotify-component-stable_spotify-component.js"
+          },
+          "jshint": {
+            "messages": []
+          }
+        }
+      ],
+      "css": {
+        "generator": "analyze-css v0.12.5",
+        "metrics": {
+          "base64Length": 0,
+          "redundantBodySelectors": 0,
+          "redundantChildNodesSelectors": 0,
+          "colors": 6,
+          "comments": 5,
+          "commentsLength": 65,
+          "complexSelectors": 0,
+          "duplicatedSelectors": 0,
+          "duplicatedProperties": 0,
+          "emptyRules": 0,
+          "expressions": 0,
+          "oldIEFixes": 0,
+          "imports": 0,
+          "importants": 2,
+          "mediaQueries": 0,
+          "notMinified": 1,
+          "multiClassesSelectors": 0,
+          "parsingErrors": 0,
+          "oldPropertyPrefixes": 0,
+          "propertyResets": 0,
+          "qualifiedSelectors": 0,
+          "specificityIdAvg": 0.56,
+          "specificityIdTotal": 14,
+          "specificityClassAvg": 0.28,
+          "specificityClassTotal": 7,
+          "specificityTagAvg": 0.4,
+          "specificityTagTotal": 10,
+          "selectors": 25,
+          "selectorLengthAvg": 1.16,
+          "selectorsByAttribute": 0,
+          "selectorsByClass": 4,
+          "selectorsById": 14,
+          "selectorsByPseudo": 3,
+          "selectorsByTag": 10,
+          "length": 3075,
+          "rules": 21,
+          "declarations": 80
+        },
+        "offenders": {
+          "importants": [
+            {
+              "message": ":host {font-family: \"Lato\", \"Lucida Grande\", \"Lucida Sans Unicode\", Tahoma, Sans-Serif !important}",
+              "position": {
+                "start": {
+                  "line": 13,
+                  "column": 9
+                },
+                "end": {
+                  "line": 13,
+                  "column": 99
+                }
+              }
+            },
+            {
+              "message": "paper-header-panel {height: 100% !important}",
+              "position": {
+                "start": {
+                  "line": 157,
+                  "column": 9
+                },
+                "end": {
+                  "line": 157,
+                  "column": 32
+                }
+              }
+            }
+          ],
+          "colors": [
+            {
+              "message": "#eeeeee (5 times)"
+            },
+            {
+              "message": "#2ebd59 (2 times)"
+            },
+            {
+              "message": "#222321 (2 times)"
+            },
+            {
+              "message": "#333333 (1 times)"
+            },
+            {
+              "message": "#aaaaaa (1 times)"
+            },
+            {
+              "message": "rgba(51,51,51,0.65) (1 times)"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "spotify-component-maintenance/spotify-component.html": {
+      "js": [
+        {
+          "info": {
+            "file": ".tmp_plato/00763898838203112/bower_components_spotify-component-maintenance_spotify-component.js",
+            "fileShort": ".tmp_plato/00763898838203112/bower_components_spotify-component-maintenance_spotify-component.js",
+            "fileSafe": "_tmp_plato_00763898838203112_bower_components_spotify_component_maintenance_spotify_component_js",
+            "link": "files/_tmp_plato_00763898838203112_bower_components_spotify_component_maintenance_spotify_component_js/index.html"
+          },
+          "complexity": {
+            "methodAggregate": {
+              "cyclomatic": 204,
+              "cyclomaticDensity": 127.5,
+              "halstead": {
+                "bugs": 2.401,
+                "difficulty": 89.054,
+                "effort": 641500.268,
+                "length": 1099,
+                "time": 35638.904,
+                "vocabulary": 94,
+                "volume": 7203.493,
+                "operands": {
+                  "distinct": 74,
+                  "total": 659,
+                  "identifiers": [
+                    "Polymer",
+                    "is",
+                    "\"spotify-component\"",
+                    "properties",
+                    "token",
+                    "String",
+                    "nombre",
+                    "dueño",
+                    "res",
+                    "value",
+                    "<anonymous>",
+                    "type",
+                    "Array",
+                    "notify",
+                    "true",
+                    "headers",
+                    "Object",
+                    "computed",
+                    "\"_getHeaders(token)\"",
+                    "refresh_time",
+                    "Number",
+                    "120000",
+                    "reflectToAttribute",
+                    "step",
+                    "0",
+                    "discardStepNumber",
+                    "6",
+                    "_getHeaders",
+                    "Authorization",
+                    "\"Bearer \"",
+                    "this",
+                    "respuestaSPFY",
+                    "evt",
+                    "loading",
+                    "false",
+                    "_interval",
+                    "window",
+                    "setInterval",
+                    "_refresh",
+                    "bind",
+                    "response",
+                    "detail",
+                    "set",
+                    "\"res\"",
+                    "setTimeout",
+                    "items",
+                    "i",
+                    "length",
+                    "100",
+                    "respuestaPistas",
+                    "\"res.\"",
+                    "model",
+                    "index",
+                    "\".infoPista\"",
+                    "$",
+                    "cons",
+                    "generateRequest",
+                    "detached",
+                    "clearInterval",
+                    "attached",
+                    "decrease_maintenance",
+                    "a",
+                    "1",
+                    "b",
+                    "2",
+                    "c",
+                    "3",
+                    "scrollBad",
+                    "el",
+                    "currentTarget",
+                    "$$",
+                    "\"#mainContainer\"",
+                    "lastValidScroll",
+                    "scrollTop"
+                  ]
+                },
+                "operators": {
+                  "distinct": 20,
+                  "total": 440,
+                  "identifiers": [
+                    "()",
+                    "{}",
+                    ":",
+                    "function",
+                    "return",
+                    "[]",
+                    "+",
+                    ".",
+                    "=",
+                    "||",
+                    "var",
+                    "for",
+                    "<",
+                    "++ (postfix)",
+                    "if",
+                    ":?",
+                    "&&",
+                    "+=",
+                    "else",
+                    "! (prefix)"
+                  ]
+                }
+              },
+              "params": 4,
+              "sloc": {
+                "logical": 160,
+                "physical": 113
+              }
+            },
+            "settings": {
+              "commonjs": true,
+              "forin": false,
+              "logicalor": true,
+              "switchcase": true,
+              "trycatch": false,
+              "newmi": true
+            },
+            "classes": [],
+            "dependencies": [],
+            "errors": [],
+            "lineEnd": 113,
+            "lineStart": 1,
+            "maintainability": 53.929,
+            "methods": [
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.001,
+                  "difficulty": 1,
+                  "effort": 2,
+                  "length": 2,
+                  "time": 0.111,
+                  "vocabulary": 2,
+                  "volume": 2,
+                  "operands": {
+                    "distinct": 0,
+                    "total": 0,
+                    "identifiers": []
+                  },
+                  "operators": {
+                    "distinct": 2,
+                    "total": 2,
+                    "identifiers": [
+                      "return",
+                      "[]"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 1,
+                  "physical": 1
+                },
+                "errors": [],
+                "lineEnd": 8,
+                "lineStart": 8,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.011,
+                  "difficulty": 3.125,
+                  "effort": 99.06,
+                  "length": 10,
+                  "time": 5.503,
+                  "vocabulary": 9,
+                  "volume": 31.699,
+                  "operands": {
+                    "distinct": 4,
+                    "total": 5,
+                    "identifiers": [
+                      "token",
+                      "Authorization",
+                      "\"Bearer \"",
+                      "this"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 5,
+                    "total": 5,
+                    "identifiers": [
+                      "return",
+                      "{}",
+                      ":",
+                      "+",
+                      "."
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 3
+                },
+                "errors": [],
+                "lineEnd": 32,
+                "lineStart": 30,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 33.333,
+                "halstead": {
+                  "bugs": 0.081,
+                  "difficulty": 5.971,
+                  "effort": 1450.871,
+                  "length": 53,
+                  "time": 80.604,
+                  "vocabulary": 24,
+                  "volume": 243.003,
+                  "operands": {
+                    "distinct": 17,
+                    "total": 29,
+                    "identifiers": [
+                      "evt",
+                      "this",
+                      "loading",
+                      "false",
+                      "_interval",
+                      "window",
+                      "setInterval",
+                      "_refresh",
+                      "bind",
+                      "refresh_time",
+                      "response",
+                      "detail",
+                      "set",
+                      "\"res\"",
+                      "setTimeout",
+                      "<anonymous>",
+                      "100"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 7,
+                    "total": 24,
+                    "identifiers": [
+                      "=",
+                      ".",
+                      "||",
+                      "()",
+                      "var",
+                      "[]",
+                      "function"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 6,
+                  "physical": 15
+                },
+                "errors": [],
+                "lineEnd": 47,
+                "lineStart": 33,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.034,
+                  "difficulty": 6.125,
+                  "effort": 622.172,
+                  "length": 26,
+                  "time": 34.565,
+                  "vocabulary": 15,
+                  "volume": 101.579,
+                  "operands": {
+                    "distinct": 8,
+                    "total": 14,
+                    "identifiers": [
+                      "items",
+                      "response",
+                      "i",
+                      "0",
+                      "length",
+                      "this",
+                      "set",
+                      "\"res\""
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 7,
+                    "total": 12,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ".",
+                      "for",
+                      "<",
+                      "++ (postfix)",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 4,
+                  "physical": 7
+                },
+                "errors": [],
+                "lineEnd": 46,
+                "lineStart": 40,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.033,
+                  "difficulty": 3.5,
+                  "effort": 341.853,
+                  "length": 25,
+                  "time": 18.992,
+                  "vocabulary": 15,
+                  "volume": 97.672,
+                  "operands": {
+                    "distinct": 10,
+                    "total": 14,
+                    "identifiers": [
+                      "evt",
+                      "response",
+                      "detail",
+                      "this",
+                      "set",
+                      "\"res.\"",
+                      "model",
+                      "index",
+                      "\".infoPista\"",
+                      "items"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 5,
+                    "total": 11,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ".",
+                      "()",
+                      "+"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 5
+                },
+                "errors": [],
+                "lineEnd": 52,
+                "lineStart": 48,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 50,
+                "halstead": {
+                  "bugs": 0.014,
+                  "difficulty": 1.75,
+                  "effort": 72.116,
+                  "length": 13,
+                  "time": 4.006,
+                  "vocabulary": 9,
+                  "volume": 41.209,
+                  "operands": {
+                    "distinct": 6,
+                    "total": 7,
+                    "identifiers": [
+                      "this",
+                      "loading",
+                      "true",
+                      "$",
+                      "cons",
+                      "generateRequest"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 3,
+                    "total": 6,
+                    "identifiers": [
+                      "=",
+                      ".",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 4
+                },
+                "errors": [],
+                "lineEnd": 56,
+                "lineStart": 53,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 2,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.01,
+                  "difficulty": 2.25,
+                  "effort": 69.482,
+                  "length": 11,
+                  "time": 3.86,
+                  "vocabulary": 7,
+                  "volume": 30.881,
+                  "operands": {
+                    "distinct": 4,
+                    "total": 6,
+                    "identifiers": [
+                      "this",
+                      "_interval",
+                      "window",
+                      "clearInterval"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 3,
+                    "total": 5,
+                    "identifiers": [
+                      "if",
+                      ".",
+                      "()"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 2,
+                  "physical": 5
+                },
+                "errors": [],
+                "lineEnd": 61,
+                "lineStart": 57,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 1,
+                "cyclomaticDensity": 100,
+                "halstead": {
+                  "bugs": 0.003,
+                  "difficulty": 1,
+                  "effort": 8,
+                  "length": 4,
+                  "time": 0.444,
+                  "vocabulary": 4,
+                  "volume": 8,
+                  "operands": {
+                    "distinct": 2,
+                    "total": 2,
+                    "identifiers": [
+                      "this",
+                      "decrease_maintenance"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 2,
+                    "total": 2,
+                    "identifiers": [
+                      "()",
+                      "."
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 1,
+                  "physical": 3
+                },
+                "errors": [],
+                "lineEnd": 64,
+                "lineStart": 62,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 199,
+                "cyclomaticDensity": 195.098,
+                "halstead": {
+                  "bugs": 0.89,
+                  "difficulty": 167,
+                  "effort": 446028.641,
+                  "length": 804,
+                  "time": 24779.369,
+                  "vocabulary": 10,
+                  "volume": 2670.83,
+                  "operands": {
+                    "distinct": 6,
+                    "total": 501,
+                    "identifiers": [
+                      "a",
+                      "1",
+                      "b",
+                      "2",
+                      "c",
+                      "3"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 4,
+                    "total": 303,
+                    "identifiers": [
+                      "var",
+                      "=",
+                      ":?",
+                      "&&"
+                    ]
+                  }
+                },
+                "params": 0,
+                "sloc": {
+                  "logical": 102,
+                  "physical": 38
+                },
+                "errors": [],
+                "lineEnd": 102,
+                "lineStart": 65,
+                "name": "<anonymous>"
+              },
+              {
+                "cyclomatic": 3,
+                "cyclomaticDensity": 42.857,
+                "halstead": {
+                  "bugs": 0.073,
+                  "difficulty": 10.833,
+                  "effort": 2367.215,
+                  "length": 49,
+                  "time": 131.512,
+                  "vocabulary": 22,
+                  "volume": 218.512,
+                  "operands": {
+                    "distinct": 12,
+                    "total": 26,
+                    "identifiers": [
+                      "evt",
+                      "this",
+                      "step",
+                      "1",
+                      "el",
+                      "currentTarget",
+                      "$$",
+                      "\"#mainContainer\"",
+                      "discardStepNumber",
+                      "lastValidScroll",
+                      "scrollTop",
+                      "0"
+                    ]
+                  },
+                  "operators": {
+                    "distinct": 10,
+                    "total": 23,
+                    "identifiers": [
+                      "+=",
+                      ".",
+                      "var",
+                      "=",
+                      "()",
+                      "if",
+                      "else",
+                      "||",
+                      "! (prefix)",
+                      "<"
+                    ]
+                  }
+                },
+                "params": 1,
+                "sloc": {
+                  "logical": 7,
+                  "physical": 10
+                },
+                "errors": [],
+                "lineEnd": 112,
+                "lineStart": 103,
+                "name": "<anonymous>"
+              }
+            ],
+            "methodAverage": {
+              "cyclomatic": 21.3,
+              "cyclomaticDensity": 77.129,
+              "halstead": {
+                "bugs": 0.115,
+                "difficulty": 20.255,
+                "effort": 45106.141,
+                "length": 99.7,
+                "time": 2505.897,
+                "vocabulary": 11.7,
+                "volume": 344.539,
+                "operands": {
+                  "distinct": 6.9,
+                  "total": 60.4
+                },
+                "operators": {
+                  "distinct": 4.8,
+                  "total": 39.3
+                }
+              },
+              "params": 0.4,
+              "sloc": {
+                "logical": 12.9,
+                "physical": 9.1
+              }
+            },
+            "module": ".tmp_plato/00763898838203112/bower_components_spotify-component-maintenance_spotify-component.js"
+          },
+          "jshint": {
+            "messages": [
+              {
+                "severity": "error",
+                "line": 70,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 72,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 74,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 76,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 78,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 80,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 82,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 84,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 86,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 88,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 90,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 92,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 94,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 96,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              },
+              {
+                "severity": "error",
+                "line": 98,
+                "column": 67,
+                "message": "Missing semicolon.",
+                "source": "Missing semicolon."
+              }
+            ]
+          }
+        }
+      ],
+      "css": {
+        "generator": "analyze-css v0.12.5",
+        "metrics": {
+          "base64Length": 0,
+          "redundantBodySelectors": 0,
+          "redundantChildNodesSelectors": 0,
+          "colors": 6,
+          "comments": 5,
+          "commentsLength": 65,
+          "complexSelectors": 0,
+          "duplicatedSelectors": 0,
+          "duplicatedProperties": 0,
+          "emptyRules": 0,
+          "expressions": 0,
+          "oldIEFixes": 0,
+          "imports": 0,
+          "importants": 2,
+          "mediaQueries": 0,
+          "notMinified": 1,
+          "multiClassesSelectors": 0,
+          "parsingErrors": 0,
+          "oldPropertyPrefixes": 0,
+          "propertyResets": 0,
+          "qualifiedSelectors": 0,
+          "specificityIdAvg": 0.56,
+          "specificityIdTotal": 14,
+          "specificityClassAvg": 0.28,
+          "specificityClassTotal": 7,
+          "specificityTagAvg": 0.4,
+          "specificityTagTotal": 10,
+          "selectors": 25,
+          "selectorLengthAvg": 1.16,
+          "selectorsByAttribute": 0,
+          "selectorsByClass": 4,
+          "selectorsById": 14,
+          "selectorsByPseudo": 3,
+          "selectorsByTag": 10,
+          "length": 3074,
+          "rules": 21,
+          "declarations": 80
+        },
+        "offenders": {
+          "importants": [
+            {
+              "message": ":host {font-family: \"Lato\", \"Lucida Grande\", \"Lucida Sans Unicode\", Tahoma, Sans-Serif !important}",
+              "position": {
+                "start": {
+                  "line": 12,
+                  "column": 9
+                },
+                "end": {
+                  "line": 12,
+                  "column": 99
+                }
+              }
+            },
+            {
+              "message": "paper-header-panel {height: 100% !important}",
+              "position": {
+                "start": {
+                  "line": 153,
+                  "column": 9
+                },
+                "end": {
+                  "line": 153,
+                  "column": 32
+                }
+              }
+            }
+          ],
+          "colors": [
+            {
+              "message": "#eeeeee (5 times)"
+            },
+            {
+              "message": "#2ebd59 (2 times)"
+            },
+            {
+              "message": "#222321 (2 times)"
+            },
+            {
+              "message": "#333333 (1 times)"
+            },
+            {
+              "message": "#aaaaaa (1 times)"
+            },
+            {
+              "message": "rgba(51,51,51,0.65) (1 times)"
+            }
+          ]
+        }
+      }
+    }
+  }
+]
