@@ -148,7 +148,7 @@ program.a11y = program.a11y == undefined ? true : program.a11y;
 
 
 // get mapping file
-var MAPPING = JSON.parse(fs.readFileSync('mapping.json','utf8'));
+var MAPPING = JSON.parse(fs.readFileSync(__dirname + '/mapping.json','utf8'));
 var EQUIVALENTS_NORM = Object.keys(MAPPING).length;
 
 // get exp id
@@ -258,7 +258,7 @@ function removeRepeted(list) {
   })
 }
 
-
+var usability_value;
 /**
  * Send usability errors to mixpanel using the token provided. In addition, it sends usability value
  * pass/(errors+pass)
@@ -268,6 +268,8 @@ function removeRepeted(list) {
  * @returns 
  */
 function sendToMixpanel(list_errors, component) {
+
+
   if (!mixpanel_usability) {
     logger.error("Cannot be sent to mixpanel. Mixpanel token is missing");
     return -1;
@@ -298,8 +300,9 @@ function sendToMixpanel(list_errors, component) {
       var errCat = errors[i] || 0;
       sum += (Math.max(0, numItemCat-errCat*CATEGORY[i].weigth)) / numItemCat;
   }
-  
-  var usability_value = sum / CATEGORY_TOTAL;
+
+  usability_value = sum / CATEGORY_TOTAL;
+  console.log("Valor mixpanel");
   console.log(usability_value);
 
   var checkedNorms = checkNorms(list_errors);
@@ -534,9 +537,35 @@ function analyze_file(file, component_name) {
                 report += _baseColor.notice + errors.NOTICE.length + '\x1b[0m/';
                 report += _baseColor.pass + errors.PASS.length + '\x1b[0m)';
                 console.log(component_name, '\n\tFINAL REPORT' + report + '\n');
+                
                 if (!program.nomixpanel) {
                   sendToMixpanel(errors, component_name);
                 }
+
+                var warning = errors.WARNING.length;
+                //var errors = list_errors.ERROR.length + Math.floor(warning / program.config.errorsByWarning);
+                var errores = {};
+                errors.ERROR.forEach(function(norm){
+                  if(errores[norm.category] === undefined){
+                    errores[norm.category] = 1;
+                  } 
+                  else{
+                    errores[norm.category] += 1;
+                  }
+                });
+                var pass = errors.PASS.length;
+                var usability_val;
+                var sum = 0;
+                var i;
+                for(i = 0; i < CATEGORY_TOTAL; i++){
+                    var numItemCat = CATEGORY[i].items.length;
+                    var errCat = errores[i] || 0;
+                    sum += (Math.max(0, numItemCat-errCat*CATEGORY[i].weigth)) / numItemCat;
+                }
+                
+                usability_val = sum / CATEGORY_TOTAL;
+                console.log('VAlor de la metrica:');
+                console.log(usability_val);
               }
               break;
             case 'CLOSE':

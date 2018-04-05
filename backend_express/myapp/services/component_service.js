@@ -2,6 +2,7 @@ var report = require('../metrics/polymer-complexity/src/Report');
 // USING CHILD_PROCESS (for execute bash)
 var child_process = require('child_process');
 var path = require('path');
+var getPort = require('get-port');
 var db = require('./mydb').getInstance();
 var mongoose = require('mongoose');
 var LATENCY = 0, STRUCTURAL = 1, COMPLEXITY = 2, MAINTENACE = 3, ACCURACY = 4, USABILITY = 5, SECURITY = 6, REFRESH = 7;
@@ -84,14 +85,14 @@ module.exports = {
         //var component = 'spotify-component-stable/spotify-component.html';
         //var component = 'twitter-timeline-stable/static/twitter-timeline.html';
         var list_folder = ['spotify-component-stable/spotify-component.html', 'twitter-timeline-stable/static/twitter-timeline.html', 'traffic-incidents-stable/traffic-incidents.html',
-        'pinterest-timeline-stable/pinterest-timeline.html','open-weather-stable/open-weather.html','googleplus-timeline-stable/googleplus-timeline.html','finance-search-stable/finance-search.html',
-        'facebook-wall-stable/facebook-wall.html'];
+            'pinterest-timeline-stable/pinterest-timeline.html', 'open-weather-stable/open-weather.html', 'googleplus-timeline-stable/googleplus-timeline.html', 'finance-search-stable/finance-search.html',
+            'facebook-wall-stable/facebook-wall.html'];
         var list_folder_demo = ['spotify-component-stable/', 'twitter-timeline-stable/static/', 'traffic-incidents-stable/',
-        'pinterest-timeline-stable/','open-weather-stable/','googleplus-timeline-stable/','finance-search-stable/',
-        'facebook-wall-stable/'];
+            'pinterest-timeline-stable/', 'open-weather-stable/', 'googleplus-timeline-stable/', 'finance-search-stable/',
+            'facebook-wall-stable/'];
         // FALTA REDDIT
         // Hay que hacer que el objeto que traemos tenga el nombre del componente, y aqui lo comprobamos si ese nombre contiene una lapabra de spoty, twitter etc..
-        
+
         // var component = list_folder[3];
         var new_index = 'demo/index.html';
         var component;
@@ -99,58 +100,58 @@ module.exports = {
         var name_cmp;
         ////////////////////////////// FOLDER OF COMPONENTS////////////////////////////////////////
         var name_comp = object_tokens.nameComp;
-        if(name_comp.includes('spotify')){
+        if (name_comp.includes('spotify')) {
             component = list_folder[SPOTIFY];
             component_demo = list_folder_demo[SPOTIFY];
             new_index = 'index.html';
             name_cmp = 'Spotify';
-        }else if(name_comp.includes('twitter')){
+        } else if (name_comp.includes('twitter')) {
             component = list_folder[TWITTER];
             component_demo = list_folder_demo[TWITTER];
             name_cmp = 'Twitter';
-        }else if(name_comp.includes('facebook')){
+        } else if (name_comp.includes('facebook')) {
             component = list_folder[FACEBOOK];
             component_demo = list_folder_demo[FACEBOOK];
             new_index = 'demo.html';
             name_cmp = 'Facebook';
-        }else if(name_comp.includes('google')){
+        } else if (name_comp.includes('google')) {
             component = list_folder[GOOGLE_PLUS];
             component_demo = list_folder_demo[GOOGLE_PLUS];
             name_cmp = 'Google +';
-        }else if(name_comp.includes('finance')){
+        } else if (name_comp.includes('finance')) {
             component = list_folder[FINANCE];
             component_demo = list_folder_demo[FINANCE];
             name_cmp = 'Finance Search';
-        }else if(name_comp.includes('weather')){
+        } else if (name_comp.includes('weather')) {
             component = list_folder[WEATHER];
             component_demo = list_folder_demo[WEATHER];
             name_cmp = 'Open Weather';
-        }else if(name_comp.includes('pinterest')){
+        } else if (name_comp.includes('pinterest')) {
             component = list_folder[PINTEREST];
             component_demo = list_folder_demo[PINTEREST];
             name_cmp = 'Pinterest';
-        }else{
+        } else {
             component = list_folder[TRAFFIC];
             component_demo = list_folder_demo[TRAFFIC];
             name_cmp = 'Traffic incidents';
         }
-        
+
         var folder = base_folder + component;
         var index_component = base_folder + component_demo + new_index;
-        
+
         return new Promise(function (resolve, reject) {
-            function contador(max){
+            function contador(max) {
                 var cont = 0;
-                return function(){
+                return function () {
                     cont++;
-                    if (cont === max){
+                    if (cont === max) {
                         value_met.name_component = name_cmp;
                         resolve(value_met);
                     }
                 }
             }
             var cb = contador(MAX_CONT);
-            
+
             // METRIC 1: COMPLEXITY y MANTENIBILIDAD
             report.analyze(folder).then(function (result) {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
@@ -158,29 +159,36 @@ module.exports = {
                 value_met.component[COMPLEXITY].value = val_complexity;
                 value_met.component[MAINTENACE].value = val_maintenance;
                 cb();
-                
+
             }, reject);
-             // METRIC 2: STRUCTURAL
-            child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function(error, stdout, stderr){
+            // METRIC 2: STRUCTURAL
+            child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function (error, stdout, stderr) {
                 var expression = /\d* imports \(totales \d*\)/;
                 var number_imports = stdout.match(expression);
-                console.log(number_imports);
-                console.log(stdout);
+                // console.log(number_imports);
+                // console.log(stdout);
                 value_met.component[STRUCTURAL].value = number_imports;
                 cb();
             });
-            console.log('/////////');
-            // console.log(index_component);
-            var salida = child_process.execFile('../metrics/polymer-accessibility/acc', [index_component], function(error, stdout, stderr){
-                // var expression = /\d* imports \(totales \d*\)/;
-                // var number_imports = stdout.match(expression);
-                // console.log(number_imports);
-                console.log(index_component);
-                console.log(salida);
-                // value_met.component[STRUCTURAL].value = number_imports;
-                // cb();
+            console.log('Métrica de usabilidad:');
+            console.log(index_component);
+
+           getPort().then(port => {
+               var salida = child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html', '-p', port], function (error, stdout, stderr) {
+                   console.log(stdout);
+                   console.log(stderr);
+                   console.log(error);
+                   // console.log(salida);
+                   // value_met.component[USABILITY].value = val_usability;
+                   // cb();
+               });
+                console.log(port);
+                //=> 51402 
             });
-         });
+            
+
+
+        });
     }
 };
 
