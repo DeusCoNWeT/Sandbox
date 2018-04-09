@@ -1,0 +1,41 @@
+{
+    "Sandbox":{
+        "catalogue":{
+            "choose": "Choose from our catalog", 
+            "data":"Enter the necessary attributes for our component", 
+            "user_action": {
+                 "Send-analize":"Send and analyze"
+            }
+        },
+        "analize-quality":{
+            "choose1": "Choose one component for analize" ,
+            "data1":"Enter the necessary attributes for our component", 
+            "user_action": {
+                "analize":"analize"
+           }
+        },
+        "upload":{
+            "up":"Upload your component and analize the quality",
+            "user_action": {
+                "analize":"analize"
+           }
+        }
+    },
+    "language":"Language",
+    "instructions":"Instructions",
+    "contact":{
+        "abaout-us":"Higher Technical School of Computer Engineers",
+        "lab":"DeusConwet Lab",
+        "place":"Boadilla del Monte, Madrid",
+        "campus":"Campus de Montegancedo",
+        "code":"28660",
+        "group":"Developers",
+        "group1":"Collaborators",
+        "descripcion":"Click on the icon to access our platform", 
+    },
+    "lang": {
+        "es":"Español",
+        "en":"English"
+      }        
+    
+}
