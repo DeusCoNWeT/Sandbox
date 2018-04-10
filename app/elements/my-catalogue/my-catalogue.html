@@ -31,7 +31,7 @@
 
             neon-animatable:nth-child(1),
             neon-animatable:nth-child(6) {
-                background: var(--paper-blue-100);
+                background: var(--paper-blue-50);
             }
 
             neon-animatable:nth-child(2) {
@@ -39,7 +39,7 @@
             }
 
             neon-animatable:nth-child(3) {
-                background: var(--paper-blue-100);
+                background: var(--paper-blue-50);
             }
 
             neon-animatable:nth-child(4) {
@@ -56,7 +56,10 @@
             }
 
             paper-button.custom:hover {
-                background-color: var(--paper-indigo-200);
+              
+                background-color: white;
+                color: #5c6bc0;
+            
             }
 
             label {
@@ -86,6 +89,11 @@
                 box-shadow: 2px 2px 2px 5px;
                 margin: 100px;
             }
+            .title{
+                text-decoration: underline;
+                font-size: 25px;
+                text-align: center;
+            }
 
             @media (min-width: 2000px) {
                 h1,
@@ -105,7 +113,7 @@
                 }
                 .explicacion {
                     font-size: 20px;
-                    position: relative;
+                    /* position: relative; */
                     width: 70%;
                     height: 70%;
                     border: 1px solid #808080;
@@ -133,21 +141,21 @@
         <neon-animated-pages id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
             <neon-animatable>
                 <div>
-                    <h1>Elige entre nuestro catálogo</h1>
+                    <p class="title">Catálogo de componentes</p>
                     <div class=" botones_comp container vertical layout center">
                         <template is="dom-repeat" items="{{social_network}}">
                             <paper-button raised class="custom indigo" on-click="send_ajax" data-component$="{{item.id_comp}}">Componente {{item.name}}</paper-checkbox>
                         </template>
 
                         <div class="explicacion center">
-                            <p>Al pulsar en un componente se te pediran los atributos necesarios para hacerlo funcionar</p>
+                            <p class="ayuda">Al pulsar en un componente se te pediran los atributos necesarios para hacerlo funcionar</p>
                         </div>
                     </div>
                 </div>
                 <iron-ajax id="request_attr" url="/api/componentes/{{component_selected}}" handle-as="json" on-response="_showform"></iron-ajax>
             </neon-animatable>
             <neon-animatable>
-                <h1>Elije un componente para analizar</h1>
+                <p class="title">Elije un componente para analizar</p>
                 <div class="checklist vertical center layout">
                     <iron-selector attr-for-selected="name" selected="foo" selected-attribute="checked" class="checkboxList vertical layout">
                         <template is="dom-repeat" items="{{social_network}}">
@@ -160,7 +168,7 @@
                 </div>
             </neon-animatable>
             <neon-animatable>
-                <h2>Sube tu componente y analiza su calidad</h2>
+                <p class="title">Sube tu componente y analiza su calidad</p>
                 <div class="upload vertical center layout">
                     <label for="file">Upload folder</label>
                     <!-- <input type="file" id="ctrl" webkitdirectory directory multiple/> -->
