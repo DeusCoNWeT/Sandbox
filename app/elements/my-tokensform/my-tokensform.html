@@ -5,19 +5,58 @@
             :host {
                 display: inline-block;
             }
-            
+            .encabezado{
+                text-align: center;
+                font-size: 25px;
+                padding: 8px 26px;
+            }
+            .contenedor{
+                width: 100%;
+                height: 100%;
+            }
+            p{
+                padding: 8px 26px;
+            }
+            .text{
+                padding: 8px 26px;
+                text-align: left;
+                
+            }
+            #caja{
+                float:right;
+                padding-right: 50px;
+            }
+            .custom{
+                margin: -10px 21.29em;
+                background-color: #5c6bc0;
+                color: white;
+            }
+            .custom:hover{
+                background-color: white;
+                color: #5c6bc0;
+            }  
+            .defect{
+                text-align: center;
+                font-size: 30px;
+                padding-top: 80px;
+                line-height: 45px;
+            }
         </style>
-        <h1 class="horizontal layout center">Introduce los atributos necesarios del componente</h1>
+    <div class="contenedor">
+        <span class="encabezado horizontal layout center" name$="{{data.name}}">Introduce los atributos necesarios del componente {{getName}}</span>
         <template is="dom-if" if="{{!visible}}">
-            <p>No se ha elegido aún ningun componente</p>
+            <p class="defect">No se ha elegido aún ningun componente, seleccione uno de los del catálogo o suba uno para calcular su calidad</p>
         </template>
         <template is="dom-if" if="{{visible}}">
             <div id="input-container">
-                <p id="name" name$="{{data.name}}">Componente {{getName}}</p>
+                <!-- <span id="name" name$="{{data.name}}">Componente {{getName}}</span><br> -->
+                <span class="encabezado">Atributos</span><br>
                 <template id="bucle_attr" is="dom-repeat" items="{{getAttr}}">
-                    <label for="text">Atributo {{item.name}}</label>
-                    <input id="text" type="text" on-change="_newChanges" />
-                    <br>
+                    <div class="atributos">
+                        <label class="text" for="text">{{item.name}}</label>
+                        <input id="caja" size="63" type="text" on-change="_newChanges" />
+                        <br>
+                    </div>
                 </template>
                 <br>
                 <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
@@ -25,6 +64,7 @@
                 </paper-button>
             </div>
         </template>
+    </div>
 
         <iron-ajax id="send_attr" method="post" url="/api/componentes" handle-as="json" on-response="handleResponse" body='{{_getParams(getName, prop_object)}}'
             content-type="application/json"></iron-ajax>

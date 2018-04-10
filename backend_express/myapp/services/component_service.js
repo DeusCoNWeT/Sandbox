@@ -61,7 +61,7 @@ module.exports = {
                 },
                 {
                     name: "accuracy",
-                    value: 45.2
+                    value: ""
                 },
                 {
                     name: "usability",
