@@ -1,4 +1,5 @@
-var report = require('../metrics/polymer-complexity/src/Report');
+var wcc_report = require('../metrics/polymer-complexity/src/Report');
+// var acc_report = require('../metrics/polymer-accesibility/src/Report')
 // USING CHILD_PROCESS (for execute bash)
 var child_process = require('child_process');
 var path = require('path');
@@ -153,7 +154,7 @@ module.exports = {
             var cb = contador(MAX_CONT);
 
             // METRIC 1: COMPLEXITY y MANTENIBILIDAD
-            report.analyze(folder).then(function (result) {
+            wcc_report.analyze(folder).then(function (result) {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
                 var val_maintenance = result.js[0].complexity.maintainability;
                 value_met.component[COMPLEXITY].value = val_complexity;
@@ -173,14 +174,19 @@ module.exports = {
             console.log('Métrica de usabilidad:');
             console.log(index_component);
 
-            child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html'], function (error, stdout, stderr) {
-                console.log(stdout);
-                console.log(stderr);
-                console.log(error);
-                // console.log(salida);
-                // value_met.component[USABILITY].value = val_usability;
+            // acc_report.analyze(folder).then(function (result) {
+                
+            //     cb();
+
+            // }, reject);
+
+            child_process.execFile('../metrics/polymer-security/security_analyzer', ['../components/bower_components/spotify-login/demo.html'], function (error, stdout, stderr) {
+               console.log(error);
+               console.log(stderr);
+               console.log(stdout);
                 // cb();
             });
+
         //    getPort().then(port => {
         //        var salida = child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html', '-p', port], function (error, stdout, stderr) {
         //            console.log(stdout);
