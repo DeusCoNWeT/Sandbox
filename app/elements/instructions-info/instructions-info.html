@@ -1,12 +1,98 @@
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <dom-module id="instructions-info">
     <template>
-        <style>
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
             :host {
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
                 display: inline-block;
+                height: 100%;
+                width: 100%;
+                padding: 8px 12px;
+                line-height: normal;
+                
+            }
+            div{
+                border: solid 1px black;
+                width: 100%;
+                height: auto;
+                /* Para que el borde de los div se meta dentro de los div y no este fuera */
+                box-sizing: border-box;
+                margin: 10px 0;
+            }
+
+            .step1{
+                padding: 20px 60px 45px;
+                text-align: justify;
+            }
+            .titulo {
+                padding: 20px 12px;
+                width: auto;
+                height: auto;
+                /* Para que el borde de los div se meta dentro de los div y no este fuera */
+                box-sizing: border-box;
+                /* font-style: oblique; */
+                font-size: 57px;
+                color:black;
+                /* color: rgb(66, 66, 66); */
+                text-decoration: bold;
+                text-align: center;
+            }
+            .paso1{
+                padding: 25px 45px 20px;
+                width: auto;
+                height: 500px;
+            }
+            .intro{
+                padding: 20px;
+                text-align: justify;
+            }
+            .paso2{
+                padding: 25px 45px 20px;
+                width: 300px;
+                height: 500px;
+            }
+            .instruc{
+                width: auto;
+               height: 137px;
+            }
+            .contenedor{
+                width: 100%;
+                height: 100%;
+
             }
         </style>
-        <p>Este es el componente de instrucciones</p>
+        <div class="titulo">
+            INSTRUCCIONES PARA EL USO DE LA SANDBOX
+        </div>
+        <div>
+            <p class="intro">
+                Con esta plataforma lo que se pretende es conseguir que cualquier desarrollador de componentes pueda medir la calidad de los mismos
+                una vez que haya terminado el desarrollo de estos. En ella estan desplegados una serie de componentes desarrollados por el mismo grupo de trabajo 
+                para que los desarrolladores puedan ver como funciona la plataforma, y como es el valor que te devolveria esta. 
+                La plataforma otorga una nota basada en estrellas en función de la nota obtenida en las métricas que se le pasan al componente.
+                Para lograr que la plataforma evalue el componente, se pueden dar dos casos, o que se evalue el uno de los componentes que se porporcionan, 
+                o que el desarrolldor pueda subir un componente propio. Para ello lo que se tienen que hacer es lo siguiente dependiendo de cual sea su caso:
+            </p>
+        </div>
+        <div class="step horizontal layout around-justified">
+            <img class="paso1" src="/images/ComponentesPlataforma.png" alt="Logotipo UPM">
+            <p class="step1">
+                CASO 1-> En la página principal de la plataforma, podrá visualizar una serie de pestañas. En la primera pestaña 
+                encontrará un listado de componentes con los que puede probar para calcular dicha calidad.
+                Para ello, simplemente basta con pulsar un componente, y verá que a su derecha le aparecerá una serie de atributos que hay que rellenar. 
+                Estos atributos dependen del componente en cuestión.
+            </p>  
+        </div>
+        <div class="step horizontal layout around-justified">
+            <img class="paso2" src="/images/ComponentesSubir.png" alt="Logotipo UPM">
+            <p class="step1">
+                CASO 2-> En este caso, lo que tiene que hacer es ir a la pestaña de la carpeta para que le aparezca esta imagen. 
+                Una vez se encuentre en dicha pestaña lo que tiene que hacer es pulsar el botón donde pone "Elegir archivos" para seleccionar el componente que
+                evaluar para calcular su calidad. Posteriormente pulsar el boton de analizar para que la plataforma realice los calculos oportunos.
+            </p> 
+        </div>
     </template>
     <script>
         Polymer({

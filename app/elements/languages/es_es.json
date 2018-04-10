@@ -1,0 +1,42 @@
+{
+    "Sandbox":{
+        "catalogue":{
+            "choose": "Elige entre nuestro catálogo", 
+            "data":"Introduce los atributos necesarios del componente", 
+            "user_action": {
+                 "Send-analize":"Enviar y analizar"
+            }
+        },
+        "analize-quality":{
+            "choose1": "Elige un componente para analizar" ,
+            "data":"Introduce los atributos necesarios del componente", 
+            "user_action": {
+                "analize":"analizar"
+           }
+        },
+        "upload":{
+            "up":"Sube tu componente y analiza su calidad",
+            "user_action": {
+                "analize":"analizar"
+           }
+        }
+    },
+    "language":"Idioma",
+    "instructions":"Instrucciones",
+    "contact":{
+        "abaout-us":"Escuela Técnica Superior de Ingenieros Informáticos",
+        "lab":"DeusConwet Lab",
+        "place":"Boadilla del Monte, Madrid",
+        "campus":"Campus de Montegancedo",
+        "code":"28660",
+        "group":"Desarrolladores",
+        "group1":"Colaboradores",
+        "descripcion":"Pincha en el icono para acceder a nuestra otra plataforma", 
+    },
+    "lang": {
+        "es":"Español",
+        "en":"English"
+      }        
+    
+}
+    
