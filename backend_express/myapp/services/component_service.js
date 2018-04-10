@@ -173,18 +173,26 @@ module.exports = {
             console.log('Métrica de usabilidad:');
             console.log(index_component);
 
-           getPort().then(port => {
-               var salida = child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html', '-p', port], function (error, stdout, stderr) {
-                   console.log(stdout);
-                   console.log(stderr);
-                   console.log(error);
-                   // console.log(salida);
-                   // value_met.component[USABILITY].value = val_usability;
-                   // cb();
-               });
-                console.log(port);
-                //=> 51402 
+            child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html'], function (error, stdout, stderr) {
+                console.log(stdout);
+                console.log(stderr);
+                console.log(error);
+                // console.log(salida);
+                // value_met.component[USABILITY].value = val_usability;
+                // cb();
             });
+        //    getPort().then(port => {
+        //        var salida = child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html', '-p', port], function (error, stdout, stderr) {
+        //            console.log(stdout);
+        //            console.log(stderr);
+        //            console.log(error);
+        //            // console.log(salida);
+        //            // value_met.component[USABILITY].value = val_usability;
+        //            // cb();
+        //        });
+        //         console.log(port);
+        //         //=> 51402 
+        //     });
             
 
 
