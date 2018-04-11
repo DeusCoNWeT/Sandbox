@@ -4,67 +4,82 @@
         <style is="custom-style" include="iron-flex">
             :host {
                 display: inline-block;
+                overflow: auto;
+                box-sizing: border-box;
+                padding-block-end: 1px;
             }
-            .encabezado{
-                text-align: center;
-                font-size: 25px;
-                padding: 8px 26px;
+
+            p {
+                margin: 0;
             }
-            .contenedor{
+
+            .contenedor {
                 width: 100%;
                 height: 100%;
             }
-            p{
-                padding: 8px 26px;
-            }
-            .text{
-                padding: 8px 26px;
+
+            .text {
+                padding: 0px 26px;
                 text-align: left;
-                
+                min-width: 150px;
+
             }
-            #caja{
-                float:right;
-                padding-right: 50px;
-            }
-            .custom{
-                margin: -10px 21.29em;
-                background-color: #5c6bc0;
-                color: white;
-            }
-            .custom:hover{
+
+            .custom:hover {
                 background-color: white;
                 color: #5c6bc0;
-            }  
-            .defect{
+            }
+
+            .defect {
                 text-align: center;
                 font-size: 30px;
                 padding-top: 80px;
                 line-height: 45px;
             }
+
+            .atributos {
+                margin: 4px 0;
+            }
+
+            .custom {
+                background-color: #5c6bc0;
+                color: white;
+                align-self: center;
+                margin-top: 3px;
+                margin-bottom: 9px;
+            }
+
+            .encabezado {
+                text-align: center;
+                font-size: 25px;
+                padding: 9px 26px;
+            }
+            .encabezado1 {
+                font-size: 25px;
+                padding: 0px 26px;
+            }
         </style>
-    <div class="contenedor">
-        <span class="encabezado horizontal layout center" name$="{{data.name}}">Introduce los atributos necesarios del componente {{getName}}</span>
-        <template is="dom-if" if="{{!visible}}">
-            <p class="defect">No se ha elegido aún ningun componente, seleccione uno de los del catálogo o suba uno para calcular su calidad</p>
-        </template>
-        <template is="dom-if" if="{{visible}}">
-            <div id="input-container">
-                <!-- <span id="name" name$="{{data.name}}">Componente {{getName}}</span><br> -->
-                <span class="encabezado">Atributos</span><br>
-                <template id="bucle_attr" is="dom-repeat" items="{{getAttr}}">
-                    <div class="atributos">
-                        <label class="text" for="text">{{item.name}}</label>
-                        <input id="caja" size="63" type="text" on-change="_newChanges" />
-                        <br>
-                    </div>
-                </template>
-                <br>
+        <div class="contenedor vertical layout">
+            <p class="encabezado" name$="{{data.name}}">Introduce los atributos necesarios del componente {{getName}}</p>
+            <template is="dom-if" if="{{!visible}}">
+                <p class="defect">No se ha elegido aún ningun componente, seleccione uno de los del catálogo o suba uno para calcular su calidad</p>
+            </template>
+            <template is="dom-if" if="{{visible}}">
+                <div id="input-container" class="vertical layout">
+                    <!-- <span id="name" name$="{{data.name}}">Componente {{getName}}</span><br> -->
+                    <span class="encabezado1">Atributos</span>
+                    <template id="bucle_attr" is="dom-repeat" items="{{getAttr}}">
+                        <div class="atributos horizontal layout center">
+                            <label class="text" for="text">{{item.name}}</label>
+                            <input id="caja" class="flex" type="text" on-change="_newChanges" />
+                        </div>
+                    </template>
+                </div>
                 <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
                     Enviar y analizar
                 </paper-button>
-            </div>
-        </template>
-    </div>
+            </template>
+        </div>
 
         <iron-ajax id="send_attr" method="post" url="/api/componentes" handle-as="json" on-response="handleResponse" body='{{_getParams(getName, prop_object)}}'
             content-type="application/json"></iron-ajax>
