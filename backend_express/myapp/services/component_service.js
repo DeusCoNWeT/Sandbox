@@ -1,4 +1,5 @@
 var wcc_report = require('../metrics/polymer-complexity/src/Report');
+var acc_report = require('../metrics/polymer-accessibility/src/Report');
 // var acc_report = require('../metrics/polymer-accesibility/src/Report')
 // USING CHILD_PROCESS (for execute bash)
 var child_process = require('child_process');
@@ -179,13 +180,15 @@ module.exports = {
             //     cb();
 
             // }, reject);
-
-            child_process.execFile('../metrics/polymer-security/security_analyzer', ['../components/bower_components/spotify-login/demo.html'], function (error, stdout, stderr) {
-               console.log(error);
-               console.log(stderr);
-               console.log(stdout);
-                // cb();
-            });
+            acc_report.analyze_file(folder).then(function(result){
+                
+            },reject);
+            // child_process.execFile('../metrics/polymer-security/security_analyzer', ['../components/bower_components/spotify-login/demo.html'], function (error, stdout, stderr) {
+            //    console.log(error);
+            //    console.log(stderr);
+            //    console.log(stdout);
+            //     // cb();
+            // });
 
         //    getPort().then(port => {
         //        var salida = child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html', '-p', port], function (error, stdout, stderr) {
