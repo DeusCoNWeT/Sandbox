@@ -9,7 +9,7 @@ var db = require('./mydb').getInstance();
 var mongoose = require('mongoose');
 var LATENCY = 0, STRUCTURAL = 1, COMPLEXITY = 2, MAINTENACE = 3, ACCURACY = 4, USABILITY = 5, SECURITY = 6, REFRESH = 7;
 var SPOTIFY = 0, TWITTER = 1, TRAFFIC = 2, PINTEREST = 3, WEATHER = 4, GOOGLE_PLUS = 5, FINANCE_SEARCH = 6, FACEBOOK = 7;
-var MAX_CONT = 2;
+var MAX_CONT = 3;
 
 module.exports = {
     get_component: function (id) {
@@ -180,8 +180,24 @@ module.exports = {
             //     cb();
 
             // }, reject);
-            acc_report.analyze_file(folder).then(function(result){
-                
+            console.log(folder);
+            var config  = {
+                root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
+                port: '8100',
+                timeout: '10000',
+                wcag: true,
+                a11y: true,
+                wcag2_level: 'AAA',
+                log_level: 'OFF',
+                brief:true,
+                skip:true
+            }
+            var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
+            acc_report._setProgram(config);
+            acc_report.analyze_file(pinterest).then(function(result){
+                console.log(result);
+                value_met.component[USABILITY].value = result.value.value;
+                cb();
             },reject);
             // child_process.execFile('../metrics/polymer-security/security_analyzer', ['../components/bower_components/spotify-login/demo.html'], function (error, stdout, stderr) {
             //    console.log(error);

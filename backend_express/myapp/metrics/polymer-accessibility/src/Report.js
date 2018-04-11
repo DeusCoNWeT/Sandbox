@@ -26,7 +26,7 @@ var EXP_ID;
 module.exports = exports = function () {
   var Report = {};
   var server;
-  var program;
+  var program = {};
   var page;
   var failed = 0;
   var _baseColor = {
@@ -64,7 +64,9 @@ module.exports = exports = function () {
       Report._resolve = resolve;
       Report._reject = reject;
 
-      connect().use(serveStatic(program.root || __dirname + '/..')).listen(program.port || 8080, function (a) {
+      connect().use(
+        serveStatic(program.root || __dirname + '/..'))
+        .listen(program.port || 8180, function (a) {
         logger.info('Server running on ' + program.port + '...');
         Report._server = this;
 
@@ -178,7 +180,7 @@ module.exports = exports = function () {
     if (program.a11y) page.injectJs(__dirname + '/../vendor/axs_testing.min.js');
     logger.debug('Injectando la espera de tiempo y a que los components esten ready');
     evaluate(page, function (timeout, wcag2, config) {
-      document.addEventListener('WebComponentsReady', function () {
+      window.addEventListener('WebComponentsReady', function () {
         window.setTimeout(function () {
           window.callPhantom({ text: 'Antes de llamar a las auditorias', type: 'DEBUG' });
           //window.callPhantom({ text: 'Probando ---> ' + document.querySelector('reddit-timeline').children, type: 'DEBUG' });
@@ -425,7 +427,8 @@ module.exports = exports = function () {
     logger.setLevel(level);
   }
   Report._setProgram = function (conf) {
-    program = conf;
+    Object.assign(program, conf);
+    logger.setLevel(program.log_level || 'INFO');
   }
   return Report;
 

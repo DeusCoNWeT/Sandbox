@@ -1,4 +1,6 @@
 var fs = require("fs");
+var log4js = require('log4js');
+var logger = log4js.getLogger('Report');
 module.exports = exports = function(){
 var Utils = {};
 
