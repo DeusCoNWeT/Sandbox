@@ -11,9 +11,11 @@
                 width: 100%;
                 padding: 8px 12px;
                 line-height: normal;
-                
+                overflow: auto;
+               
             }
-            div{
+
+            div {
                 border: solid 1px black;
                 width: 100%;
                 height: auto;
@@ -22,10 +24,15 @@
                 margin: 10px 0;
             }
 
-            .step1{
+            .step1 {
                 padding: 20px 60px 45px;
                 text-align: justify;
             }
+            .step2 {
+                padding: 4px 20px;
+                text-align: justify;
+            }
+
             .titulo {
                 padding: 20px 12px;
                 width: auto;
@@ -34,33 +41,47 @@
                 box-sizing: border-box;
                 /* font-style: oblique; */
                 font-size: 57px;
-                color:black;
+                color: black;
                 /* color: rgb(66, 66, 66); */
                 text-decoration: bold;
                 text-align: center;
             }
-            .paso1{
+
+            .paso1 {
                 padding: 25px 45px 20px;
                 width: auto;
                 height: 500px;
             }
-            .intro{
+
+            .atributos {
+                padding: 25px 45px 20px;
+                width: 700px;
+                height: 500px;
+            }
+
+            .intro {
                 padding: 20px;
                 text-align: justify;
             }
-            .paso2{
+
+            .paso2 {
                 padding: 25px 45px 20px;
-                width: 300px;
+                width: 500px;
                 height: 500px;
             }
-            .instruc{
+
+            .instruc {
                 width: auto;
-               height: 137px;
+                height: 137px;
             }
-            .contenedor{
+
+            .contenedor {
                 width: 100%;
                 height: 100%;
-
+            }
+            .barra{
+                width: 900;
+                height: 100;
             }
         </style>
         <div class="titulo">
@@ -68,30 +89,58 @@
         </div>
         <div>
             <p class="intro">
-                Con esta plataforma lo que se pretende es conseguir que cualquier desarrollador de componentes pueda medir la calidad de los mismos
-                una vez que haya terminado el desarrollo de estos. En ella estan desplegados una serie de componentes desarrollados por el mismo grupo de trabajo 
-                para que los desarrolladores puedan ver como funciona la plataforma, y como es el valor que te devolveria esta. 
-                La plataforma otorga una nota basada en estrellas en función de la nota obtenida en las métricas que se le pasan al componente.
-                Para lograr que la plataforma evalue el componente, se pueden dar dos casos, o que se evalue el uno de los componentes que se porporcionan, 
-                o que el desarrolldor pueda subir un componente propio. Para ello lo que se tienen que hacer es lo siguiente dependiendo de cual sea su caso:
+                Con esta plataforma lo que se pretende es conseguir que cualquier desarrollador de componentes pueda medir la calidad de
+                los mismos una vez que haya terminado el desarrollo de estos. En ella estan desplegados una serie de componentes
+                desarrollados por el mismo grupo de trabajo para que los desarrolladores puedan ver como funciona la plataforma,
+                y cual es la información que te devolvería la Sandbox. La plataforma otorga una nota basada en estrellas
+                en función de la nota obtenida en las métricas que se le pasan al componente. Para lograr que la plataforma
+                evalue el componente, se pueden dar dos casos, o que se evalue el uno de los componentes que se porporcionan,
+                o que el desarrolldor pueda subir un componente propio. Para ello lo que se tienen que hacer es lo siguiente
+                dependiendo de cual sea su caso:
             </p>
         </div>
         <div class="step horizontal layout around-justified">
-            <img class="paso1" src="/images/ComponentesPlataforma.png" alt="Logotipo UPM">
+            <img class="paso1" src="/images/paginaInicio.png" alt="Inicio">
             <p class="step1">
-                CASO 1-> En la página principal de la plataforma, podrá visualizar una serie de pestañas. En la primera pestaña 
-                encontrará un listado de componentes con los que puede probar para calcular dicha calidad.
-                Para ello, simplemente basta con pulsar un componente, y verá que a su derecha le aparecerá una serie de atributos que hay que rellenar. 
-                Estos atributos dependen del componente en cuestión.
-            </p>  
+                Esta es la página que se encontrará cuando utilice nuestra plataforma, en ella se puede observar cuales son las posibilidades
+                que ofrecemos a la hora de comprobar la claidad de un componente web.
+            </p>
+        </div>
+        <div class="step1">
+            <div class="step2 horizontal layout around-justified">
+                <img class="paso1" src="/images/ComponentesPlataforma.png" alt="Opcion1">
+                <p class="step1">
+                    CASO 1-> En la página principal de la plataforma, podrá visualizar una serie de pestañas. En la primera pestaña encontrará
+                    un listado de componentes con los que puede probar para calcular dicha calidad de estos. Para ello, simplemente
+                    basta con pulsar un componente, y verá que a su derecha le aparecerá una serie de atributos que hay que
+                    rellenar. Estos atributos dependen del componente en cuestión.
+                </p>
+            </div>
+            <div class="step2 horizontal layout around-justified">
+            <img class="atributos" src="/images/atributos.png" alt="atributos">
+            <p class="step2">
+                Los atributos varian en función del componente que se quiera evaluar, en la imagen mostrada se puede observar cuales son
+                dichos atruibutos para el componente de Twitter.
+            </p>
+        </div>
         </div>
         <div class="step horizontal layout around-justified">
-            <img class="paso2" src="/images/ComponentesSubir.png" alt="Logotipo UPM">
+            <img class="paso2" src="/images/ComponentesSubir.png" alt="Opcion2">
             <p class="step1">
-                CASO 2-> En este caso, lo que tiene que hacer es ir a la pestaña de la carpeta para que le aparezca esta imagen. 
-                Una vez se encuentre en dicha pestaña lo que tiene que hacer es pulsar el botón donde pone "Elegir archivos" para seleccionar el componente que
-                evaluar para calcular su calidad. Posteriormente pulsar el boton de analizar para que la plataforma realice los calculos oportunos.
-            </p> 
+                CASO 2-> En este caso, lo que tiene que hacer es ir a la pestaña de la carpeta para que le aparezca esta imagen. Una vez
+                se encuentre en dicha pestaña lo que tiene que hacer es pulsar el botón donde pone "Elegir archivos" para
+                seleccionar el componente que evaluar para calcular su calidad. Posteriormente pulsar el boton de analizar
+                para que la plataforma realice los calculos oportunos.
+            </p>
+        </div>
+        <div class="step vertical layout around-justified">
+                <img class="barra" src="/images/barrasuperior.png" alt="encabezado">
+                <p class="step1">
+                   En la barra superior puede realizar tres funciones, la primera es pulsando la palabra Sandbox, la cual te envía a la página de inicio de la Sandbox.
+                   En segundo lugar esta la pestaña de instrucciones, la cuel explica como funciona dicha plataforma.
+                   Por último se encuentra la pestaña de contacto, la cual aporta información del grupo de trabajo que la ha desarrollado, donde se encuentra el grupo de investigación y por último 
+                   un contacto y la posibilidad de ir a nuestra otra plataforma, donde tenemos colgados los componentes que se han creado para que los usuarios puedan interactuar con ellos.
+                </p>
         </div>
     </template>
     <script>
