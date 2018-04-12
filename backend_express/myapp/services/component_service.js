@@ -82,24 +82,24 @@ module.exports = {
         }
         //llamar al script de las metricas
 
-        var base_folder = path.join(__dirname, '../components/bower_components/');
+        var base_folder = path.join(__dirname, '../components/');
+        var base_folder_usability = path.join(__dirname, '../metrics/polymer-accessibility/');
         //Tenemos que tener en la respuesta el nombre del componente para saber donde entrar en bower components
         //var component = 'spotify-component-stable/spotify-component.html';
         //var component = 'twitter-timeline-stable/static/twitter-timeline.html';
-        var list_folder = ['spotify-component-stable/spotify-component.html', 'twitter-timeline-stable/static/twitter-timeline.html', 'traffic-incidents-stable/traffic-incidents.html',
-            'pinterest-timeline-stable/pinterest-timeline.html', 'open-weather-stable/open-weather.html', 'googleplus-timeline-stable/googleplus-timeline.html', 'finance-search-stable/finance-search.html',
-            'facebook-wall-stable/facebook-wall.html'];
-        var list_folder_demo = ['spotify-component-stable/', 'twitter-timeline-stable/static/', 'traffic-incidents-stable/',
-            'pinterest-timeline-stable/', 'open-weather-stable/', 'googleplus-timeline-stable/', 'finance-search-stable/',
-            'facebook-wall-stable/'];
+        var list_folder = ['bower_components/spotify-component-stable/spotify-component.html', 'bower_components/twitter-timeline-stable/static/twitter-timeline.html', 'bower_components/traffic-incidents-stable/traffic-incidents.html',
+            'bower_components/pinterest-timeline-stable/pinterest-timeline.html', 'bower_components/open-weather-stable/open-weather.html', 'bower_components/googleplus-timeline-stable/googleplus-timeline.html', 'bower_components/finance-search-stable/finance-search.html',
+            'bower_components/facebook-wall-stable/facebook-wall.html'];
+        var list_folder_demo = ['bower_components/spotify-component-stable/', 'bower_components/twitter-timeline-stable/static/', 'bower_components/traffic-incidents-stable/',
+            'bower_components/pinterest-timeline-stable/', 'bower_components/open-weather-stable/', 'bower_components/googleplus-timeline-stable/', 'bower_components/finance-search-stable/',
+            'bower_components/facebook-wall-stable/'];
         // FALTA REDDIT
         // Hay que hacer que el objeto que traemos tenga el nombre del componente, y aqui lo comprobamos si ese nombre contiene una lapabra de spoty, twitter etc..
 
         // var component = list_folder[3];
         var new_index = 'demo/index.html';
-        var component;
-        var component_demo;
-        var name_cmp;
+        var component,component_demo, name_cmp;
+
         ////////////////////////////// FOLDER OF COMPONENTS////////////////////////////////////////
         var name_comp = object_tokens.nameComp;
         if (name_comp.includes('spotify')) {
@@ -140,6 +140,7 @@ module.exports = {
 
         var folder = base_folder + component;
         var index_component = base_folder + component_demo + new_index;
+        var folder_usability = component_demo + new_index;
 
         return new Promise(function (resolve, reject) {
             function contador(max) {
@@ -167,24 +168,14 @@ module.exports = {
             child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function (error, stdout, stderr) {
                 var expression = /\d* imports \(totales \d*\)/;
                 var number_imports = stdout.match(expression);
-                // console.log(number_imports);
-                // console.log(stdout);
                 value_met.component[STRUCTURAL].value = number_imports;
                 cb();
             });
-            console.log('Métrica de usabilidad:');
-            console.log(index_component);
-
-            // acc_report.analyze(folder).then(function (result) {
-                
-            //     cb();
-
-            // }, reject);
-            console.log(folder);
+            // Metric 3: USABILITY  
             var config  = {
                 root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
                 port: '8100',
-                timeout: '10000',
+                timeout: '5000',
                 wcag: true,
                 a11y: true,
                 wcag2_level: 'AAA',
@@ -192,35 +183,21 @@ module.exports = {
                 brief:true,
                 skip:true
             }
-            var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
-            acc_report._setProgram(config);
-            acc_report.analyze_file(pinterest).then(function(result){
-                console.log(result);
-                value_met.component[USABILITY].value = result.value.value;
-                cb();
-            },reject);
-            // child_process.execFile('../metrics/polymer-security/security_analyzer', ['../components/bower_components/spotify-login/demo.html'], function (error, stdout, stderr) {
-            //    console.log(error);
-            //    console.log(stderr);
-            //    console.log(stdout);
-            //     // cb();
-            // });
-
-        //    getPort().then(port => {
-        //        var salida = child_process.execFile('../metrics/polymer-accessibility/acc', ['../metrics/polymer-accessibility/bower_components/pinterest-timeline-stable/demo/index.html', '-p', port], function (error, stdout, stderr) {
-        //            console.log(stdout);
-        //            console.log(stderr);
-        //            console.log(error);
-        //            // console.log(salida);
-        //            // value_met.component[USABILITY].value = val_usability;
-        //            // cb();
-        //        });
-        //         console.log(port);
-        //         //=> 51402 
-        //     });
-            
-
-
+            getPort().then(port_us => {
+                console.log(port_us);
+                //=> 51402 
+                var path = 'http://localhost:'+ port_us +'/' + folder_usability;
+                config.port = port_us;
+                var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
+                acc_report._setProgram(config);
+                acc_report.analyze_file(path).then(function(result){
+                    value_met.component[USABILITY].value = result.value.value;
+                    cb();
+                },reject);
+            });
+           
+            // console.log(path);
+           
         });
     }
 };
