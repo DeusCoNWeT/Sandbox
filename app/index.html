@@ -72,6 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <section data-route="home">
         <!-- <p>Esto es la vista de home</p> -->
         <my-catalogue class="border_black" on-wrong-input="_emptyObjectAttr" on-my-catalogue-click="_nameComp"></my-catalogue>
+
         <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
         <div id="content">
           
@@ -88,8 +89,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- <my-catalogue></my-catalogue> -->
   </template>
 
+  
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
   <!-- endbuild-->
 </body>
 
