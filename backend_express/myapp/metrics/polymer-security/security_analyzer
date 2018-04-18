@@ -11,9 +11,9 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // CONSTANTS
 var TEST_FILE;
-var CHORME_CONFIG_FILE = './extension/scripts/config.json';
+var CHORME_CONFIG_FILE =  __dirname + '/extension/scripts/config.json';
 var EXPERIMENT_ID = new Date().getTime();
-var EXPERIMENT_POST = "https://centauro.ls.fi.upm.es:4444/security/experiment";
+var EXPERIMENT_POST = "https://centauro.ls.etsiinf.upm.es:4444/security/experiment";
 
 // PROGRAM SETUP
 program
