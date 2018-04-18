@@ -2,6 +2,7 @@ var wcc_report = require('../metrics/polymer-complexity/src/Report');
 var acc_report = require('../metrics/polymer-accessibility/src/Report');
 // var acc_report = require('../metrics/polymer-accesibility/src/Report')
 // USING CHILD_PROCESS (for execute bash)
+var https = require("https");
 var child_process = require('child_process');
 var path = require('path');
 var getPort = require('get-port');
@@ -92,7 +93,7 @@ module.exports = {
             'bower_components/facebook-wall-stable/facebook-wall.html', 'bower_components/reddit-timeline-stable/reddit-timeline.html'];
         var list_folder_demo = ['bower_components/spotify-component-stable/', 'bower_components/twitter-timeline-stable/static/', 'bower_components/traffic-incidents-stable/',
             'bower_components/pinterest-timeline-stable/', 'bower_components/open-weather-stable/', 'bower_components/googleplus-timeline-stable/', 'bower_components/finance-search-stable/',
-            'bower_components/facebook-wall-stable/','bower_components/reddit-timeline-stable/'];
+            'bower_components/facebook-wall-stable/', 'bower_components/reddit-timeline-stable/'];
         // FALTA REDDIT
         // Hay que hacer que el objeto que traemos tenga el nombre del componente, y aqui lo comprobamos si ese nombre contiene una lapabra de spoty, twitter etc..
 
@@ -135,7 +136,7 @@ module.exports = {
         } else if (name_comp.includes('reddit')) {
             component = list_folder[REDDIT];
             component_demo = list_folder_demo[REDDIT];
-            name_cmp = 'Reddit'; 
+            name_cmp = 'Reddit';
         } else {
             component = list_folder[TRAFFIC];
             component_demo = list_folder_demo[TRAFFIC];
@@ -202,7 +203,12 @@ module.exports = {
             });
 
             // console.log(path);
-
+            // child_process.execFile('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
+            //     console.log(error);
+            //     console.log(stderr);
+            //     console.log(stdout);
+            //     // cb();
+            // });
         });
     }
 };

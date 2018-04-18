@@ -10,6 +10,7 @@ var assert = require('assert')
 var index = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/component_router')
+var sec = require('./routes/security_api')
 
 
 var app = express();
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, '../../app')));
 app.use('/',index);
 app.use('/users', users);
 app.use('/api/componentes', api);
+app.use('/api/security',sec);
 //mas rutas
 app.use('*', function(req, res){
   res.status(404).send({error: "Url doesnt exist"})

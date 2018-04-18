@@ -39,7 +39,7 @@ function sendDataToMixpanel(results, params, domain) {
   if (check_url) {
     console.log("TODO: Se deben guardar los datos", results, callback_url,SCOPE_MAPPING.experiment_id);
     var xhr = new XMLHttpRequest();
-    var url = "https://centauro.ls.fi.upm.es:4444/security";
+    var url = "https://centauro.ls.etsiinf.upm.es:4444/security";
     var penalization = SCOPE_MAPPING.penalization || 1.5;
     var max_value = SCOPE_MAPPING.max_value || 5;
     var value = max_value - (results.extra_reads/results.max_reads) - (results.extra_writes/results.max_writes) * penalization;
@@ -55,6 +55,23 @@ function sendDataToMixpanel(results, params, domain) {
     xhr.send(JSON.stringify(data));
 
   }
+  // Post A mi server
+  console.log("TODO: Se deben guardar los datos", results, callback_url,SCOPE_MAPPING.experiment_id);
+  var xhr = new XMLHttpRequest();
+  var url = "https://localhost:3000/api/security";
+  var penalization = SCOPE_MAPPING.penalization || 1.5;
+  var max_value = SCOPE_MAPPING.max_value || 5;
+  var value = max_value - (results.extra_reads/results.max_reads) - (results.extra_writes/results.max_writes) * penalization;
+  var data = {
+    results: results,
+    value: value,
+    domain: match_url,
+    experiment_id: SCOPE_MAPPING.experiment_id
+  };
+  if (SCOPE_MAPPING.mixpanelToken) data.mixpanelToken =SCOPE_MAPPING.mixpanelToken;
+  xhr.open("POST",url);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify(data));
 }
 
 // Callback from any request from any filtered url.
