@@ -29,6 +29,12 @@ var handler = {
         }, function (err) { 
             res.send(err).status(404);
         });;
+    },
+    postSecurity: function(req, res){
+        if(!req.body){
+            console.log('Object missing')
+        }
+        console.log(req.body);
     }
 }
 
