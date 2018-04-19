@@ -1,5 +1,6 @@
 var wcc_report = require('../metrics/polymer-complexity/src/Report');
 var acc_report = require('../metrics/polymer-accessibility/src/Report');
+var sec_report = require('../metrics/polymer-security/scripts/Report');
 // var acc_report = require('../metrics/polymer-accesibility/src/Report')
 // USING CHILD_PROCESS (for execute bash)
 var https = require("https");
@@ -201,7 +202,6 @@ module.exports = {
                     cb();
                 }, reject);
             });
-
             // console.log(path);
             // child_process.execFile('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
             //     console.log(error);

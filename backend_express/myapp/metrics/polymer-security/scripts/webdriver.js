@@ -20,6 +20,9 @@ var WebDriver = function () {
     return this.driver.quit();
   };
   
+  WebDriver.prototype.createNewExtension = function(){
+    
+  }
   return WebDriver;
 };
 
