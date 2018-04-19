@@ -1,14 +1,16 @@
 var wcc_report = require('../metrics/polymer-complexity/src/Report');
 var acc_report = require('../metrics/polymer-accessibility/src/Report');
+var sec_report = require('../metrics/polymer-security/scripts/Report');
 // var acc_report = require('../metrics/polymer-accesibility/src/Report')
 // USING CHILD_PROCESS (for execute bash)
+var https = require("https");
 var child_process = require('child_process');
 var path = require('path');
 var getPort = require('get-port');
 var db = require('./mydb').getInstance();
 var mongoose = require('mongoose');
 var LATENCY = 0, STRUCTURAL = 1, COMPLEXITY = 2, MAINTENACE = 3, ACCURACY = 4, USABILITY = 5, SECURITY = 6, REFRESH = 7;
-var SPOTIFY = 0, TWITTER = 1, TRAFFIC = 2, PINTEREST = 3, WEATHER = 4, GOOGLE_PLUS = 5, FINANCE_SEARCH = 6, FACEBOOK = 7;
+var SPOTIFY = 0, TWITTER = 1, TRAFFIC = 2, PINTEREST = 3, WEATHER = 4, GOOGLE_PLUS = 5, FINANCE_SEARCH = 6, FACEBOOK = 7, REDDIT = 8;
 var MAX_CONT = 3;
 
 module.exports = {
@@ -89,16 +91,16 @@ module.exports = {
         //var component = 'twitter-timeline-stable/static/twitter-timeline.html';
         var list_folder = ['bower_components/spotify-component-stable/spotify-component.html', 'bower_components/twitter-timeline-stable/static/twitter-timeline.html', 'bower_components/traffic-incidents-stable/traffic-incidents.html',
             'bower_components/pinterest-timeline-stable/pinterest-timeline.html', 'bower_components/open-weather-stable/open-weather.html', 'bower_components/googleplus-timeline-stable/googleplus-timeline.html', 'bower_components/finance-search-stable/finance-search.html',
-            'bower_components/facebook-wall-stable/facebook-wall.html'];
+            'bower_components/facebook-wall-stable/facebook-wall.html', 'bower_components/reddit-timeline-stable/reddit-timeline.html'];
         var list_folder_demo = ['bower_components/spotify-component-stable/', 'bower_components/twitter-timeline-stable/static/', 'bower_components/traffic-incidents-stable/',
             'bower_components/pinterest-timeline-stable/', 'bower_components/open-weather-stable/', 'bower_components/googleplus-timeline-stable/', 'bower_components/finance-search-stable/',
-            'bower_components/facebook-wall-stable/'];
+            'bower_components/facebook-wall-stable/', 'bower_components/reddit-timeline-stable/'];
         // FALTA REDDIT
         // Hay que hacer que el objeto que traemos tenga el nombre del componente, y aqui lo comprobamos si ese nombre contiene una lapabra de spoty, twitter etc..
 
         // var component = list_folder[3];
         var new_index = 'demo/index.html';
-        var component,component_demo, name_cmp;
+        var component, component_demo, name_cmp;
 
         ////////////////////////////// FOLDER OF COMPONENTS////////////////////////////////////////
         var name_comp = object_tokens.nameComp;
@@ -132,6 +134,10 @@ module.exports = {
             component = list_folder[PINTEREST];
             component_demo = list_folder_demo[PINTEREST];
             name_cmp = 'Pinterest';
+        } else if (name_comp.includes('reddit')) {
+            component = list_folder[REDDIT];
+            component_demo = list_folder_demo[REDDIT];
+            name_cmp = 'Reddit';
         } else {
             component = list_folder[TRAFFIC];
             component_demo = list_folder_demo[TRAFFIC];
@@ -172,7 +178,7 @@ module.exports = {
                 cb();
             });
             // Metric 3: USABILITY  
-            var config  = {
+            var config = {
                 root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
                 port: '8100',
                 timeout: '5000',
@@ -180,24 +186,29 @@ module.exports = {
                 a11y: true,
                 wcag2_level: 'AAA',
                 log_level: 'OFF',
-                brief:true,
-                skip:true
+                brief: true,
+                skip: true
             }
             getPort().then(port_us => {
                 console.log(port_us);
                 //=> 51402 
-                var path = 'http://localhost:'+ port_us +'/' + folder_usability;
+                console.log(folder_usability);
+                var path = 'http://localhost:' + port_us + '/' + folder_usability;
                 config.port = port_us;
-                var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
+                // var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
                 acc_report._setProgram(config);
-                acc_report.analyze_file(path).then(function(result){
+                acc_report.analyze_file(path).then(function (result) {
                     value_met.component[USABILITY].value = result.value.value;
                     cb();
-                },reject);
+                }, reject);
             });
-           
             // console.log(path);
-           
+            // child_process.execFile('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
+            //     console.log(error);
+            //     console.log(stderr);
+            //     console.log(stdout);
+            //     // cb();
+            // });
         });
     }
 };
