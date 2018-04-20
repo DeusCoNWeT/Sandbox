@@ -18,6 +18,9 @@
                 height: 100%;
                 width: 40%;
                 background-color: white;
+                position: relative;
+                display: flex;
+                flex-direction: column;
             }
 
             h1,
@@ -69,9 +72,9 @@
                 margin-left: 20px;
             }
 
-            .container>paper-button {
+            .container > paper-button {
                 width: 250px;
-                margin: 5px 0px;
+                margin: 5px 0;
             }
 
             .checkboxList {
@@ -81,7 +84,6 @@
             #button_analize {
                 margin: 20px 0px;
             }
-
             .explicacion {
                 position: relative;
                 width: 50%;
@@ -90,9 +92,19 @@
                 padding: 5px;
                 background-color: #eee;
                 box-shadow: 2px 2px 2px 5px;
-                margin: 100px;
+                margin-top:50px;
             }
-
+            .help{
+                color:black;
+                text-decoration: none !important;
+                text-align: center;
+                height: 100%;
+                width: 100%;
+            }
+            .help:hover{
+                color:white;
+                text-decoration: none;
+            }
             .title{
                 /* text-decoration: underline; */
                 font-size: 25px;
@@ -106,7 +118,10 @@
                 background-color: #FF5F5F;
                 color :white;
             }
-
+            .explicacion:hover{
+                background-color: #FF5F5F;
+                color:white;
+            }
             @media (min-width: 2000px) {
                 h1,
                 h2 {
@@ -143,7 +158,7 @@
 
             }
         </style>
-        <nav id="left-nav">
+         <nav id="left-nav">
             <paper-tabs selected="{{selected}}">
                 <paper-tab>Catálogo </paper-tab>
                 <paper-tab>Analizar calidad</paper-tab>
@@ -152,18 +167,23 @@
                 </paper-tab>
             </paper-tabs>
         </nav>
-        <neon-animated-pages id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
+        
+        <neon-animated-pages class="flex" id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
             <neon-animatable>
                 <div>
-                    <p class="title">Catálogo de componentes</p>
-                    <div class=" botones_comp container vertical layout center">
+                     <p class="title">Catálogo de componentes</p>
+                    <div class="container vertical layout center">
                         <template is="dom-repeat" items="{{social_network}}">
                             <paper-button raised class="custom indigo" on-click="send_ajax" data-component$="{{item.id_comp}}">Componente {{item.name}}</paper-checkbox>
                         </template>
 
                         <div class="explicacion center">
-                            <p class="ayuda">Al pulsar en un componente se te pediran los atributos necesarios para hacerlo funcionar</p>
+                            <a target="_blank" href="/instructions"  class ="help"id="inst">                              
+                                    <p>Para la comporbación de la calidad de sus componentes debe de realizar los siguientes pasos</p>
+                                <!-- <p class="ayuda">Al pulsar en un componente se te pediran los atributos necesarios para hacerlo funcionar</p> -->
+                            </a>
                         </div>
+                    
                     </div>
                 </div>
                 <iron-ajax id="request_attr" url="/api/componentes/{{component_selected}}" handle-as="json" on-response="_showform"></iron-ajax>
@@ -185,7 +205,7 @@
                 <p class="title">Sube tu componente y analiza su calidad</p>
                 <div class="upload vertical center layout">
                     <label for="file">Upload folder</label>
-                    <!-- <input type="file" id="ctrl" webkitdirectory directory multiple/> -->
+                     <!-- <input type="file" id="ctrl" webkitdirectory directory multiple/> -->
                     <input type="file" name="pic" id="pic" onchange="javascript:leer()" webkitdirectory directory multiple/>
                     <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
                         Analizar

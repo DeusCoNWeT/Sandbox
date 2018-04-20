@@ -33,7 +33,7 @@
             .defect {
                 text-align: center;
                 font-size: 30px;
-                padding-top: 80px;
+                padding-top: 135px;
                 line-height: 45px;
             }
 
@@ -53,7 +53,7 @@
             .encabezado {
                 text-align: center;
                 font-size: 25px;
-                padding: 9px 26px;
+                padding: 9px 26px;              
             }
             .encabezado1 {
                 font-size: 25px;
@@ -61,7 +61,9 @@
             }
         </style>
         <div class="contenedor vertical layout">
-            <p class="encabezado" name$="{{data.name}}">Introduce los atributos necesarios del componente {{getName}}</p>
+            <template is="dom-if" if="{{visible}}">
+                <p class="encabezado"  name$="{{data.name}}">Introduce los atributos necesarios del componente {{getName}}</p>
+            </template>
             <template is="dom-if" if="{{!visible}}">
                 <p class="defect">No se ha elegido aún ningun componente, seleccione uno de los del catálogo o suba uno para calcular su calidad</p>
             </template>
