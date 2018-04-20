@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <dom-module id="quality-component">
     <template>
-        <style is="custom-style" include="iron-flex">
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
             :host {
                 display: inline-block;
                 height: max-content;
@@ -33,11 +33,43 @@
                 font-size: 25px;
                 padding: 8px 26px;
             }
-            .container{
+
+            .container {
                 height: 100%;
                 width: 100%;
             }
-            .tabla{
+
+            .tabla {
+                padding: 8px 26px;
+            }
+
+            .ec-stars-wrapper {
+                font-size:25px;
+                display: inline-block;
+                padding: 25px 30px 0;
+            }
+
+            .ec-stars-wrapper a {
+                text-decoration: none;
+                display: inline-block;
+                /* Volver a dar tamaño al texto */
+                font-size: 50px;
+                font-size: 3rem;
+
+                color: #888;
+            }
+
+            .ec-stars-wrapper:hover a {
+                color:#FF5F5F;
+                /* color: rgb(39, 130, 228); */
+            }
+
+            .ec-stars-wrapper>a:hover~a {
+                color: #888;
+            }
+            .star{
+                text-align: center;
+                font-size: 25px;
                 padding: 8px 26px;
             }
         </style>
@@ -60,11 +92,19 @@
                     </tr>
                 </tbody>
             </table>
-            <div>
-                <p class="tabla">AQUÍ IRÁ LA NOTA TOTAL DE LOS COMPONENTES CON ESTRELLAS ETC.</p>
+            <div class="star horizontal layout">
+                <p >La valoración de su componente es:</p>
+                <div class="ec-stars-wrapper">
+                    <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                    <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                    <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                    <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                    <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+                </div>
+                <!-- <p class="tabla">AQUÍ IRÁ LA NOTA TOTAL DE LOS COMPONENTES CON ESTRELLAS ETC.</p> -->
             </div>
-                        </template>
-        </div>
+    </template>
+    </div>
     <script>
         Polymer({
             is: 'quality-component',
