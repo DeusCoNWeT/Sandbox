@@ -6,7 +6,7 @@ var program = require('commander');
 var exec = require('child_process').exec;
 var request = require('request');
 var mixpanel = require('mixpanel');
-var http = require('http');
+var request = require("request");
 
 // Avoid SSL errors
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -50,25 +50,41 @@ module.exports = exports = function () {
                 var url = 'http://' + DEFAULT_CONF.host + ':' + server.port + '/' + file;
                 var opened = driver.open(url).then(function () {
                     setTimeout(function () {
-                        driver.close().then(resolve);
+                        driver.close();
                         // resolver la promesa con los datos enviados. Obtener de mixpanel.
-                        var api_key = 'cbb3b275d6c69c69b7b8855427d6f62f',
-                            api_secret = '1e465487d41098cb0e0ed0c5567666db';
+                        var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth() + 1; //January is 0!
+                        var yyyy = today.getFullYear();
 
-                        today = new Date;
-                        expireUTC = today.getTime() + 1E8;  // 1E8 is approximately a day in milliseconds
-                        params = ["from_date=2018-01-01", "to_date=2018-25-10", "api_key=" + api_key, "api_secret=" + api_secret, "expire=" + expireUTC];
-                        
+                        if (dd < 10) {
+                            dd = '0' + dd
+                        }
 
-                        var base_url =  "http://data.mixpanel.com/api/2.0/export/?";
-                        var request = base_url + params.join("&");
-                       var req = http.get(request, function(response){
-                        body = '';
-                        reponse.on("data", function(data){
-                            body += data.toString();
+                        if (mm < 10) {
+                            mm = '0' + mm
+                        }
+
+                        today = yyyy + '-' + mm + '-' + dd;
+
+                        var options = {
+                            method: 'GET',
+                            url: 'https://data.mixpanel.com/api/2.0/export/',
+                            qs: { from_date: today, to_date: today },
+                            headers:
+                                {
+                                    'cache-control': 'no-cache',
+                                    authorization: 'Basic MWU0NjU0ODdkNDEwOThjYjBlMGVkMGM1NTY3NjY2ZGI6'
+                                }
+                        };
+
+                        request(options, function (error, response, body) {
+                            if (error) throw new Error(error);
+
                             console.log(body);
-                        })
-                       });
+                            resolve(body);
+                        });
+
                     }, DEFAULT_CONF.timeout);
                 });
             }, reject);

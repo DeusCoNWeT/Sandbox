@@ -202,6 +202,9 @@ module.exports = {
                     cb();
                 }, reject);
             });
+            sec_report.runTest('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html','http://localhost:8100').then(function(result){
+                console.log(result);
+            })
             // console.log(path);
             // child_process.execFile('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
             //     console.log(error);
