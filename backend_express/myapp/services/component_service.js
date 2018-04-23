@@ -207,6 +207,7 @@ module.exports = {
             // var config_sec = {
             //     // host: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-usability',
             //     host: '/home/sandra/Documentos/Labo/Sandbox/backend_express/myapp/metrics/polymer-usability',
+            //     host: '/home/rober/rober/Sandbox/backend_express/myapp/metrics/polymer-usability',
             //     timeout: '2000'              
             // }
             // sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){

@@ -18,7 +18,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
   app._showquality = function (data) {
     this.$.quality_comp._showquality(data);
+    this.setLoading(false);
   }
+
+  app._loadingCb = function(){
+    this.setLoading(true);
+  }
+
+  app.setLoading = function(status){
+    this.loading = status;
+  }
+  
   app._emptyObjectAttr = function () {
     this.$.form_component._cleanObjectAttr();
   }
@@ -84,5 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.closeDrawer = function () {
     app.$.paperDrawerPanel.closeDrawer();
   };
+  
 
+  app.loading = false;
 })(document);

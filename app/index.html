@@ -76,8 +76,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
         <div id="content">
           
-          <my-tokensform class="border_black" on-response-metrics="_showquality" id="form_component"></my-tokensform>
-          <quality-component id="quality_comp"></quality-component>
+          <my-tokensform class="border_black"  on-loading-metrics="_loadingCb" on-response-metrics="_showquality" id="form_component"></my-tokensform>
+          <quality-component loading="{{loading}}"id="quality_comp"></quality-component>
         </div>
       </section>
       <section data-route="instructions">
