@@ -73,10 +73,25 @@
                 font-size: 25px;
                 padding: 8px 26px;
             }
+            .load{
+                font-size: 40px;
+            }
+            img{
+                width: 50%;
+                height: 50%;
+            }
         </style>
         <div class="container">
-            <span class="encabezado horizontal layout center" name$="{{data.name}}">La calidad de su componente {{getName}} es:</span>
-            <!-- <p id="name" name$="{{data.name}}">You are checking the quality of {{getName}}</p> -->
+            <template is="dom-if" if="{{loading}}">
+            <div class="vertical layout center-center" id="loadingGif">
+                <img src="https://m.popkey.co/163fce/Llgbv_s-200x150.gif">
+                <p class="load" >Loading...</p>
+            </div>
+        </template>
+            <template is="dom-if" if="{{visible}}">
+                <span class="encabezado horizontal layout center" name$="{{data.name}}">La calidad de su componente {{getName}} es:</span>
+                <!-- <p id="name" name$="{{data.name}}">You are checking the quality of {{getName}}</p> -->
+            </template>
             <table>
                 <thead>
                     <tr>
@@ -119,6 +134,10 @@
                     type: String
                 },
                 visible: {
+                    type: Boolean,
+                    value: false
+                },
+                loading: {
                     type: Boolean,
                     value: false
                 }
