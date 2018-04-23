@@ -1,6 +1,6 @@
 var wcc_report = require('../metrics/polymer-complexity/src/Report');
 var acc_report = require('../metrics/polymer-accessibility/src/Report');
-var sec_report = require('../metrics/polymer-security/scripts/Report');
+// var sec_report = require('../metrics/polymer-security/scripts/Report');
 // var acc_report = require('../metrics/polymer-accesibility/src/Report')
 // USING CHILD_PROCESS (for execute bash)
 var https = require("https");
@@ -209,6 +209,15 @@ module.exports = {
             //     console.log(stdout);
             //     // cb();
             // });
+
+            // METRIC 4: Accuracy
+            // child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['twitter', 'master'], function (error, stdout, stderr) {
+            // //var expression = /\d* imports \(totales \d*\)/;
+            // //var number_imports = stdout.match(expression);
+            // //value_met.component[STRUCTURAL].value = number_imports;
+            // //cb();
+            // console.log(stdout);
+            //});
         });
     }
 };

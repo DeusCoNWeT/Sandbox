@@ -4,7 +4,7 @@
   var serveStatic = require('serve-static');
   var PORT = 3000;
   var HOST = '0.0.0.0';
-  var BASE = __dirname + '/..';
+  var BASE = __dirname;
 
   var Serv = function () {
 
