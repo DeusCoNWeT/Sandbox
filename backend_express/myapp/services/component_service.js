@@ -145,8 +145,11 @@ module.exports = {
         }
 
         var folder = base_folder + component;
+        
         var index_component = base_folder + component_demo + new_index;
+        
         var folder_usability = component_demo + new_index;
+        
 
         return new Promise(function (resolve, reject) {
             function contador(max) {
@@ -179,7 +182,8 @@ module.exports = {
             });
             // Metric 3: USABILITY  
             var config = {
-                root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
+                // root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
+                root: '/home/rober/rober/Sandbox/backend_express/myapp/metrics/polymer-accessibility',
                 port: '8100',
                 timeout: '5000',
                 wcag: true,
@@ -190,9 +194,7 @@ module.exports = {
                 skip: true
             }
             getPort().then(port_us => {
-                console.log(port_us);
-                //=> 51402 
-                console.log(folder_usability);
+                // Get port random available
                 var path = 'http://localhost:' + port_us + '/' + folder_usability;
                 config.port = port_us;
                 // var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
@@ -202,11 +204,24 @@ module.exports = {
                     cb();
                 }, reject);
             });
+<<<<<<< HEAD
+            // sec_report.runTest('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html','http://localhost:8100').then(function(result){
+            //     console.log(result);
+            // });
+=======
+            var config_sec = {
+                host: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-usability',
+                timeout: '2000'              
+            }
+            sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
+                console.log(result);
+            });
+>>>>>>> 3e92b5c6aee6326c3c9f6862bdccd4181deb2c8b
             // console.log(path);
-            // child_process.execFile('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
+            // child_process.execFil e('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
             //     console.log(error);
             //     console.log(stderr);
-            //     console.log(stdout);
+            //     console.log(st dout);
             //     // cb();
             // });
 
