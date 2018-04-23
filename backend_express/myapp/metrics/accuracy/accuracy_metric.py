@@ -30,7 +30,7 @@ from requests.auth import HTTPBasicAuth
 import yaml
 
 path = os.path.dirname(os.path.abspath(__file__))
-output_file2 = os.path.join(path, "../Componentes/config.yaml") 
+output_file2 = os.path.join(path, "../config.yaml") 
 configFile = open(output_file2,"r")
 yaml_config = yaml.load(configFile)
 
@@ -96,7 +96,7 @@ if social_network in network_list:
 
         if version in version_list:
             if(version=="master"):
-                webbrowser.open_new( url_base_local + "/twitter-timeline/static/TwitterCompletitud.html")
+                webbrowser.open_new( url_base_local + "/twitter-timeline-stable/static/TwitterCompletitud.html")
                 sleep(3)
             elif(version=="accuracy"):
                 webbrowser.open_new( url_base_local + "/Accuracy/twitter-timeline/static/TwitterCompletitudAccuracy.html")
@@ -538,7 +538,7 @@ if social_network in network_list:
         #--DATOS WEATHER API--#
         if version in version_list:
             if(version=="master"):
-                webbrowser.open_new(url_base_local + "/open-weather/demo/WeatherCompletitud.html")
+                webbrowser.open_new(url_base_local + "/open-weather-stable/demo/WeatherCompletitud.html")
             # elif(version=="accuracy"):
             #     webbrowser.open_new(url_base_local + "/Accuracy/open-weather-accuracy/demo/WeatherCompletitudAccuracy.html")
         
@@ -653,6 +653,7 @@ if social_network in network_list:
                     contadorFallos+=1                            
         
             contadorFallos=contadorFallos / (len(newlist)*4.0)
+            print "contadorFallos " + str(contadorFallos)
             mpWeather.track(contadorFallos, "Fallos totales " + version, {"numero fallos": contadorFallos})
 
 ############################################

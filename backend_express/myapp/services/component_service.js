@@ -183,7 +183,7 @@ module.exports = {
             // Metric 3: USABILITY  
             var config = {
                 // root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
-                root: '/home/rober/rober/Sandbox/backend_express/myapp/metrics/polymer-accessibility',
+                root: '/home/sandra/Documentos/Labo/Sandbox/backend_express/myapp/metrics/polymer-accessibility',
                 port: '8100',
                 timeout: '5000',
                 wcag: true,
@@ -204,19 +204,14 @@ module.exports = {
                     cb();
                 }, reject);
             });
-<<<<<<< HEAD
-            // sec_report.runTest('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html','http://localhost:8100').then(function(result){
+            // var config_sec = {
+            //     // host: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-usability',
+            //     host: '/home/sandra/Documentos/Labo/Sandbox/backend_express/myapp/metrics/polymer-usability',
+            //     timeout: '2000'              
+            // }
+            // sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
             //     console.log(result);
             // });
-=======
-            var config_sec = {
-                host: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-usability',
-                timeout: '2000'              
-            }
-            sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
-                console.log(result);
-            });
->>>>>>> 3e92b5c6aee6326c3c9f6862bdccd4181deb2c8b
             // console.log(path);
             // child_process.execFil e('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
             //     console.log(error);
@@ -225,14 +220,16 @@ module.exports = {
             //     // cb();
             // });
 
-            // METRIC 4: Accuracy
-            // child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['twitter', 'master'], function (error, stdout, stderr) {
-            // //var expression = /\d* imports \(totales \d*\)/;
-            // //var number_imports = stdout.match(expression);
-            // //value_met.component[STRUCTURAL].value = number_imports;
-            // //cb();
-            // console.log(stdout);
-            //});
+            // METRIC 4: Accuracy          
+          child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['open-weather', 'master'], function (error, stdout, stderr) {
+            var contadorFallos = /contadorFallos (.*)/;
+            var fallos_accuracy = stdout.match(contadorFallos);
+            console.log("fallos contador:")
+            console.log (fallos_accuracy[0]);
+            value_met.component[ACCURACY].value = fallos_accuracy[0];
+            cb();
+            console.log(stdout);
+            });
         });
     }
 };
