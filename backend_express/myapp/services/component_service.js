@@ -204,19 +204,13 @@ module.exports = {
                     cb();
                 }, reject);
             });
-<<<<<<< HEAD
-            // sec_report.runTest('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html','http://localhost:8100').then(function(result){
+            // var config_sec = {
+            //     host: '/home/rober/rober/Sandbox/backend_express/myapp/metrics/polymer-usability',
+            //     timeout: '2000'              
+            // }
+            // sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
             //     console.log(result);
             // });
-=======
-            var config_sec = {
-                host: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-usability',
-                timeout: '2000'              
-            }
-            sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
-                console.log(result);
-            });
->>>>>>> 3e92b5c6aee6326c3c9f6862bdccd4181deb2c8b
             // console.log(path);
             // child_process.execFil e('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
             //     console.log(error);
