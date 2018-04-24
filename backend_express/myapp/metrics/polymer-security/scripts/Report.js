@@ -54,19 +54,15 @@ module.exports = exports = function () {
                         // resolver la promesa con los datos enviados. Obtener de mixpanel.
                         var today = new Date();
                         var dd = today.getDate();
-                        var mm = today.getMonth() + 1; //January is 0!
+                        var mm = today.getMonth() + 1;
                         var yyyy = today.getFullYear();
-
                         if (dd < 10) {
                             dd = '0' + dd
                         }
-
                         if (mm < 10) {
                             mm = '0' + mm
                         }
-
                         today = yyyy + '-' + mm + '-' + dd;
-
                         var options = {
                             method: 'GET',
                             url: 'https://data.mixpanel.com/api/2.0/export/',
@@ -81,8 +77,15 @@ module.exports = exports = function () {
                         request(options, function (error, response, body) {
                             if (error) throw new Error(error);
 
-                            console.log(body);
-                            resolve(body);
+                            // console.log(body);
+                            var data_split = body.split('\n');
+                            // console.log(data_split);
+                            var last_position_array = data_split.length;
+                            var data_json = JSON.parse(data_split[last_position_array-1]);
+                            // console.log(data_json);
+                            var value_sec = data_json.properties.value;
+                            console.log(value_sec);
+                            resolve(value_sec);
                         });
 
                     }, DEFAULT_CONF.timeout);

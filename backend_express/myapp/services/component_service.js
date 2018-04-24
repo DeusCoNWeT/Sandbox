@@ -72,7 +72,7 @@ module.exports = {
                 },
                 {
                     name: "security",
-                    value: 45.2
+                    value: ""
                 },
                 {
                     name: "refresh",
@@ -86,9 +86,6 @@ module.exports = {
 
         var base_folder = path.join(__dirname, '../components/');
         var base_folder_usability = path.join(__dirname, '../metrics/polymer-accessibility/');
-        //Tenemos que tener en la respuesta el nombre del componente para saber donde entrar en bower components
-        //var component = 'spotify-component-stable/spotify-component.html';
-        //var component = 'twitter-timeline-stable/static/twitter-timeline.html';
         var list_folder = ['bower_components/spotify-component-stable/spotify-component.html', 'bower_components/twitter-timeline-stable/static/twitter-timeline.html', 'bower_components/traffic-incidents-stable/traffic-incidents.html',
             'bower_components/pinterest-timeline-stable/pinterest-timeline.html', 'bower_components/open-weather-stable/open-weather.html', 'bower_components/googleplus-timeline-stable/googleplus-timeline.html', 'bower_components/finance-search-stable/finance-search.html',
             'bower_components/facebook-wall-stable/facebook-wall.html', 'bower_components/reddit-timeline-stable/reddit-timeline.html'];
@@ -161,7 +158,7 @@ module.exports = {
             }
             var cb = contador(MAX_CONT);
 
-            // METRIC 1: COMPLEXITY y MANTENIBILIDAD
+            // METRIC 1: COMPLEXITY & MANTENIBILIDAD
             wcc_report.analyze(folder).then(function (result) {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
                 var val_maintenance = result.js[0].complexity.maintainability;
@@ -200,20 +197,22 @@ module.exports = {
                     cb();
                 }, reject);
             });
-            var config_sec = {
-                host: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-usability',
-                timeout: '2000'              
-            }
-            sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
-                console.log(result);
+            // Metric 4: SECURITY
+
+            getPort().then(port_us => {
+                var config_sec = {
+                    host: '0.0.0.0',
+                    port: port_us   
+                }
+                sec_report.generateReport('bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
+                    value_met.component[SECURITY].value = result;
+                    // cb();
+                    // console.log(result);
+                });
             });
-            // console.log(path);
-            // child_process.execFil e('../metrics/polymer-security/security-analyzer', ['bower_components/spotify-login-stable/demo.html'], function (error, stdout, stderr) {
-            //     console.log(error);
-            //     console.log(stderr);
-            //     console.log(st dout);
-            //     // cb();
-            // });
+
+
+            
         });
     }
 };
