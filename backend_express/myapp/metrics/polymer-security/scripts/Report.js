@@ -7,6 +7,7 @@ var exec = require('child_process').exec;
 var request = require('request');
 var mixpanel = require('mixpanel');
 var request = require("request");
+var sleep = require("sleep");
 
 // Avoid SSL errors
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -51,6 +52,7 @@ module.exports = exports = function () {
                 var opened = driver.open(url).then(function () {
                     setTimeout(function () {
                         driver.close();
+                        // sleep.sleep(10);
                         // resolver la promesa con los datos enviados. Obtener de mixpanel.
                         var today = new Date();
                         var dd = today.getDate();
@@ -82,10 +84,13 @@ module.exports = exports = function () {
                             // console.log(data_split);
                             var last_position_array = data_split.length;
                             var data_json = JSON.parse(data_split[last_position_array-1]);
-                            // console.log(data_json);
-                            var value_sec = data_json.properties.value;
-                            console.log(value_sec);
-                            resolve(value_sec);
+                             console.log(data_json);
+                            // if(data_json.properties.experiment_id === EXPERIMENT_ID){
+                                var value_sec = data_json.properties.value;
+                                console.log(value_sec);
+                                resolve(value_sec);
+                            // }
+                            // reject();
                         });
 
                     }, DEFAULT_CONF.timeout);
