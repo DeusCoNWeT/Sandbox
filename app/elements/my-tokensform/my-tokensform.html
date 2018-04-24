@@ -121,6 +121,11 @@
                 change: {
                     type: Boolean,
                     value: false
+                },
+                loading: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true
                 }
             },
             _getParams: function (getName, prop_object) {
@@ -160,10 +165,12 @@
             },
             _analize: function (evt) {
                 // this.$.button_analyze.classList.add('disabled');
+                this.fire('loading-metrics', {});
                 this.$.send_attr.generateRequest();
                 this.set('prop_object', {});
             },
             handleResponse: function (evt) {
+                this.loading = false;
                 console.log(evt.detail.response);
                 this.fire("response-metrics", { data: evt.detail.response });
             }

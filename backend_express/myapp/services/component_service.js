@@ -1,6 +1,6 @@
 var wcc_report = require('../metrics/polymer-complexity/src/Report');
 var acc_report = require('../metrics/polymer-accessibility/src/Report');
-var sec_report = require('../metrics/polymer-security/scripts/Report');
+// var sec_report = require('../metrics/polymer-security/scripts/Report');
 // var acc_report = require('../metrics/polymer-accesibility/src/Report')
 // USING CHILD_PROCESS (for execute bash)
 var https = require("https");
@@ -142,8 +142,11 @@ module.exports = {
         }
 
         var folder = base_folder + component;
+        
         var index_component = base_folder + component_demo + new_index;
+        
         var folder_usability = component_demo + new_index;
+        
 
         return new Promise(function (resolve, reject) {
             function contador(max) {
@@ -177,6 +180,7 @@ module.exports = {
             // Metric 3: USABILITY  
             var config = {
                 root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
+                // root: '/home/sandra/Documentos/Labo/Sandbox/backend_express/myapp/metrics/polymer-accessibility',
                 port: '8100',
                 timeout: '5000',
                 wcag: true,
