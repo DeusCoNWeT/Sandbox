@@ -142,11 +142,8 @@ module.exports = {
         }
 
         var folder = base_folder + component;
-        
         var index_component = base_folder + component_demo + new_index;
-        
         var folder_usability = component_demo + new_index;
-        
 
         return new Promise(function (resolve, reject) {
             function contador(max) {
@@ -180,7 +177,6 @@ module.exports = {
             // Metric 3: USABILITY  
             var config = {
                 root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
-                // root: '/home/sandra/Documentos/Labo/Sandbox/backend_express/myapp/metrics/polymer-accessibility',
                 port: '8100',
                 timeout: '5000',
                 wcag: true,
@@ -211,7 +207,7 @@ module.exports = {
                 sec_report.generateReport('bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
                     value_met.component[SECURITY].value = result;
                     // cb();
-                    console.log(result);
+                    // console.log(result);
                 });
             });
 
