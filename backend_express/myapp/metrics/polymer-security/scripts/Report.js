@@ -83,9 +83,12 @@ module.exports = exports = function () {
                             var last_position_array = data_split.length;
                             var data_json = JSON.parse(data_split[last_position_array-1]);
                             // console.log(data_json);
-                            var value_sec = data_json.properties.value;
-                            console.log(value_sec);
-                            resolve(value_sec);
+                            if(data_json.properties.experiment_id === EXPERIMENT_ID){
+                                var value_sec = data_json.properties.value;
+                                console.log(value_sec);
+                                resolve(value_sec);
+                            }
+                            resolve();
                         });
 
                     }, DEFAULT_CONF.timeout);
