@@ -160,7 +160,7 @@ module.exports = {
                 }
             }
             var cb = contador(MAX_CONT);
-
+            // resolve(value_met);
             // METRIC 1: COMPLEXITY & MANTENIBILIDAD
             wcc_report.analyze(folder).then(function (result) {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
@@ -203,17 +203,17 @@ module.exports = {
             });
             // Metric 4: SECURITY
 
-            getPort().then(port_us => {
-                var config_sec = {
-                    host: '0.0.0.0',
-                    port: port_us   
-                }
-                sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
-                    value_met.component[SECURITY].value = result;
-                    // cb();
-                    console.log(result);
-                });
-            });
+            // getPort().then(port_us => {
+            //     var config_sec = {
+            //         host: '0.0.0.0',
+            //         port: port_us   
+            //     }
+            //     sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
+            //         value_met.component[SECURITY].value = result;
+            //         // cb();
+            //         console.log(result);
+            //     });
+            // });
 
 
             

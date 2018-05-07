@@ -15,6 +15,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var app = document.querySelector('#app');
   app._nameComp = function (name, data) {
     this.$.form_component._showproperties(name, data);
+    // resetear la tabla
+    this.$.quality_comp.reset();
   }
   app._showquality = function (data) {
     this.$.quality_comp._showquality(data);
@@ -23,6 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app._loadingCb = function(){
     this.setLoading(true);
+    this.$.quality_comp.reset();
   }
 
   app.setLoading = function(status){
