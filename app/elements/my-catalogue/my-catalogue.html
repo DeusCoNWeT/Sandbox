@@ -170,17 +170,17 @@
         
         <neon-animated-pages class="flex" id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
             <neon-animatable>
-                <p class="title">Elige el rol de usuario para el calculo de la calidad final</p>
+                <p class="title">Elija su rol para el cálculo de la calidad final</p>
                 <div class="checklist vertical center layout">
-                    <iron-selector attr-for-selected="name" selected="no_tecnico" selected-attribute="checked" class="checkboxList vertical layout">                     
-                            <paper-checkbox class="checkboxList" name$="proveedor">Proveedor/Desarrollador de componentes</paper-checkbox>
-                            <paper-checkbox class="checkboxList" name$="integrador">Integrador de componentes</paper-checkbox>
-                            <paper-checkbox class="checkboxList" name$="tecnico">Usuario técnico</paper-checkbox>
-                            <paper-checkbox class="checkboxList" name$="no_tecnico">Usuario no técnico (por defecto)</paper-checkbox>
+                    <iron-selector attr-for-selected="name" selected="{{rol}}" selected-attribute="checked" class="checkboxList vertical layout">                     
+                            <paper-checkbox class="checkboxList" name="notecnico">Usuario no técnico (por defecto)</paper-checkbox>
+                            <paper-checkbox class="checkboxList" name="proveedor">Proveedor/Desarrollador de componentes</paper-checkbox>
+                            <paper-checkbox class="checkboxList" name="integrador">Integrador de componentes</paper-checkbox>
+                            <paper-checkbox class="checkboxList" name="tecnico">Usuario técnico</paper-checkbox>
                     </iron-selector>
-                    <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
+                    <!-- <paper-button raised class="custom indigo" id="button_analize" on-click="set_rol">
                         Aceptar
-                    </paper-button>
+                    </paper-button> -->
                 </div>
             </neon-animatable>
             <neon-animatable>
@@ -280,6 +280,11 @@
                 component_selected: {
                     type: String,
                     value: ""
+                },
+                rol: {
+                    type: String,
+                    value: "notec",
+                    notify: true
                 }
             },
             _showform: function (evt) {
@@ -292,32 +297,9 @@
                 this.set('component_selected', evt.currentTarget.getAttribute('data-component'));
                 this.$.request_attr.generateRequest();
             },
-            leer: function () {
-                var http = require('http');
-                var formidable = require('formidable');
-                var fs = require('fs');
-
-                http.createServer(function (req, res) {
-                    if (req.url == '/fileupload') {
-                        var form = new formidable.IncomingForm();
-                        form.parse(req, function (err, fields, files) {
-                            var oldpath = files.filetoupload.path;
-                            var newpath = 'C:/Users/Your Name/' + files.filetoupload.name;
-                            fs.rename(oldpath, newpath, function (err) {
-                                if (err) throw err;
-                                res.write('File uploaded and moved!');
-                                res.end();
-                            });
-                        });
-                    } else {
-                        res.writeHead(200, { 'Content-Type': 'text/html' });
-                        res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-                        res.write('<input type="file" name="filetoupload"><br>');
-                        res.write('<input type="submit">');
-                        res.write('</form>');
-                        return res.end();
-                    }
-                }).listen(8080);
+            set_rol: function(evt){
+                console.log(evt.detail.response);
+                // this.fire("rol-clicked", {rol:*** })
             }
 
         });

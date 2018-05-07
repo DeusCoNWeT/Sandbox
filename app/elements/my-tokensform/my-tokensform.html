@@ -126,6 +126,9 @@
                     type: Boolean,
                     value: false,
                     reflectToAttribute: true
+                },
+                rol: {
+                    type: String
                 }
             },
             _getParams: function (getName, prop_object) {
@@ -166,6 +169,7 @@
             _analize: function (evt) {
                 // this.$.button_analyze.classList.add('disabled');
                 this.fire('loading-metrics', {});
+                this.set('prop_object.rol', this.rol);
                 this.$.send_attr.generateRequest();
                 this.set('prop_object', {});
             },
@@ -173,7 +177,7 @@
                 this.loading = false;
                 console.log(evt.detail.response);
                 this.fire("response-metrics", { data: evt.detail.response });
-            }
+            },
         });
     </script>
 </dom-module>

@@ -82,8 +82,13 @@ module.exports = {
             ],
             name_component: ""
         }
-        //llamar al script de las metricas
+        // ROL SELECTED
+        var object_rol = object_tokens.attr;
+        var rol_selected = object_rol.rol;
+        //ESTRUCTURAL 
+        var calidad_estructural;
 
+        //Llamar al script de las metricas
         var base_folder = path.join(__dirname, '../components/');
         var base_folder_usability = path.join(__dirname, '../metrics/polymer-accessibility/');
         var list_folder = ['bower_components/spotify-component-stable/spotify-component.html', 'bower_components/twitter-timeline-stable/static/twitter-timeline.html', 'bower_components/traffic-incidents-stable/traffic-incidents.html',
@@ -171,6 +176,19 @@ module.exports = {
             child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function (error, stdout, stderr) {
                 var expression = /\d* imports \(totales \d*\)/;
                 var number_imports = stdout.match(expression);
+                if(number_imports > 0 && number_imports <= 25){
+                    calidad_estructural = 5;
+                }else if(number_imports <= 40){
+                    calidad_estructural = 4.5;
+                }else if(number_imports <= 55){
+                    calidad_estructural = 4;
+                }else if(number_imports <= 60){
+                    calidad_estructural = 3;
+                }else if(number_imports <= 70){
+                    calidad_estructural = 2;
+                }else{
+                    calidad_estructural = 1;
+                }
                 value_met.component[STRUCTURAL].value = number_imports;
                 cb();
             });
@@ -212,9 +230,21 @@ module.exports = {
             //         // console.log(result);
             //     });
             // });
-
-
-            
+            var calidad_total;
+            switch(rol_selected){
+                case "proveedor":
+                    calidad_total = 2;
+                    break;
+                case "notecnico":
+                    calidad_total = 1;
+                    break;
+                case "integrador":
+                    calidad_total = 3;
+                    break;
+                default:
+                    calidad_total = 4;
+           }
+            console.log(calidad_total);
         });
     }
 };

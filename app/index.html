@@ -71,12 +71,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </section>
       <section data-route="home">
         <!-- <p>Esto es la vista de home</p> -->
-        <my-catalogue class="border_black" on-wrong-input="_emptyObjectAttr" on-my-catalogue-click="_nameComp"></my-catalogue>
+        <my-catalogue class="border_black" rol="{{rol}}" on-wrong-input="_emptyObjectAttr" on-my-catalogue-click="_nameComp"></my-catalogue>
 
         <!-- TODO Deberia ir tu componente de contenido, en vez del div-->
         <div id="content">
-          
-          <my-tokensform class="border_black"  on-loading-metrics="_loadingCb" on-response-metrics="_showquality" id="form_component"></my-tokensform>
+        
+          <my-tokensform class="border_black" rol="{{rol}}" on-loading-metrics="_loadingCb" on-response-metrics="_showquality" id="form_component"></my-tokensform>
           <quality-component loading="{{loading}}"id="quality_comp"></quality-component>
         </div>
       </section>
@@ -92,9 +92,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
   <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
-  <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+  <!-- <script src="bower_components/jquery-ui/jquery-ui.min.js"></script> -->
   <!-- endbuild-->
 </body>
 
