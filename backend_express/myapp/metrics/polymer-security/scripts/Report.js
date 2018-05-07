@@ -7,7 +7,7 @@ var exec = require('child_process').exec;
 var request = require('request');
 var mixpanel = require('mixpanel');
 var request = require("request");
-var sleep = require("sleep");
+// var sleep = require("sleep");
 
 // Avoid SSL errors
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -84,13 +84,10 @@ module.exports = exports = function () {
                             // console.log(data_split);
                             var last_position_array = data_split.length;
                             var data_json = JSON.parse(data_split[last_position_array-1]);
-                             console.log(data_json);
-                            // if(data_json.properties.experiment_id === EXPERIMENT_ID){
-                                var value_sec = data_json.properties.value;
-                                console.log(value_sec);
-                                resolve(value_sec);
-                            // }
-                            // reject();
+                            // console.log(data_json);
+                            var value_sec = data_json.properties.value;
+                            console.log(value_sec);
+                            resolve(value_sec);
                         });
 
                     }, DEFAULT_CONF.timeout);

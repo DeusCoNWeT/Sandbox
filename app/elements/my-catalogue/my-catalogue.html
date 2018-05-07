@@ -160,8 +160,8 @@
         </style>
          <nav id="left-nav">
             <paper-tabs selected="{{selected}}">
-                <paper-tab>Catálogo </paper-tab>
-                <paper-tab>Analizar calidad</paper-tab>
+                <paper-tab>Elije tu rol </paper-tab>
+                <paper-tab>Catálogo</paper-tab>
                 <paper-tab>
                     <iron-icon icon="icons:folder"></iron-icon>
                 </paper-tab>
@@ -169,6 +169,20 @@
         </nav>
         
         <neon-animated-pages class="flex" id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
+            <neon-animatable>
+                <p class="title">Elige el rol de usuario para el calculo de la calidad final</p>
+                <div class="checklist vertical center layout">
+                    <iron-selector attr-for-selected="name" selected="no_tecnico" selected-attribute="checked" class="checkboxList vertical layout">                     
+                            <paper-checkbox class="checkboxList" name$="proveedor">Proveedor/Desarrollador de componentes</paper-checkbox>
+                            <paper-checkbox class="checkboxList" name$="integrador">Integrador de componentes</paper-checkbox>
+                            <paper-checkbox class="checkboxList" name$="tecnico">Usuario técnico</paper-checkbox>
+                            <paper-checkbox class="checkboxList" name$="no_tecnico">Usuario no técnico (por defecto)</paper-checkbox>
+                    </iron-selector>
+                    <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
+                        Aceptar
+                    </paper-button>
+                </div>
+            </neon-animatable>
             <neon-animatable>
                 <div>
                      <p class="title">Catálogo de componentes</p>
@@ -187,19 +201,6 @@
                     </div>
                 </div>
                 <iron-ajax id="request_attr" url="/api/componentes/{{component_selected}}" handle-as="json" on-response="_showform"></iron-ajax>
-            </neon-animatable>
-            <neon-animatable>
-                <p class="title">Elije un componente para analizar</p>
-                <div class="checklist vertical center layout">
-                    <iron-selector attr-for-selected="name" selected="foo" selected-attribute="checked" class="checkboxList vertical layout">
-                        <template is="dom-repeat" items="{{social_network}}">
-                            <paper-checkbox class="checkboxList" name$="{{item.name}}">{{item.name}}</paper-checkbox>
-                        </template>
-                    </iron-selector>
-                    <paper-button raised class="custom indigo" id="button_analize" on-click="_analize">
-                        Analizar
-                    </paper-button>
-                </div>
             </neon-animatable>
             <neon-animatable>
                 <p class="title">Sube tu componente y analiza su calidad</p>

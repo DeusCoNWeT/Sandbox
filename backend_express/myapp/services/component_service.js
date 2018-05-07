@@ -199,17 +199,19 @@ module.exports = {
             });
             // Metric 4: SECURITY
 
-            getPort().then(port_us => {
-                var config_sec = {
-                    host: '0.0.0.0',
-                    port: port_us   
-                }
-                sec_report.generateReport('bower_components/spotify-login-security/demo.html',config_sec).then(function(result){
-                    value_met.component[SECURITY].value = result;
-                    // cb();
-                    // console.log(result);
-                });
-            });
+            // getPort().then(port_us => {
+            //     var config_sec = {
+            //         host: '0.0.0.0',
+            //         port: port_us   
+            //     }
+            //     sec_report.generateReport('bower_components/spotify-login-security/demo.html',config_sec).then(function(result){
+            //         value_met.component[SECURITY].value = result;
+            //         console.log(result);
+            //         console.log(error);
+            //         // cb();
+            //         // console.log(result);
+            //     });
+            // });
 
 
             
