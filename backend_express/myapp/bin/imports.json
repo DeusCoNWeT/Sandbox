@@ -1,6 +1,6 @@
 {
-  "file_name": "twitter-timeline.html", 
+  "file_name": "spotify-component.html", 
   "version": "stable", 
-  "total_lines": 115, 
-  "single_imports": 25
+  "total_lines": 271, 
+  "single_imports": 34
 }

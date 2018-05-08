@@ -168,14 +168,31 @@ module.exports = {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
                 var val_maintenance = result.js[0].complexity.maintainability;
                 value_met.component[COMPLEXITY].value = val_complexity;
-                value_met.component[MAINTENACE].value = val_maintenance;
-                cb();
+                value_met.component[MAINTENACE].value = val_maintenance + "/100";
+                //Calculo sobre 5
+                var cal_complexity, cal_maintenance;
+                if(val_complexity > 0 && val_complexity < 11){
+                    cal_complexity = 5;
+                }else if(val_complexity < 21){
+                    cal_complexity = 4;
+                }else if(cal_complexity < 51){
+                    cal_complexity = 3;
+                }else {
+                    cal_complexity = 2;
+                }
 
+                cal_maintenance = (val_maintenance*5)/100;
+                // console.log(cal_maintenance);
+                // console.log(cal_complexity);
+                cb();
             }, reject);
             // METRIC 2: STRUCTURAL
             child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function (error, stdout, stderr) {
-                var expression = /\d* imports \(totales \d*\)/;
-                var number_imports = stdout.match(expression);
+                // var expression = /\d* imports \(totales \d*\)/;
+                var expression = /(\d*) imports \(totales \d*\)/;
+                var match_result = stdout.match(expression);
+                number_imports = match_result.length > 1? parseInt(match_result[1]) : 0;
+                
                 if(number_imports > 0 && number_imports <= 25){
                     calidad_estructural = 5;
                 }else if(number_imports <= 40){
@@ -189,7 +206,9 @@ module.exports = {
                 }else{
                     calidad_estructural = 1;
                 }
-                value_met.component[STRUCTURAL].value = number_imports;
+                value_met.component[STRUCTURAL].value = calidad_estructural + "/5";
+                //Calculo sobre 5
+                cal_structural = calidad_estructural;
                 cb();
             });
             // Metric 3: USABILITY  
@@ -211,7 +230,7 @@ module.exports = {
                 // var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
                 acc_report._setProgram(config);
                 acc_report.analyze_file(path).then(function (result) {
-                    value_met.component[USABILITY].value = result.value.value;
+                    value_met.component[USABILITY].value = result.value.value + "/1";
                     cb();
                 }, reject);
             });
