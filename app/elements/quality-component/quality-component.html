@@ -151,7 +151,11 @@
                 console.log(name_cmp);
                 this.value_metrics = info;
                 this.getName = name_cmp;
-            }
+            },
+            reset: function () {
+                this.set('visible', false);
+                this.set('value_metrics', []);
+            },
         });
     </script>
 </dom-module>

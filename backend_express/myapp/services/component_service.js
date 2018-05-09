@@ -249,6 +249,17 @@ module.exports = {
             //         // console.log(result);
             //     });
             // });
+            // METRIC 5: Accuracy          
+        //   child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['open-weather', 'master'], function (error, stdout, stderr) {
+        //     var contadorFallos = /contadorFallos (.*)/;
+        //     var fallos_accuracy = stdout.match(contadorFallos);
+        //     console.log(fallos_accuracy)
+        //     console.log("fallos contador:")
+        //     //console.log (fallos_accuracy[0]);
+        //    //value_met.component[ACCURACY].value = fallos_accuracy[0];
+        //     cb();
+        //     console.log(stdout);
+        //   });
             var calidad_total;
             switch(rol_selected){
                 case "proveedor":

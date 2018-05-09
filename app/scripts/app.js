@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app._showquality = function (data) {
     this.$.quality_comp._showquality(data);
     this.setLoading(false);
+    this.$.quality_comp.reset();
   }
 
   app._loadingCb = function(){
