@@ -28,12 +28,20 @@ import datetime
 import base64
 from requests.auth import HTTPBasicAuth
 import yaml
+import subprocess
+import SimpleHTTPServer
+import SocketServer
 
 path = os.path.dirname(os.path.abspath(__file__))
 output_file2 = os.path.join(path, "../config.yaml") 
 configFile = open(output_file2,"r")
 yaml_config = yaml.load(configFile)
 
+PORT = 8000
+os.system("python -m SimpleHTTPServer " + str(PORT) + " &")
+pid_server = os.popen("echo $!").read()
+
+print "pid_server: " + pid_server
 #objetos Mixpanel para las distintas redes sociales (token del project)
 mpTwitter = Mixpanel (yaml_config['mixpanelToken']['twitter'])
 mpFacebook = Mixpanel (yaml_config['mixpanelToken']['facebook'])
@@ -584,12 +592,12 @@ if social_network in network_list:
           days.append(filter(lambda x: datetime.datetime.fromtimestamp(x['dt']).strftime('%d/%m/%Y') == time.strftime("%d/%m/%Y"), lista_timeline))
           nextdate=datetime.datetime.now().date()
 
-          hayValorespixita = True
-          while hayValorespixita:
+          valoresTrue = True
+          while valoresTrue:
             nextdate += datetime.timedelta(days=1)
             values_next_day1=filter(lambda x: datetime.datetime.fromtimestamp(x['dt']).strftime('%d/%m/%Y') == nextdate.strftime("%d/%m/%Y"), lista_timeline)
             if len(values_next_day1) == 0:
-                hayValorespixita = False
+                valoresTrue = False
             else: 
                 days.append(values_next_day1)
           
@@ -652,6 +660,7 @@ if social_network in network_list:
                     print index, " falla en posicion temp_max: ", api_response[index]['temp_max'], weather['temp_max']
                     contadorFallos+=1                            
         
+            print len(newlist)
             contadorFallos=contadorFallos / (len(newlist)*4.0)
             print "contadorFallos " + str(contadorFallos)
             mpWeather.track(contadorFallos, "Fallos totales " + version, {"numero fallos": contadorFallos})
@@ -836,5 +845,6 @@ if social_network in network_list:
         # {}: Obligatorio, []: opcional
         print "Usage: completitud.py {twitter|facebook|instagram|github [facebook_access_token]"
 
+os.system("kill python")
 # if __name__ == "__main__":
 #     app.run(port=9000)

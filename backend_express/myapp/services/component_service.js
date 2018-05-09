@@ -203,20 +203,29 @@ module.exports = {
             });
             // Metric 4: SECURITY
 
-            getPort().then(port_us => {
-                var config_sec = {
-                    host: '0.0.0.0',
-                    port: port_us   
-                }
-                sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
-                    value_met.component[SECURITY].value = result;
-                    // cb();
-                    console.log(result);
-                });
+            // getPort().then(port_us => {
+            //     var config_sec = {
+            //         host: '0.0.0.0',
+            //         port: port_us   
+            //     }
+            //     sec_report.generateReport('../metrics/polymer-security/bower_components/spotify-login-stable/demo.html',config_sec).then(function(result){
+            //         value_met.component[SECURITY].value = result;
+            //         // cb();
+            //         console.log(result);
+            //     });
+            // });
+
+        // METRIC 5: Accuracy          
+          child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['open-weather', 'master'], function (error, stdout, stderr) {
+            var contadorFallos = /contadorFallos (.*)/;
+            var fallos_accuracy = stdout.match(contadorFallos);
+            console.log(fallos_accuracy)
+            console.log("fallos contador:")
+            //console.log (fallos_accuracy[0]);
+            value_met.component[ACCURACY].value = fallos_accuracy[0];
+            cb();
+            console.log(stdout);
             });
-
-
-            
         });
     }
 };
