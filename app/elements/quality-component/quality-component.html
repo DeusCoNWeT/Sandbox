@@ -13,7 +13,8 @@
             table {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
-                width: 100%;
+                width: 95%;
+                margin-left: 15px;
             }
 
             td,
@@ -73,41 +74,44 @@
                 font-size: 25px;
                 padding: 8px 26px;
             }
-            .load{
+
+            .load {
                 font-size: 40px;
             }
-            img{
+
+            img {
                 width: 50%;
                 height: 50%;
             }
         </style>
         <div class="container">
             <template is="dom-if" if="{{loading}}">
-            <div class="vertical layout center-center" id="loadingGif">
-                <img src="https://m.popkey.co/163fce/Llgbv_s-200x150.gif">
-                <p class="load" >Loading...</p>
-            </div>
-        </template>
+                <div class="vertical layout center-center" id="loadingGif">
+                    <img src="https://m.popkey.co/163fce/Llgbv_s-200x150.gif">
+                    <p class="load">Loading...</p>
+                </div>
+            </template>
             <template is="dom-if" if="{{visible}}">
                 <span class="encabezado horizontal layout center" name$="{{data.name}}">La calidad de su componente {{getName}} es:</span>
                 <!-- <p id="name" name$="{{data.name}}">You are checking the quality of {{getName}}</p> -->
+
+                <table>
+                    <thead>
+                        <tr>
+                            <template is="dom-repeat" items="{{value_metrics}}">
+                                <th>{{item.name}}</th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <template is="dom-repeat" items="{{value_metrics}}">
+                                <td>{{item.value}}</th>
+                            </template>
+                        </tr>
+                    </tbody>
+                </table>
             </template>
-            <table>
-                <thead>
-                    <tr>
-                        <template is="dom-repeat" items="{{value_metrics}}">
-                            <th>{{item.name}}</th>
-                        </template>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <template is="dom-repeat" items="{{value_metrics}}">
-                            <td>{{item.value}}</th>
-                        </template>
-                    </tr>
-                </tbody>
-            </table>
             <template is="dom-if" if="{{visible}}">
                 <div class="star horizontal layout">
                     <p>La valoración de su componente es:</p>
@@ -131,7 +135,7 @@
                     type: String
                 },
                 value_metrics: {
-                    type: String
+                    type: Array
                 },
                 visible: {
                     type: Boolean,
@@ -143,15 +147,18 @@
                 }
             },
             _showquality: function (data) {
-
                 this.visible = true;
                 var dato = data.detail.data;
                 var name_cmp = dato.name_component;
                 var info = dato.component;
                 console.log(name_cmp);
-                this.value_metrics = info;
+                this.set("value_metrics", info);
                 this.getName = name_cmp;
-            }
+            },
+            reset: function () {
+                this.set('visible', false);
+                this.set('value_metrics', []);
+            },
         });
     </script>
 </dom-module>

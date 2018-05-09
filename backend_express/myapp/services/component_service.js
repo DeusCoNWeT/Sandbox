@@ -160,7 +160,7 @@ module.exports = {
                 }
             }
             var cb = contador(MAX_CONT);
-
+            // resolve(value_met);
             // METRIC 1: COMPLEXITY & MANTENIBILIDAD
             wcc_report.analyze(folder).then(function (result) {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
@@ -215,6 +215,7 @@ module.exports = {
             //     });
             // });
 
+<<<<<<< HEAD
         // METRIC 5: Accuracy          
           child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['open-weather', 'master'], function (error, stdout, stderr) {
             var contadorFallos = /contadorFallos (.*)/;
@@ -226,6 +227,10 @@ module.exports = {
             cb();
             console.log(stdout);
             });
+=======
+
+            
+>>>>>>> fc4a4cef14cdc647b3f456e9c28e5635b496e81f
         });
     }
 };
