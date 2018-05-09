@@ -15,15 +15,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var app = document.querySelector('#app');
   app._nameComp = function (name, data) {
     this.$.form_component._showproperties(name, data);
+    this.$.quality_comp.reset();
   }
   app._showquality = function (data) {
     this.$.quality_comp._showquality(data);
     this.setLoading(false);
-    this.$.quality_comp.reset();
+    
   }
 
   app._loadingCb = function(){
     this.setLoading(true);
+    this.$.quality_comp.reset();
   }
 
   app.setLoading = function(status){

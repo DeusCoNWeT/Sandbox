@@ -44,11 +44,15 @@ module.exports = {
         })
     },
     analize_metric: function (object_tokens) {
+        //Variables Globales 
+        var calidad_estructural;
+        var component, component_demo, name_cmp;
+        // JSON con valores de Calidad
         var value_met = {
             component: [
                 {
                     name: "latency",
-                    value: 45.2
+                    value: 4558.8
                 },
                 {
                     name: "structural",
@@ -64,7 +68,7 @@ module.exports = {
                 },
                 {
                     name: "accuracy",
-                    value: ""
+                    value: 0
                 },
                 {
                     name: "usability",
@@ -72,23 +76,19 @@ module.exports = {
                 },
                 {
                     name: "security",
-                    value: ""
+                    value: "5"
                 },
                 {
                     name: "refresh",
-                    value: 45.2
+                    value: 57.888
                 }
 
             ],
             name_component: ""
         }
-        // ROL SELECTED
+        /************************************************************** COMPONENTS LOCATION************************************************************/
         var object_rol = object_tokens.attr;
         var rol_selected = object_rol.rol;
-        //ESTRUCTURAL 
-        var calidad_estructural;
-
-        //Llamar al script de las metricas
         var base_folder = path.join(__dirname, '../components/');
         var base_folder_usability = path.join(__dirname, '../metrics/polymer-accessibility/');
         var list_folder = ['bower_components/spotify-component-stable/spotify-component.html', 'bower_components/twitter-timeline-stable/static/twitter-timeline.html', 'bower_components/traffic-incidents-stable/traffic-incidents.html',
@@ -97,14 +97,10 @@ module.exports = {
         var list_folder_demo = ['bower_components/spotify-component-stable/', 'bower_components/twitter-timeline-stable/static/', 'bower_components/traffic-incidents-stable/',
             'bower_components/pinterest-timeline-stable/', 'bower_components/open-weather-stable/', 'bower_components/googleplus-timeline-stable/', 'bower_components/finance-search-stable/',
             'bower_components/facebook-wall-stable/', 'bower_components/reddit-timeline-stable/'];
-        // FALTA REDDIT
-        // Hay que hacer que el objeto que traemos tenga el nombre del componente, y aqui lo comprobamos si ese nombre contiene una lapabra de spoty, twitter etc..
-
-        // var component = list_folder[3];
         var new_index = 'demo/index.html';
-        var component, component_demo, name_cmp;
+        /***********************************************************************************************************************************************/
 
-        ////////////////////////////// FOLDER OF COMPONENTS////////////////////////////////////////
+        /***************************************************************** FOLDERS *********************************************************************/
         var name_comp = object_tokens.nameComp;
         if (name_comp.includes('spotify')) {
             component = list_folder[SPOTIFY];
@@ -149,7 +145,9 @@ module.exports = {
         var folder = base_folder + component;
         var index_component = base_folder + component_demo + new_index;
         var folder_usability = component_demo + new_index;
+        /***********************************************************************************************************************************************/
 
+        /****************************************************** CALLBACK - PROMISE *********************************************************************/
         return new Promise(function (resolve, reject) {
             function contador(max) {
                 var cont = 0;
@@ -162,8 +160,9 @@ module.exports = {
                 }
             }
             var cb = contador(MAX_CONT);
+            /***********************************************************************************************************************************************/
 
-            // METRIC 1: COMPLEXITY & MANTENIBILIDAD
+            /****************************************************** METRIC 1: COMPLEXITY & MANTENIBILIDAD *************************************************/
             wcc_report.analyze(folder).then(function (result) {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
                 var val_maintenance = result.js[0].complexity.maintainability;
@@ -171,39 +170,41 @@ module.exports = {
                 value_met.component[MAINTENACE].value = val_maintenance + "/100";
                 //Calculo sobre 5
                 var cal_complexity, cal_maintenance;
-                if(val_complexity > 0 && val_complexity < 11){
+                if (val_complexity > 0 && val_complexity < 11) {
                     cal_complexity = 5;
-                }else if(val_complexity < 21){
+                } else if (val_complexity < 21) {
                     cal_complexity = 4;
-                }else if(cal_complexity < 51){
+                } else if (cal_complexity < 51) {
                     cal_complexity = 3;
-                }else {
+                } else {
                     cal_complexity = 2;
                 }
 
-                cal_maintenance = (val_maintenance*5)/100;
+                cal_maintenance = (val_maintenance * 5) / 100;
                 // console.log(cal_maintenance);
                 // console.log(cal_complexity);
                 cb();
             }, reject);
-            // METRIC 2: STRUCTURAL
+            /***********************************************************************************************************************************************/
+
+            /******************************************************* METRIC 2: STRUCTURAL*******************************************************************/
             child_process.execFile('../metrics/imports-analyzer/countImports.py', ['-u', folder], function (error, stdout, stderr) {
                 // var expression = /\d* imports \(totales \d*\)/;
                 var expression = /(\d*) imports \(totales \d*\)/;
                 var match_result = stdout.match(expression);
-                number_imports = match_result.length > 1? parseInt(match_result[1]) : 0;
-                
-                if(number_imports > 0 && number_imports <= 25){
+                number_imports = match_result.length > 1 ? parseInt(match_result[1]) : 0;
+
+                if (number_imports > 0 && number_imports <= 25) {
                     calidad_estructural = 5;
-                }else if(number_imports <= 40){
+                } else if (number_imports <= 40) {
                     calidad_estructural = 4.5;
-                }else if(number_imports <= 55){
+                } else if (number_imports <= 55) {
                     calidad_estructural = 4;
-                }else if(number_imports <= 60){
+                } else if (number_imports <= 60) {
                     calidad_estructural = 3;
-                }else if(number_imports <= 70){
+                } else if (number_imports <= 70) {
                     calidad_estructural = 2;
-                }else{
+                } else {
                     calidad_estructural = 1;
                 }
                 value_met.component[STRUCTURAL].value = calidad_estructural + "/5";
@@ -211,7 +212,9 @@ module.exports = {
                 cal_structural = calidad_estructural;
                 cb();
             });
-            // Metric 3: USABILITY  
+            /*************************************************************************************************************************************************/
+
+            /******************************************************** METRIC 3: USABILITY ********************************************************************/
             var config = {
                 root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
                 port: '8100',
@@ -231,11 +234,30 @@ module.exports = {
                 acc_report._setProgram(config);
                 acc_report.analyze_file(path).then(function (result) {
                     value_met.component[USABILITY].value = result.value.value + "/1";
+                    var val_usa = result.value.value;
+                    var cal_usability;
+                    switch (val_usa) {
+                        case val_usa <= 1:
+                            cal_usability = 1;
+                            break;
+                        case val_usa <= 2:
+                            cal_usability = 2;
+                            break;
+                        case val_usa <= 3:
+                            cal_usability = 3;
+                            break;
+                        case val_usa <= 4:
+                            cal_usability = 4;
+                            break;
+                        default:
+                            cal_usability = 5;
+                    }
                     cb();
                 }, reject);
             });
-            // Metric 4: SECURITY
+            /***********************************************************************************************************************************************/
 
+            /******************************************************** METRIC 4: SECURITY *******************************************************************/
             // getPort().then(port_us => {
             //     var config_sec = {
             //         host: '0.0.0.0',
@@ -249,31 +271,72 @@ module.exports = {
             //         // console.log(result);
             //     });
             // });
-            // METRIC 5: Accuracy          
-        //   child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['open-weather', 'master'], function (error, stdout, stderr) {
-        //     var contadorFallos = /contadorFallos (.*)/;
-        //     var fallos_accuracy = stdout.match(contadorFallos);
-        //     console.log(fallos_accuracy)
-        //     console.log("fallos contador:")
-        //     //console.log (fallos_accuracy[0]);
-        //    //value_met.component[ACCURACY].value = fallos_accuracy[0];
-        //     cb();
-        //     console.log(stdout);
-        //   });
-            var calidad_total;
-            switch(rol_selected){
-                case "proveedor":
-                    calidad_total = 2;
+            /***********************************************************************************************************************************************/
+
+            /******************************************************** METRIC 5: ACCURACY *******************************************************************/
+            // child_process.execFile('../metrics/accuracy/accuracy_metric.py', ['open-weather', 'master'], function (error, stdout, stderr) {
+            //     var contadorFallos = /contadorFallos (.*)/;
+            //     var fallos_accuracy = stdout.match(contadorFallos);
+            //     console.log(fallos_accuracy)
+            //     console.log("fallos contador:")
+            //     //console.log (fallos_accuracy[0]);
+            //     //value_met.component[ACCURACY].value = fallos_accuracy[0];
+            //     cb();
+            //     console.log(stdout);
+            // });
+            /***********************************************************************************************************************************************/
+
+            /******************************************************** QUALITY *******************************************************************/
+            var valor_acc = value_met.component[ACCURACY].value;
+            var cal_accuracy;
+            switch (valor_acc) {
+                case valor_acc < 20:
+                    cal_accuracy = 5;
                     break;
-                case "notecnico":
-                    calidad_total = 1;
+                case valor_acc < 40:
+                    cal_accuracy = 4;
                     break;
-                case "integrador":
-                    calidad_total = 3;
+                case valor_acc < 60:
+                    cal_accuracy = 3;
+                    break;
+                case valor_acc < 80:
+                    cal_accuracy = 2;
                     break;
                 default:
-                    calidad_total = 4;
-           }
+                    cal_accuracy = 1;
+            }
+            console.log(cal_accuracy + " valor accuracy");
+
+            var cal_latency = 5;
+            var cal_security = 5;
+            // console.log(cal_complexity);
+            // VALORES FALSOS //
+            var cal_accuracy2 = 5;
+            var cal_complexity2 = 5;
+            var cal_latency2 = 4;
+            var cal_structural2 = 4;
+            var cal_maintenance2 = 3;
+            var cal_security2 = 5;
+            var cal_usability2 = 4;
+            var cal_refresh2 = 4;
+            var calidad_total;
+            // var calidad_total = (cal_usability + cal_accuracy + cal_latency + cal_complexity + cal_maintenance + cal_structural  + cal_security)/8;
+            // var calidad_total = (cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/8;
+            // console.log("La calidad del componente es: " + calidad_total);
+            switch (rol_selected) {
+                case "proveedor":
+                    calidad_total = (1.5*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.5*cal_maintenance2 + cal_structural2  + 1.5*cal_security2 + cal_refresh2)/10.5;
+                    // calidad_total = 1
+                    break;
+                case "notecnico":
+                    calidad_total = (cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/8;
+                    break;
+                case "integrador":
+                    calidad_total = (2*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.3*cal_maintenance2 + cal_structural2  + 2*cal_security2 + cal_refresh2)/11.3;;
+                    break;
+                default:
+                    calidad_total = (2*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.5*cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/10.5;;
+            }
             console.log(calidad_total);
         });
     }
