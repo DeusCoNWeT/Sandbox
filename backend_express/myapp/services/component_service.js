@@ -47,6 +47,7 @@ module.exports = {
         //Variables Globales 
         var calidad_estructural;
         var component, component_demo, name_cmp;
+        var cal_complexity, cal_maintenance, cal_structural, cal_accuracy, cal_usability;
         // JSON con valores de Calidad
         var value_met = {
             component: [
@@ -56,15 +57,15 @@ module.exports = {
                 },
                 {
                     name: "structural",
-                    value: ""
+                    value: 0
                 },
                 {
                     name: "complexity",
-                    value: ""
+                    value: 0
                 },
                 {
                     name: "maintencance",
-                    value: ""
+                    value: 0
                 },
                 {
                     name: "accuracy",
@@ -72,11 +73,11 @@ module.exports = {
                 },
                 {
                     name: "usability",
-                    value: ""
+                    value: 0
                 },
                 {
                     name: "security",
-                    value: "5"
+                    value: 5
                 },
                 {
                     name: "refresh",
@@ -148,6 +149,7 @@ module.exports = {
         /***********************************************************************************************************************************************/
 
         /****************************************************** CALLBACK - PROMISE *********************************************************************/
+        var that = this;
         return new Promise(function (resolve, reject) {
             function contador(max) {
                 var cont = 0;
@@ -155,6 +157,8 @@ module.exports = {
                     cont++;
                     if (cont === max) {
                         value_met.name_component = name_cmp;
+                        var calidad = that.quality(value_met);
+                        // resolve(value_met union calidad);
                         resolve(value_met);
                     }
                 }
@@ -167,20 +171,9 @@ module.exports = {
                 var val_complexity = result.js[0].complexity.methodAverage.cyclomatic;
                 var val_maintenance = result.js[0].complexity.maintainability;
                 value_met.component[COMPLEXITY].value = val_complexity;
-                value_met.component[MAINTENACE].value = val_maintenance + "/100";
+                value_met.component[MAINTENACE].value = val_maintenance;
                 //Calculo sobre 5
-                var cal_complexity, cal_maintenance;
-                if (val_complexity > 0 && val_complexity < 11) {
-                    cal_complexity = 5;
-                } else if (val_complexity < 21) {
-                    cal_complexity = 4;
-                } else if (cal_complexity < 51) {
-                    cal_complexity = 3;
-                } else {
-                    cal_complexity = 2;
-                }
 
-                cal_maintenance = (val_maintenance * 5) / 100;
                 // console.log(cal_maintenance);
                 // console.log(cal_complexity);
                 cb();
@@ -207,7 +200,7 @@ module.exports = {
                 } else {
                     calidad_estructural = 1;
                 }
-                value_met.component[STRUCTURAL].value = calidad_estructural + "/5";
+                value_met.component[STRUCTURAL].value = calidad_estructural;
                 //Calculo sobre 5
                 cal_structural = calidad_estructural;
                 cb();
@@ -233,25 +226,7 @@ module.exports = {
                 // var pinterest = 'http://localhost:8100/bower_components/pinterest-timeline-stable/demo/index.html'
                 acc_report._setProgram(config);
                 acc_report.analyze_file(path).then(function (result) {
-                    value_met.component[USABILITY].value = result.value.value + "/1";
-                    var val_usa = result.value.value;
-                    var cal_usability;
-                    switch (val_usa) {
-                        case val_usa <= 1:
-                            cal_usability = 1;
-                            break;
-                        case val_usa <= 2:
-                            cal_usability = 2;
-                            break;
-                        case val_usa <= 3:
-                            cal_usability = 3;
-                            break;
-                        case val_usa <= 4:
-                            cal_usability = 4;
-                            break;
-                        default:
-                            cal_usability = 5;
-                    }
+                    value_met.component[USABILITY].value = result.value.value;
                     cb();
                 }, reject);
             });
@@ -287,58 +262,137 @@ module.exports = {
             /***********************************************************************************************************************************************/
 
             /******************************************************** QUALITY *******************************************************************/
-            var valor_acc = value_met.component[ACCURACY].value;
-            var cal_accuracy;
-            switch (valor_acc) {
-                case valor_acc < 20:
-                    cal_accuracy = 5;
-                    break;
-                case valor_acc < 40:
-                    cal_accuracy = 4;
-                    break;
-                case valor_acc < 60:
-                    cal_accuracy = 3;
-                    break;
-                case valor_acc < 80:
-                    cal_accuracy = 2;
-                    break;
-                default:
-                    cal_accuracy = 1;
-            }
-            console.log(cal_accuracy + " valor accuracy");
 
-            var cal_latency = 5;
-            var cal_security = 5;
-            // console.log(cal_complexity);
-            // VALORES FALSOS //
-            var cal_accuracy2 = 5;
-            var cal_complexity2 = 5;
-            var cal_latency2 = 4;
-            var cal_structural2 = 4;
-            var cal_maintenance2 = 3;
-            var cal_security2 = 5;
-            var cal_usability2 = 4;
-            var cal_refresh2 = 4;
-            var calidad_total;
+
+
+
             // var calidad_total = (cal_usability + cal_accuracy + cal_latency + cal_complexity + cal_maintenance + cal_structural  + cal_security)/8;
             // var calidad_total = (cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/8;
             // console.log("La calidad del componente es: " + calidad_total);
-            switch (rol_selected) {
-                case "proveedor":
-                    calidad_total = (1.5*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.5*cal_maintenance2 + cal_structural2  + 1.5*cal_security2 + cal_refresh2)/10.5;
-                    // calidad_total = 1
-                    break;
-                case "notecnico":
-                    calidad_total = (cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/8;
-                    break;
-                case "integrador":
-                    calidad_total = (2*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.3*cal_maintenance2 + cal_structural2  + 2*cal_security2 + cal_refresh2)/11.3;;
-                    break;
-                default:
-                    calidad_total = (2*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.5*cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/10.5;;
-            }
-            console.log(calidad_total);
+
+            // function quality(){
+            //     switch (rol_selected) {
+            //         case "proveedor":
+            //             calidad_total = (1.5*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.5*cal_maintenance2 + cal_structural2  + 1.5*cal_security2 + cal_refresh2)/10.5;
+            //             // calidad_total = 1
+            //             break;
+            //         case "notecnico":
+            //             calidad_total = (cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/8;
+            //             break;
+            //         case "integrador":
+            //             calidad_total = (2*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.3*cal_maintenance2 + cal_structural2  + 2*cal_security2 + cal_refresh2)/11.3;;
+            //             break;
+            //         default:
+            //             calidad_total = (2*cal_usability2 + cal_accuracy2 + cal_latency2 + cal_complexity2 + 2.5*cal_maintenance2 + cal_structural2  + cal_security2 + cal_refresh2)/10.5;;
+            //     }
+            //     console.log(calidad_total);                
+            // }
         });
+
+    },
+    quality: function (valores) {
+        var calidad_total;
+        var cal_maintenance, cal_accuracy, cal_complexity, cal_latency, cal_refresh, cal_security, cal_usability, cal_structural;
+        var val_latency = valores.component[0].value;
+        var val_structural = valores.component[1].value;
+        var val_complexity = valores.component[2].value;
+        var val_maintenance = valores.component[3].value;
+        var val_accuracy = valores.component[4].value;
+        var val_usability = valores.component[5].value;
+        var val_security = valores.component[6].value;
+        var val_refresh = valores.component[7].value;
+
+        /* COMPLEXITY*/
+        if (val_complexity > 0 && val_complexity < 11) {
+            cal_complexity = 5;
+        } else if (val_complexity < 21) {
+            cal_complexity = 4;
+        } else if (cal_complexity < 51) {
+            cal_complexity = 3;
+        } else {
+            cal_complexity = 2;
+        }
+
+        /* ACCURACY */
+        if (val_accuracy < 20) {
+            cal_accuracy = 5;
+        } else if (val_accuracy < 40) {
+            cal_accuracy = 4;
+        } else if (val_accuracy < 60) {
+            cal_accuracy = 3;
+        } else if (val_accuracy < 80) {
+            cal_accuracy = 2;
+        } else {
+            cal_accuracy = 1;
+        }
+
+        /* MAINTENANCE*/
+        cal_maintenance = (val_maintenance * 5) / 100;
+        /* STRCUTRUAL*/
+        cal_structural = val_structural;
+        /*LATENCY*/
+        if (val_latency <= 1000) {
+            cal_latency = 5;
+        } else if (val_latency <= 3000) {
+            cal_latency = 4;
+        } else if (val_latency <= 7000) {
+            cal_latency = 3;
+        } else if (val_latency <= 9000) {
+            cal_latency = 2;
+        } else {
+            cal_latency = 1;
+        }
+        /* REFRESH*/
+        if (val_refresh < 50) {
+            cal_refresh = 5;
+        } else if (val_refresh < 55) {
+            cal_refresh = 4;
+        } else if (val_refresh < 65) {
+            cal_refresh = 3;
+        } else if (val_refresh < 80) {
+            cal_refresh = 2;
+        } else {
+            cal_refresh = 1;
+        }
+        /* SECURITY*/
+        cal_security = val_security;
+        /* USABILITY*/
+      
+        if (val_usability <= 0.20) {
+            cal_usability = 1;
+        } else if (val_usability <= 0.40) {
+            cal_usability = 2;
+        } else if (val_usability <= 0.60) {
+            cal_usability = 3;
+        } else if (val_usability <= 0.80) {
+            cal_usability = 4;
+        } else {
+            cal_usability = 5;
+        }
+
+        console.log(cal_complexity);
+        console.log(cal_accuracy);
+        console.log(cal_maintenance);
+        console.log(cal_structural);
+        console.log(cal_latency);
+        console.log(cal_refresh);
+        console.log(cal_security);
+        console.log(cal_usability);
+        // switch (rol_selected) {
+        //     case "proveedor":
+        //         calidad_total = (1.5 * cal_usability + cal_accuracy + cal_latency + cal_complexity + 2.5 * cal_maintenance + cal_structural + 1.5 * cal_security + cal_refresh) / 10.5;
+        //         // calidad_total = 1
+        //         break;
+        //     case "notecnico":
+        //         calidad_total = (cal_usability + cal_accuracy + cal_latency + cal_complexity + cal_maintenance + cal_structural + cal_security + cal_refresh) / 8;
+        //         break;
+        //     case "integrador":
+        //         calidad_total = (2 * cal_usability + cal_accuracy + cal_latency + cal_complexity + 2.3 * cal_maintenance + cal_structural + 2 * cal_security + cal_refresh) / 11.3;;
+        //         break;
+        //     default:
+        //         calidad_total = (2 * cal_usability + cal_accuracy + cal_latency + cal_complexity + 2.5 * cal_maintenance + cal_structural + cal_security + cal_refresh) / 10.5;;
+        // }
+        // console.log(calidad_total);
     }
 };
 
