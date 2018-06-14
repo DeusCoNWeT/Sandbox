@@ -37,6 +37,12 @@
             .container {
                 height: 100%;
                 width: 100%;
+                box-sizing: border-box;
+                padding: 24px 32px;
+            }
+
+            table {
+                margin-top: 40px;
             }
 
             .tabla {
@@ -63,9 +69,11 @@
                 color: #FF5F5F;
                 /* color: rgb(39, 130, 228); */
             }
+
             .ec-stars-wrapper a[active] {
                 color: #FF5F5F;
             }
+
             .ec-stars-wrapper>a:hover~a {
                 color: #888;
             }
@@ -75,31 +83,47 @@
                 font-size: 25px;
                 padding: 8px 26px;
             }
-            .load{
+
+            .load {
                 font-size: 40px;
             }
-            img{
+
+            img {
                 width: auto;
                 height: auto;
             }
 
-            td[metric]{
+            td[metric] {
                 background-color: #b0ecb2;
             }
+
             td[metric="latency"],
             td[metric="maintenance"],
             td[metric="refresh"] {
-                background-color:#ffff8d;
+                background-color: #ffff8d;
             }
 
+            .logo {
+                width: 450px;
+                border-radius: 8px;
+                margin-top: 40px;
+            }
+
+            div.component {
+                position: relative;
+            }
+
+            .picbitLink {
+                font-size: 20px;
+            }
         </style>
         <div class="container">
             <template is="dom-if" if="{{loading}}">
-            <div class="vertical layout center-center" id="loadingGif">
-                <img src="http://backgroundcheckall.com/wp-content/uploads/2017/12/loading-gif-transparent-background-download-2.gif">
-                <p class="load" >Loading...</p>
-            </div>
-        </template>
+                <div class="vertical layout center-center" id="loadingGif">
+                    <img src="http://backgroundcheckall.com/wp-content/uploads/2017/12/loading-gif-transparent-background-download-2.gif">
+                    <p class="load">Loading...</p>
+                </div>
+            </template>
             <template is="dom-if" if="{{visible}}">
                 <span class="encabezado horizontal layout center" name$="{{data.name}}">La calidad de su componente {{getName}} es:</span>
                 <!-- <p id="name" name$="{{data.name}}">You are checking the quality of {{getName}}</p> -->
@@ -132,7 +156,12 @@
                     </div>
                     <!-- <p class="tabla">AQUÍ IRÁ LA NOTA TOTAL DE LOS COMPONENTES CON ESTRELLAS ETC.</p> -->
                 </div>
+                <div class="vertical center-center layout component">
+                    <a target="_blank" href="https://centauro.ls.etsiinf.upm.es"><img class="logo" src="{{getImg(getName)}}"></a>
+                    <p class="picbitLink">Pincha en el icono para interactuar con el componente</p>
+                </div>
             </template>
+
     </template>
     </div>
     <script>
@@ -168,6 +197,24 @@
                 this.set('visible', false);
                 this.set('value_metrics', []);
             },
+            getImg: function(rs){
+                var img_selected;
+
+                switch(rs){
+                    case 'Facebook':
+                        img_selected = "https://www.actualapp.com/wp-content/uploads/2015/12/Instalar-Facebook-actualapp.jpg";
+                        break;
+                    case 'Spotify':
+                        img_selected ="http://www.scdn.co/i/_global/open-graph-default.png";
+                        break;
+                    case 'Twitter':
+                        img_selected = "https://cdn.wccftech.com/wp-content/uploads/2018/02/Twitter.jpeg";
+                        break;
+                    default:
+                        break;
+                }
+                return img_selected;
+            }
         });
     </script>
 </dom-module>
