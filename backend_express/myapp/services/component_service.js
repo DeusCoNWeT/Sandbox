@@ -209,7 +209,7 @@ module.exports = {
 
             /******************************************************** METRIC 3: USABILITY ********************************************************************/
             var config = {
-                root: '/home/miguel/proyecto/sandbox/backend_express/myapp/metrics/polymer-accessibility',
+                root: __dirname + '/metrics/polymer-accessibility',
                 port: '8100',
                 timeout: '5000',
                 wcag: true,
