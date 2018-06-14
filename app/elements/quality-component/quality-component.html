@@ -63,7 +63,9 @@
                 color: #FF5F5F;
                 /* color: rgb(39, 130, 228); */
             }
-
+            .ec-stars-wrapper a[active] {
+                color: #FF5F5F;
+            }
             .ec-stars-wrapper>a:hover~a {
                 color: #888;
             }
@@ -77,14 +79,24 @@
                 font-size: 40px;
             }
             img{
-                width: 50%;
-                height: 50%;
+                width: auto;
+                height: auto;
             }
+
+            td[metric]{
+                background-color: #b0ecb2;
+            }
+            td[metric="latency"],
+            td[metric="maintenance"],
+            td[metric="refresh"] {
+                background-color:#ffff8d;
+            }
+
         </style>
         <div class="container">
             <template is="dom-if" if="{{loading}}">
             <div class="vertical layout center-center" id="loadingGif">
-                <img src="https://m.popkey.co/163fce/Llgbv_s-200x150.gif">
+                <img src="http://backgroundcheckall.com/wp-content/uploads/2017/12/loading-gif-transparent-background-download-2.gif">
                 <p class="load" >Loading...</p>
             </div>
         </template>
@@ -103,7 +115,7 @@
                 <tbody>
                     <tr>
                         <template is="dom-repeat" items="{{value_metrics}}">
-                            <td>{{item.value}}</th>
+                            <td metric$="{{item.name}}">{{item.value}}</th>
                         </template>
                     </tr>
                 </tbody>
@@ -112,11 +124,11 @@
                 <div class="star horizontal layout">
                     <p>La valoración de su componente es:</p>
                     <div class="ec-stars-wrapper">
-                        <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
-                        <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
-                        <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
-                        <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
-                        <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+                        <a href="#" data-value="1" active>&#9733;</a>
+                        <a href="#" data-value="2" active>&#9733;</a>
+                        <a href="#" data-value="3" active>&#9733;</a>
+                        <a href="#" data-value="4" active>&#9733;</a>
+                        <a href="#" data-value="5">&#9733;</a>
                     </div>
                     <!-- <p class="tabla">AQUÍ IRÁ LA NOTA TOTAL DE LOS COMPONENTES CON ESTRELLAS ETC.</p> -->
                 </div>

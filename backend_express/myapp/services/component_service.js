@@ -64,7 +64,7 @@ module.exports = {
                     value: 0
                 },
                 {
-                    name: "maintencance",
+                    name: "maintenance",
                     value: 0
                 },
                 {
